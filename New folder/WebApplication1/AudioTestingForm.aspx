@@ -9,11 +9,22 @@
 <body>
     <form id="form1" runat="server">
         <div>
-             <asp:Button ID="1" runat="server" Text="Record" OnClick="RecordButton" />
+             <asp:Button ID="btn1" runat="server" Text="Record" OnClick="RecordButton" />
 
-             <asp:Button ID="2" runat="server" Text="Stop" OnClick="StopButton" />
+             <asp:Button ID="btn2" runat="server" Text="Stop" OnClick="StopButton" />
 
-             <asp:Button ID="3" runat="server" Text="Stop" OnClick="PlayButton" />
+             <asp:Button ID="btn3" runat="server" Text="Play" OnClick="PlayButton" />
+
+<audio id="audioPlayer" style="display:none" "autoplay=false">
+  <source id="audioSrc" src="foo.wav" type="audio/mp3"/>
+  Your browser does not support the <code>audio</code> element. 
+</audio>
+
+var audioSrc = document.getElementById("audioSrc")
+audioSrc.setAttribte("src","http://xx.xx.xxx.x/.global/call_recording_archive/download.php?file=xxxxxxxxxxxxxx-all.mp3");
+
+var audioPlayer = document.getElementById("audioPlayer")
+audioPlayer.play()
 
         </div>
     </form>

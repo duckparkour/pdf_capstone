@@ -22,30 +22,30 @@ namespace WebApplication1 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// 1 control.
+        /// btn1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button 1;
+        protected global::System.Web.UI.WebControls.Button btn1;
         
         /// <summary>
-        /// 2 control.
+        /// btn2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button 2;
+        protected global::System.Web.UI.WebControls.Button btn2;
         
         /// <summary>
-        /// 3 control.
+        /// btn3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button 3;
+        protected global::System.Web.UI.WebControls.Button btn3;
     }
 }
