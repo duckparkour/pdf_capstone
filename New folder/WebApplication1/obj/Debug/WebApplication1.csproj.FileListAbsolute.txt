@@ -182,3 +182,4 @@ C:\Users\justi_000\Documents\GitHub\pdf_capstone\New folder\WebApplication1\obj\
 C:\Users\justi_000\Documents\GitHub\pdf_capstone\New folder\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 C:\Users\justi_000\Documents\GitHub\pdf_capstone\New folder\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\justi_000\Documents\GitHub\pdf_capstone\New folder\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\justi_000\Documents\GitHub\pdf_capstone\New folder\WebApplication1\bin\CSAudioRecorder.dll
