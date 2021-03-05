@@ -116,7 +116,7 @@ body {
     color: lightsalmon;
 }
 
-#play-icon {
+#audio-icon {
     color: lightpink;
 }
 
@@ -125,7 +125,7 @@ body {
     height: 100%;
     margin: 5px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .save-button {
@@ -189,3 +189,5 @@ body {
 #youtube-video-frame {
     /* align-self: center; */
 }
+
+/*Modal*/

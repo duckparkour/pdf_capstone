@@ -1,26 +1,97 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function () {
+    let mediaRecorder;
+    let audioChunks;
 
-// Write your Javascript code.
-
-$(document).ready(function () {
+    //Video Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     $("#video-icon").click(function (e) {
         $('.main').empty();
-        $('.main').append(` <h1 id="youtube-title"><i class="fab fa-youtube"></i>Youtube Playback Function </h1>
-            <input type="text" name="youtube-input" id="youtube-search-bar" placeholder="Enter a youtube">
-            <button id="youtube-search-button">Search!</button>
+        $('.main').append(`<h1 id="youtube-title"><i class="fab fa-youtube"></i>Youtube Playback Function </h1>
+            <input type="text" name="youtube-input" id="youtube-search-bar" placeholder="Enter a youtube embedded url">
+            <button id="youtube-search-button">Go!</button>
             <div class="video-container">
-                <iframe width="860" height="615" src="https://www.youtube.com/embed/Oa9QeMHNOm4" frameborder="0" allow="accelerometer; 
+                <iframe id="#youtube-video"width="860" height="615" src="https://www.youtube.com/embed/Oa9QeMHNOm4" frameborder="0" allow="accelerometer;
                     autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>`);
     });
 
+    $(".main").on('click', '#youtube-search-button', function (e) {
+        e.preventDefault();
+        let source = $('#youtube-search-bar').val()
+        let x = $('#youtube-video').attr('src')
+        console.log(x)
+
+    })
+
+    //Audio Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    $('#audio-icon').click(function (e) {
+        e.preventDefault();
+        $('.main').empty();
+
+        let audioControlsDiv = $(`<div></div>`)
+        let startButton = `<button id="start-recording-button">Start Recording</button>`
+        let stopButton = `<button id="stop-recording-button">Stop Recording</button>`
+        let openRecordingButton = `<button id="open-recording-button">Open a Recording</button>`
+        let mainAudioControl = `<audio id="recording-controller" controls><source src="#" type="audio/mp3">Audio not supported</audio>`
+
+        $(audioControlsDiv).append(startButton, stopButton, openRecordingButton)
+        $('.main').append(audioControlsDiv, mainAudioControl);
+    });
+
+    //The click handler has to be binded this way since it does not exist until the audio button is selected from the media tab.
+    $('.main').on("click", "#start-recording-button", function (e) {
+        e.preventDefault()
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder.start();
+
+                audioChunks = [];
+
+                mediaRecorder.addEventListener("dataavailable", event => {
+                    audioChunks.push(event.data);
+                });
+
+                mediaRecorder.addEventListener("stop", () => {
+                    const audioBlob = new Blob(audioChunks);
+                    const audioUrl = URL.createObjectURL(audioBlob);
+
+                    let audio = document.querySelector('audio');
+                    audio.src = audioUrl
+                });
+            })
+    })
+
+    $('.main').on("click", "#stop-recording-button", function (e) {
+        e.preventDefault();
+        mediaRecorder.stop()
+    })
+
+    $('.main').on("click", "#open-recording-button", function (e) {
+        e.preventDefault();
+        console.log("hello")
+    })
+
+    //PDF Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     $('#file-icon').click(function (e) {
         e.preventDefault();
-        console.log('hello');
         $('.main').empty();
-        $('.main').append(`<iframe src="https://pdf-lib.js.org/assets/with_update_sections.pdf" 
+        $('.main').append(`<iframe src="https://pdf-lib.js.org/assets/with_update_sections.pdf"
             frameborder="1" width="100%" height="100%"></iframe>`);
     });
-});
+
+    //ETC////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    $('#upload-button').click(function (e) {
+        let $element = `<button id="modal-btn"> click me, I make a modal</button>
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <p>this is the text inside the modal</p>
+                </div>
+            </div>`
+        $('body').append($element).show();
+    })
+})
