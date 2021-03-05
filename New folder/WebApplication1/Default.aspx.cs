@@ -49,7 +49,7 @@ namespace WebApplication1
                         {
                             FileName = file.FileName,
                             ContentType = file.ContentType,
-                            FileID = 0,
+                            FileID = 12,
                             FileSize = file.ContentLength,
                             FileExtension = Path.GetExtension(file.FileName),
                             FileContent = buffer
