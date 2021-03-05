@@ -34,14 +34,17 @@
         let stopButton = `<button id="stop-recording-button">Stop Recording</button>`
         let openRecordingButton = `<button id="open-recording-button">Open a Recording</button>`
         let mainAudioControl = `<audio id="recording-controller" controls><source src="#" type="audio/mp3">Audio not supported</audio>`
+        let recordingStatusText = `<h1 id="recording-status-text">Press "Start Recording" To Begin.</h1>`
 
         $(audioControlsDiv).append(startButton, stopButton, openRecordingButton)
-        $('.main').append(audioControlsDiv, mainAudioControl);
+        $('.main').append(audioControlsDiv, recordingStatusText, mainAudioControl);
     });
 
     //The click handler has to be binded this way since it does not exist until the audio button is selected from the media tab.
     $('.main').on("click", "#start-recording-button", function (e) {
         e.preventDefault()
+        $('#recording-status-text').text("Recording In Progress...");
+
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
                 mediaRecorder = new MediaRecorder(stream);
@@ -55,17 +58,22 @@
 
                 mediaRecorder.addEventListener("stop", () => {
                     const audioBlob = new Blob(audioChunks);
+                    const blobToSave = convertBlobToMp4(audioBlob, "Blobbie")
                     const audioUrl = URL.createObjectURL(audioBlob);
 
                     let audio = document.querySelector('audio');
                     audio.src = audioUrl
+
+                    console.log(blobToSave)
                 });
             })
     })
 
     $('.main').on("click", "#stop-recording-button", function (e) {
         e.preventDefault();
-        mediaRecorder.stop()
+        mediaRecorder.stop();
+        $('#recording-status-text').text("Recording Completed.")
+
     })
 
     $('.main').on("click", "#open-recording-button", function (e) {
@@ -95,3 +103,13 @@
         $('body').append($element).show();
     })
 })
+
+//Helper functions///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function convertBlobToMp4(blob, fileName) {
+    blob.lastModifiedDate = new Date();
+    blob.name = fileName;
+    blob.type = "audio/mp3";
+
+    return blob;
+}
