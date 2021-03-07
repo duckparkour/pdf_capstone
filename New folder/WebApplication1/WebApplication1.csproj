@@ -151,6 +151,9 @@
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
     <Content Include="AudioTestingForm.aspx" />
+    <Content Include="Chris Project Files\Index.html" />
+    <Content Include="Chris Project Files\site.css" />
+    <Content Include="Chris Project Files\site.js" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -192,6 +195,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Chris Project Files\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
