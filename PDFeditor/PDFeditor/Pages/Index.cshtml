@@ -1,4 +1,10 @@
 ﻿@page
+@using WebMatrix.Data;
+
+@{
+    var db = Database.Open("Server=(localdb)\\mssqllocaldb;Database=aspnet-53bc9b9d-9d6a-45d4-8429-2a2761773502;Trusted_Connection=True;MultipleActiveResultSets=true");
+    var selectQueryString = "SELECT * FROM Table ORDER BY Name";
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,6 +92,14 @@
             <tr>
                 <td>item 1</td>
             </tr>
+            @foreach (var row in db.Query(selectQueryString))
+            {
+                <tr>
+                    <td>@row.Id</td>
+                    <td>@row.Name</td>
+                </tr>
+
+            }
         </table>
     </div>
     <script src="~/js/site.js"></script>

@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     let mediaRecorder;
     let audioChunks;
+    let recordingActive = false;
 
     //Video Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -44,6 +45,8 @@
     $('.main').on("click", "#start-recording-button", function (e) {
         e.preventDefault()
         $('#recording-status-text').text("Recording In Progress...");
+        $('#recording-status-text').addClass('active')
+        recordingActive = true
 
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
@@ -71,6 +74,7 @@
 
     $('.main').on("click", "#stop-recording-button", function (e) {
         e.preventDefault();
+        recordingActive = false;
         mediaRecorder.stop();
         $('#recording-status-text').text("Recording Completed.")
 
