@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cLDGlJVs/qzcf5u5ChlmnF4jDXC8fXhpqPJEJxlp8NCOamhNEwyVIVTQ0Q07h9VOgtg7QZbX/0cPU2SVF3KpvA==",
+  "dgSpecHash": "pS1xqT7wQONY2r449s91fImQqlSIR5YVNb8mmjK9Ypo26HmhPyI9idK1eLyqs8GX0A4PWeHVltT793evEiRX1A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Capstone\\CLONE\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\n16611\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\n16611\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
