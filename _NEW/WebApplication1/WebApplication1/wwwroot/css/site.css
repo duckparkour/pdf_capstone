@@ -38,13 +38,12 @@ body {
     display: flex;
     background-color: #B8ABA4;
     box-shadow: 10px 5px #989A98;
-    padding: 10px;
+    padding: px;
     border-bottom: 1px solid #989A98;
 }
 
 .toolkit {
-    width: 20%;
-    height: 100%;
+    min-width: 20%;
     display: flex;
     flex-direction: column;
     border-right: 1px solid #989A98;
@@ -52,7 +51,6 @@ body {
 
 .toolkit-title-container {
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
 }
@@ -67,27 +65,22 @@ body {
 
 #text-controls-container {
     height: 30%;
-    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    margin: 5px 5px 0 0;
+    justify-content: center;
+    margin: 5px 5px 0 5px;
 }
 
-    #text-controls-container > select, input {
+    #text-controls-container > select {
         margin-right: 5px;
     }
 
 .color-container {
+    width: 10%;
     display: flex;
-    align-items: center;
     justify-content: flex-end;
-    margin: 5px 0 0 0;
+    padding-left: 5px;
 }
-
-    .color-container > input {
-        width: 30%;
-    }
 
 .media-controls-container {
     height: 50%;
@@ -166,11 +159,12 @@ body {
 /* Main */
 .main {
     grid-area: main;
-    margin: 15px;
+    margin: 15px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    min-width: 80%;
 }
 
 #youtube-search-bar {
