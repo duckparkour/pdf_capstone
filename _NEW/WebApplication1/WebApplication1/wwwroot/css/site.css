@@ -16,11 +16,12 @@ body {
 
 .application-container {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     display: grid;
     grid-template-rows: .05fr .2fr auto;
     grid-template-columns: .5fr 1fr .5fr;
     grid-template-areas: "header header header" "toolbar toolbar toolbar" ". main .";
+    background-color: #cacaca;
 }
 /* Header */
 .header {
@@ -37,8 +38,8 @@ body {
     grid-area: toolbar;
     display: flex;
     background-color: #B8ABA4;
-    box-shadow: 10px 5px #989A98;
-    padding: px;
+    box-shadow: 2.5px 5px #989A98;
+    padding: 1px;
     border-bottom: 1px solid #989A98;
 }
 
@@ -112,7 +113,24 @@ body {
 #audio-icon {
     color: lightpink;
 }
-
+#start-recording-icon{
+    color: red;
+    display: block;
+    font-size: 2em;
+    width: 100%;
+}
+#stop-recording-icon{
+    color: orange;
+    display: block;
+    font-size: 2em;
+    width: 100%;
+}
+#open-recording-icon{
+    color: blue;
+    display: block;
+    font-size: 2em;
+    width: 100%;
+}
 .save-controls-container {
     width: 100%;
     height: 100%;
@@ -159,12 +177,18 @@ body {
 /* Main */
 .main {
     grid-area: main;
-    margin: 15px 0;
+    grid-column: 1/span 4;
+    margin: 15px 25px;
+    padding: 2.5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     min-width: 80%;
+    min-height: 300px;
+    background-color: #eeeeee;
+    border: 1px solid black;
+    border-radius: 3px;
 }
 
 #youtube-search-bar {
@@ -183,13 +207,32 @@ body {
 #youtube-video-frame {
     /* align-self: center; */
 }
+.recording-buttons-container{
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+    .recording-buttons-container>button{
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        border-radius: 8px;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+        text-align: center;
+        line-height: 1.1;
+        cursor: pointer;
+    }
 
 /*Modal*/
 
 .exit-container{
-
+    max-width: fit-content;
+    position: absolute;
+    top: 0;
+    right: 4px;
 }
-
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -208,6 +251,7 @@ body {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
+    position: relative;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
@@ -215,7 +259,10 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+#modal-header{
+    background-color:#F16A53;
+    text-align: center;
+}
 /* The Close Button */
 .close {
     color: #aaa;
@@ -235,3 +282,14 @@ body {
     width: 100%;
     height: 100%;
 }
+    .audio-file-table>table{
+        border-collapse: collapse;
+        width: 100%;
+        text-align: center;
+    }
+    .audio-file-table>th{
+        min-height: 45px;
+    }
+    .audio-file-table>table, th, td {
+        border: 1px solid black;
+      }

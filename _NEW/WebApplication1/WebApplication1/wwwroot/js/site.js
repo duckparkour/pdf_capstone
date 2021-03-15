@@ -30,13 +30,14 @@
         $('.main').empty();
 
         let audioControlsDiv = $(`<div></div>`)
-        let startButton = `<button id="start-recording-button">Start Recording</button>`
-        let stopButton = `<button id="stop-recording-button">Stop Recording</button>`
-        let openRecordingButton = `<button id="open-recording-button">Open a Recording</button>`
+        let startButton = `<button id="start-recording-button"><i id='start-recording-icon' class="fas fa-circle"></i><h4>Start Recording</h4></button>`
+        let stopButton = `<button id="stop-recording-button"><i id='stop-recording-icon' class="fas fa-square"></i><h4>Stop Recording</h4></button>`
+        let openRecordingButton = `<button id="open-recording-button"><i id='open-recording-icon' class="fas fa-file-audio"></i><h4>Open a Recording</h4></button>`
         let mainAudioControl = `<audio id="recording-controller" controls><source src="#" type="audio/mp3">Audio not supported</audio>`
         let recordingStatusText = `<h1 id="recording-status-text">Press "Start Recording" To Begin.</h1>`
 
-        $(audioControlsDiv).append(startButton, stopButton, openRecordingButton)
+        $(audioControlsDiv).append(startButton, stopButton, openRecordingButton);
+        $(audioControlsDiv).addClass('recording-buttons-container');
         $('.main').append(audioControlsDiv, recordingStatusText, mainAudioControl);
     });
 
@@ -81,17 +82,22 @@
         // Get the modal
         var modal = document.getElementById("myModal");
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("open-recording-button");
+        // Get the button that opens the modal (I removed this line since it's no longer being used -David)
+        //var btn = document.getElementById("open-recording-button");
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks on the button, open the modal
-        btn.onclick = function () {
+        modal.style.display = "block";
+
+        // When the user clicks on the button, open the modal
+        /*
+        I moved this outside of the function definition here - if left inside requires 2 clicks to open modal
+        this.onclick = function () {//Changed btn to this since this refers to #open-recording-button in current scope
             modal.style.display = "block";
         }
-
+        */
         // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
