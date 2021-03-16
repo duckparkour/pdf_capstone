@@ -34,17 +34,21 @@
         let stopButton = `<button id="stop-recording-button"><i id='stop-recording-icon' class="fas fa-square"></i><h4>Stop Recording</h4></button>`
         let openRecordingButton = `<button id="open-recording-button"><i id='open-recording-icon' class="fas fa-file-audio"></i><h4>Open a Recording</h4></button>`
         let mainAudioControl = `<audio id="recording-controller" controls><source src="#" type="audio/mp3">Audio not supported</audio>`
+        let saveAudioButton = `<button id="save-audio-button"><i class="fas fa-save" id="save-recording-icon"></i><h4>Save</h4></button>`
         let recordingStatusText = `<h1 id="recording-status-text">Press "Start Recording" To Begin.</h1>`
 
         $(audioControlsDiv).append(startButton, stopButton, openRecordingButton);
         $(audioControlsDiv).addClass('recording-buttons-container');
-        $('.main').append(audioControlsDiv, recordingStatusText, mainAudioControl);
+
+        $('.main').append(audioControlsDiv, recordingStatusText, mainAudioControl, saveAudioButton);
+        $('#save-audio-button').hide()
     });
 
     //The click handler has to be binded this way since it does not exist until the audio button is selected from the media tab.
     $('.main').on("click", "#start-recording-button", function (e) {
         e.preventDefault()
-        $('#recording-status-text').text("Recording In Progress...");
+        $('#recording-status-text').text("Recording In Progress...").addClass('recording-active');
+        $('#save-audio-button').hide()
 
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
@@ -73,7 +77,9 @@
     $('.main').on("click", "#stop-recording-button", function (e) {
         e.preventDefault();
         mediaRecorder.stop();
-        $('#recording-status-text').text("Recording Completed.")
+        $('#recording-status-text').text("Recording Completed.").removeClass('recording-active')
+        $('#save-audio-button').show()
+
 
     })
 

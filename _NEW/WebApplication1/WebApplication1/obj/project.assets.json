@@ -6149,24 +6149,31 @@
     ]
   },
   "packageFolders": {
-    "/home/david/.nuget/packages/": {}
+    "C:\\Users\\n16611\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\_Capstone\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/WebApplication1.csproj",
-      "packagesPath": "/home/david/.nuget/packages/",
-      "outputPath": "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/obj/",
+      "projectPath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\_Capstone\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "packagesPath": "C:\\Users\\n16611\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\_Capstone\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/david/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\n16611\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6224,7 +6231,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

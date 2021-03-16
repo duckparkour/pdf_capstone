@@ -61,9 +61,6 @@ body {
         align-self: flex-end;
     }
 
-#toolbar1 {
-}
-
 #text-controls-container {
     height: 30%;
     display: flex;
@@ -119,6 +116,7 @@ body {
     font-size: 2em;
     width: 100%;
 }
+
 #stop-recording-icon{
     color: orange;
     display: block;
@@ -131,6 +129,32 @@ body {
     font-size: 2em;
     width: 100%;
 }
+
+#save-audio-button {
+    box-sizing: border-box;
+    width: 5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+    text-align: center;
+    line-height: 1.1;
+    cursor: pointer;
+}
+
+#save-recording-icon {
+    color: red;
+    display: block;
+    font-size: 1em;
+    width: 15%;
+}
+
+.recording-active{
+    color: red
+}
+
 .save-controls-container {
     width: 100%;
     height: 100%;
@@ -161,17 +185,8 @@ body {
         color: lime;
     }
 
-#fonts-input {
-}
-
 #number-input {
     width: 30px;
-}
-
-#toolbar2 {
-}
-
-#toolbar3 {
 }
 
 /* Main */
@@ -212,27 +227,28 @@ body {
     justify-content: space-around;
     width: 80%;
 }
-    .recording-buttons-container>button{
-        box-sizing: border-box;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 5px;
-        border-radius: 8px;
-        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
-        text-align: center;
-        line-height: 1.1;
-        cursor: pointer;
+
+.recording-buttons-container>button{
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+    text-align: center;
+    line-height: 1.1;
+    cursor: pointer;
     }
 
 /*Modal*/
-
 .exit-container{
     max-width: fit-content;
     position: absolute;
     top: 0;
     right: 4px;
 }
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -271,25 +287,29 @@ body {
     font-weight: bold;
 }
 
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+
+}
 
 .audio-file-table{
     width: 100%;
     height: 100%;
 }
-    .audio-file-table>table{
-        border-collapse: collapse;
-        width: 100%;
-        text-align: center;
-    }
-    .audio-file-table>th{
-        min-height: 45px;
-    }
-    .audio-file-table>table, th, td {
-        border: 1px solid black;
-      }
+
+.audio-file-table>table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+.audio-file-table>th{
+    min-height: 45px;
+}
+
+.audio-file-table>table, th, td {
+    border: 1px solid black;
+}
