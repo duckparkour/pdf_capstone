@@ -68,13 +68,13 @@
                 </div>
                 <div class="media-controls-container">
                     <button class="media-icon" id="new-pdf-doc-button">
-                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-plus" id="new-pdf-icon"></i>
                     </button>
-                    <button class="media-icon" >
-                        <i class="far fa-save"></i>
+                    <button class="media-icon" id="save-pdf-button">
+                        <i class="far fa-save" id="save-pdf-icon"></i>
                     </button>
-                    <button class="media-icon">
-                        <i class="far fa-folder-open"></i>
+                    <button class="media-icon" id="open-pdf-button">
+                        <i class="far fa-folder-open" id="open-pdf-icon"></i>
                     </button>
                 </div>
             </div>
@@ -92,7 +92,7 @@
         <!-- Modal content -->
         <div class="modal-content">
             <div class="exit-container">
-                <span class="close">&times;</span>
+                <span class="close" id="open-audio-modal-close-button">&times;</span>
             </div>
             <div id="modal-header">
                 <h3>Select an audio file</h3>
@@ -121,15 +121,57 @@
         <!-- Modal content -->
         <div class="modal-content">
             <div class="exit-container">
-                <span class="close">&times;</span>
+                <span class="close" id="save-audio-modal-close-button">&times;</span>
             </div>
             <div id="modal-header">
                 <h3>Select an audio file</h3>
             </div>
             <div class="audio-file-table">
                 <form>
-                    <input type="text" placeholder="Enter file name"/>
-                    <input type="submit" value="Submit"/>
+                    <input type="text" placeholder="Enter file name" />
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Open a pdf file modal-->
+    <div id="open-pdf-modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="exit-container">
+                <span class="close" id="open-pdf-modal-close-button">&times;</span>
+            </div>
+            <div id="modal-header">
+                <h3>Select a PDF file</h3>
+            </div>
+            <div class="audio-file-table">
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--Save pdf modal-->
+    <div id="save-pdf-modal" class="modal">
+        <div class="modal-content">
+            <div class="exit-container">
+                <span class="close" id="save-pdf-modal-close-button">&times;</span>
+            </div>
+            <div id="modal-header">
+                <h3>Select your PDF file</h3>
+            </div>
+            <div class="audio-file-table">
+                <form>
+                    <input type="text" placeholder="Enter file name" />
+                    <input type="submit" value="Submit" />
                 </form>
             </div>
         </div>

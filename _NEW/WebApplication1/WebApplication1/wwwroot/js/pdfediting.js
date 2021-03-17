@@ -1,11 +1,12 @@
 ﻿
 
 $(document).ready(function () {
-    console.log('hello')
 
     $('#new-pdf-doc-button').click(function (e) {
         e.preventDefault();
-        createANewPdf();
+        if (confirm('Are you sure you want to make a new pdf file? Unsaved changes will be lost.')) {
+            createANewPdf();
+        }
     });
 
     /*$('#add-text-button').click(function (e) {

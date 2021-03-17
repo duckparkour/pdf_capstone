@@ -7,11 +7,21 @@
     $('#file-button').click(function (e) {
         e.preventDefault();
         $('.main').empty()
-        $('#toolkit3').show();
-
+        if ($('#toolkit3').is(':hidden')) {
+            $('#toolkit3').show();
+        }
+        
         $('.main').append(`<iframe src="https://pdf-lib.js.org/assets/with_update_sections.pdf"
             frameborder="1" width="100%" height="100%"></iframe>`);
     });
+
+    $('#save-pdf-button').click(function (e) {
+        showModal('save-pdf')
+    })
+
+    $('#open-pdf-button').click(function (e) {
+        showModal('open-pdf')
+    })
 
     //Video Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -39,9 +49,9 @@
     //Audio Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     $('#audio-button').click(function (e) {
-        e.preventDefault();
-        $('#toolbar3').hide();
+
         $('.main').empty();
+        $('#toolbar3').hide();
 
         let audioControlsDiv = $(`<div></div>`)
         let startButton = `<button id="start-recording-button"><i id='start-recording-icon' class="fas fa-circle"></i><h4>Start Recording</h4></button>`
@@ -98,76 +108,12 @@
     })
 
     $('.main').on('click', '#save-audio-button', function (e) {
-        e.preventDefault();
-        // Get the modal
-        let modal = document.getElementById("save-modal");
-
-        // Get the button that opens the modal (I removed this line since it's no longer being used -David)
-        //var btn = document.getElementById("open-recording-button");
-
-        // Get the <span> element that closes the modal
-        let span = document.getElementsByClassName("close")[1];
-
-        // When the user clicks on the button, open the modal
-        modal.style.display = "block";
-
-        // When the user clicks on the button, open the modal
-        /*
-        I moved this outside of the function definition here - if left inside requires 2 clicks to open modal
-        this.onclick = function () {//Changed btn to this since this refers to #open-recording-button in current scope
-            modal.style.display = "block";
-        }
-        */
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+        showModal('save-audio')
     })
 
     $('.main').on("click", "#open-recording-button", function (e) {
-        e.preventDefault();
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal (I removed this line since it's no longer being used -David)
-        //var btn = document.getElementById("open-recording-button");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        modal.style.display = "block";
-
-        // When the user clicks on the button, open the modal
-        /*
-        I moved this outside of the function definition here - if left inside requires 2 clicks to open modal
-        this.onclick = function () {//Changed btn to this since this refers to #open-recording-button in current scope
-            modal.style.display = "block";
-        }
-        */
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    })
-
-
-
-    //ETC////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    
+        showModal('open-audio')
+    })    
 });
 
 //Helper functions///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -178,4 +124,96 @@ function convertBlobToMp4(blob, fileName) {
     blob.type = "audio/mp3";
 
     return blob;
+}
+
+function showModal(action) {
+    console.log('here')
+    switch (action) {
+        case 'save-pdf': {
+            let modal = document.getElementById("save-pdf-modal");
+
+            modal.style.display = "block";
+
+            this.onclick = function () {
+
+                modal.style.display = "block";
+            }
+
+            $('#save-pdf-modal-close-button').click(function () {
+                modal.style.display = 'none'
+            })
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            break;
+        }
+            
+
+        case 'open-pdf': {
+            let modal = document.getElementById("open-pdf-modal");
+
+            // When the user clicks on the button, open the modal
+            modal.style.display = "block";
+
+            $('#open-pdf-modal-close-button').click(function () {
+                modal.style.display = 'none'
+            })
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            break
+        }
+            
+
+        case 'save-audio': {
+            let modal = document.getElementById("save-modal");
+
+
+            modal.style.display = "block";
+
+            $('#save-audio-modal-close-button').click(function () {
+                modal.style.display = 'none'
+            })
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            break
+        }
+           
+
+        case 'open-audio': {
+            let modal = document.getElementById("myModal");
+
+            modal.style.display = "block";
+
+
+            $('#open-audio-modal-close-button').click(function () {
+                modal.style.display = 'none'
+            })
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            break
+        }
+
+        default:
+            alert('Could not open a modal.')
+            break
+    }
 }
