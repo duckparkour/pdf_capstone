@@ -12,8 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/site.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://unpkg.com/pdf-lib/dist/pdf-lib.js" />
     <link href="https://fonts.googleapis.com/css2?family=Palanquin&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/19009d6c71.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>PDF Editor</title>
 </head>
@@ -27,7 +29,7 @@
         <div class="toolbar">
 
             <div class="toolkit" id="toolbar1">
-            <div class="toolkit-title-container">
+                <div class="toolkit-title-container">
                     <h1>Text</h1>
                 </div>
                 <div id="text-controls-container">
@@ -59,15 +61,31 @@
                     </button>
                 </div>
             </div>
+
+            <div class="toolkit" id="toolkit3">
+                <div class="toolkit-title-container">
+                    <h1>PDF Controls</h1>
+                </div>
+                <div class="media-controls-container">
+                    <button class="media-icon" id="new-pdf-doc-button">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="media-icon" >
+                        <i class="far fa-save"></i>
+                    </button>
+                    <button class="media-icon">
+                        <i class="far fa-folder-open"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <!-- Main Content Section -->
         <div class="main">
-            <iframe src="https://pdf-lib.js.org/assets/with_update_sections.pdf" frameborder="1" width="100%" height="100%"></iframe>
+            <iframe src="https://pdf-lib.js.org/assets/with_update_sections.pdf" id="frame" frameborder="1" width="100%" height="100%"></iframe>
         </div>
-       
-    </div>
 
+    </div>
 
     <!--Choose an Audio File Modal-->
     <div id="myModal" class="modal">
@@ -81,24 +99,44 @@
             </div>
             <div class="audio-file-table">
                 <table>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-            </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                    </tr>
 
-            @foreach (var audio in Model.Audios)
-            {
-                <tr>
-                    <td>@audio.Id</td>
-                    <td>@audio.Name</td>
-                </tr>
-            }
-        </table>
+                    @foreach (var audio in Model.Audios)
+                    {
+                        <tr>
+                            <td>@audio.Id</td>
+                            <td>@audio.Name</td>
+                        </tr>
+                    }
+                </table>
             </div>
-            
-            
         </div>
     </div>
+
+    <!--Save audio modal-->
+    <div id="save-modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="exit-container">
+                <span class="close">&times;</span>
+            </div>
+            <div id="modal-header">
+                <h3>Select an audio file</h3>
+            </div>
+            <div class="audio-file-table">
+                <form>
+                    <input type="text" placeholder="Enter file name"/>
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Scripts for the website-->
     <script src="~/js/site.js"></script>
+    <script src="~/js/pdfediting.js"></script>
 </body>
 </html>

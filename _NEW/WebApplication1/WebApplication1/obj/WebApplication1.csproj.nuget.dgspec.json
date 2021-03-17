@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\_Capstone\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
+    "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\_Capstone\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
+    "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\_Capstone\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\_Capstone\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\n16611\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\_Capstone\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\obj\\",
+        "outputPath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -2,10 +2,23 @@
     let mediaRecorder;
     let audioChunks;
 
+    //PDF Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    $('#file-button').click(function (e) {
+        e.preventDefault();
+        $('.main').empty()
+        $('#toolkit3').show();
+
+        $('.main').append(`<iframe src="https://pdf-lib.js.org/assets/with_update_sections.pdf"
+            frameborder="1" width="100%" height="100%"></iframe>`);
+    });
+
     //Video Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     $("#video-button").click(function (e) {
         $('.main').empty();
+        $('#toolkit3').hide();
+
         $('.main').append(`<h1 id="youtube-title"><i class="fab fa-youtube"></i>Youtube Playback Function </h1>
             <input type="text" name="youtube-input" id="youtube-search-bar" placeholder="Enter a youtube embedded url">
             <button id="youtube-search-button">Go!</button>
@@ -17,9 +30,9 @@
 
     $(".main").on('click', '#youtube-search-button', function (e) {
         e.preventDefault();
-        let source = $('#youtube-search-bar').val()
-        let x = $('#youtube-video').attr('src')
-        console.log(x)
+        let source = $('#youtube-search-bar').val();
+        let x = $('#youtube-video').attr('src');
+        console.log(x);
 
     })
 
@@ -27,6 +40,7 @@
 
     $('#audio-button').click(function (e) {
         e.preventDefault();
+        $('#toolbar3').hide();
         $('.main').empty();
 
         let audioControlsDiv = $(`<div></div>`)
@@ -83,16 +97,16 @@
 
     })
 
-    $('.main').on("click", "#open-recording-button", function (e) {
+    $('.main').on('click', '#save-audio-button', function (e) {
         e.preventDefault();
         // Get the modal
-        var modal = document.getElementById("myModal");
+        let modal = document.getElementById("save-modal");
 
         // Get the button that opens the modal (I removed this line since it's no longer being used -David)
         //var btn = document.getElementById("open-recording-button");
 
         // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+        let span = document.getElementsByClassName("close")[1];
 
         // When the user clicks on the button, open the modal
         modal.style.display = "block";
@@ -117,30 +131,44 @@
         }
     })
 
-    //PDF Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    $('#file-button').click(function (e) {
+    $('.main').on("click", "#open-recording-button", function (e) {
         e.preventDefault();
-        $('.main').empty();
-        $('.main').append(`<iframe src="https://pdf-lib.js.org/assets/with_update_sections.pdf"
-            frameborder="1" width="100%" height="100%"></iframe>`);
-    });
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal (I removed this line since it's no longer being used -David)
+        //var btn = document.getElementById("open-recording-button");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        modal.style.display = "block";
+
+        // When the user clicks on the button, open the modal
+        /*
+        I moved this outside of the function definition here - if left inside requires 2 clicks to open modal
+        this.onclick = function () {//Changed btn to this since this refers to #open-recording-button in current scope
+            modal.style.display = "block";
+        }
+        */
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    })
+
+
 
     //ETC////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    $('#upload-button').click(function (e) {
-        let $element = `<button id="modal-btn"> click me, I make a modal</button>
-            <div class="modal">
-                <div class="modal-content">
-                    <span class="close-btn">&times;</span>
-                    <p>this is the text inside the modal</p>
-                </div>
-            </div>`
-        $('body').append($element).show();
-    })
-});
-    //For the modal//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
+});
 
 //Helper functions///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
