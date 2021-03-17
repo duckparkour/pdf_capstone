@@ -21,7 +21,15 @@ namespace WebApplication1.Pages
             Audios = await db.Audios.ToListAsync();
         }
 
+        public void FileDownload()
+        { 
+        
+        }
 
+        public void FileUpload()
+        { 
+        
+        }
         /*  public IndexModel(ILogger<IndexModel> logger)
           {
               _logger = logger;
