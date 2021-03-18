@@ -10,7 +10,6 @@
         if ($('#toolkit3').is(':hidden')) {
             $('#toolkit3').show();
         }
-        
         $('.main').append(`<iframe src="https://pdf-lib.js.org/assets/with_update_sections.pdf"
             frameborder="1" width="100%" height="100%"></iframe>`);
     });
@@ -33,7 +32,7 @@
             <input type="text" name="youtube-input" id="youtube-search-bar" placeholder="Enter a youtube embedded url">
             <button id="youtube-search-button">Go!</button>
             <div class="video-container">
-                <iframe id="#youtube-video"width="860" height="615" src="https://www.youtube.com/embed/Oa9QeMHNOm4" frameborder="0" allow="accelerometer;
+                <iframe id="youtube-video"width="860" height="615" src="https://www.youtube.com/embed/Oa9QeMHNOm4?enablejsapi=1" frameborder="0" allow="accelerometer;
                     autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>`);
     });
@@ -43,7 +42,6 @@
         let source = $('#youtube-search-bar').val();
         let x = $('#youtube-video').attr('src');
         console.log(x);
-
     })
 
     //Audio Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
