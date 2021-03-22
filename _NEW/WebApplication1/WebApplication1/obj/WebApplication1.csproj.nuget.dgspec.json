@@ -2,6 +2,7 @@
   "format": 1,
   "restore": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/WebApplication1.csproj": {}
   },
   "projects": {
@@ -25,6 +26,16 @@
       "restore": {
         "projectUniqueName": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
+=======
+    "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectName": "WebApplication1",
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
         "projectPath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\n16611\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\obj\\",
@@ -45,6 +56,9 @@
 <<<<<<< HEAD
 =======
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+<<<<<<< HEAD
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
+=======
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
           "https://api.nuget.org/v3/index.json": {}
         },

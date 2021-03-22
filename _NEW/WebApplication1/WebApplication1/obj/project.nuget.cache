@@ -1,6 +1,7 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "R0/Fwc6SYORLsMYFg1X5COdpvF0HEjGab2pYvFUtlycNoO0zateCO5VTdq1bdLgrboY3z1iU6n5eqjGFVm3bZw==",
   "success": true,
   "projectFilePath": "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/WebApplication1.csproj",
@@ -117,6 +118,12 @@
   "success": true,
   "projectFilePath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [
+=======
+  "dgSpecHash": "9+jkC52O+59ZEW7tjHYN7bO+1X3eRPGAPC2kZS7S6DQAjSyBIhtkiqPdKHDfjKpO7vaShfFCWqf+Jh2ou5R5mg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\Cap\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+  "expectedPackageFiles": [
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
     "C:\\Users\\n16611\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\n16611\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\n16611\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
@@ -224,6 +231,9 @@
     "C:\\Users\\n16611\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\n16611\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\n16611\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+<<<<<<< HEAD
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
+=======
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
   ],
   "logs": [

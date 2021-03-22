@@ -1,9 +1,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #pragma checksum "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/Pages/Index.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "d24e29543b50c9066793887b1bcdf035e70a9922"
 =======
 #pragma checksum "C:\Users\justi_000\Documents\GitHub\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "dcf5d827d76ea19eae605d0b7dbb8a8f5dd60390"
 >>>>>>> fa6b8f04e7129a9e41bb26a69cacc03904ddcf54
+=======
+#pragma checksum "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "dcf5d827d76ea19eae605d0b7dbb8a8f5dd60390"
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
 =======
 #pragma checksum "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "dcf5d827d76ea19eae605d0b7dbb8a8f5dd60390"
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
@@ -57,10 +61,14 @@ namespace AspNetCore
 #nullable restore
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 3 "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/Pages/Index.cshtml"
 =======
 #line 3 "C:\Users\justi_000\Documents\GitHub\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
 >>>>>>> fa6b8f04e7129a9e41bb26a69cacc03904ddcf54
+=======
+#line 3 "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
 =======
 #line 3 "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
@@ -80,8 +88,12 @@ namespace AspNetCore
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd603904575", async() => {
                 WriteLiteral("\r\n    <meta charset=\"UTF-8\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    ");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd603904958", async() => {
 >>>>>>> fa6b8f04e7129a9e41bb26a69cacc03904ddcf54
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd603905016", async() => {
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd603905016", async() => {
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
@@ -124,8 +136,12 @@ namespace AspNetCore
 =======
             WriteLiteral("\r\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd603907385", async() => {
 >>>>>>> fa6b8f04e7129a9e41bb26a69cacc03904ddcf54
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd603907443", async() => {
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd603907443", async() => {
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
@@ -221,10 +237,14 @@ namespace AspNetCore
 #nullable restore
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 107 "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/Pages/Index.cshtml"
 =======
 #line 107 "C:\Users\justi_000\Documents\GitHub\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
 >>>>>>> fa6b8f04e7129a9e41bb26a69cacc03904ddcf54
+=======
+#line 107 "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
 =======
 #line 107 "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
@@ -238,10 +258,14 @@ namespace AspNetCore
 #nullable restore
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 110 "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/Pages/Index.cshtml"
 =======
 #line 110 "C:\Users\justi_000\Documents\GitHub\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
 >>>>>>> fa6b8f04e7129a9e41bb26a69cacc03904ddcf54
+=======
+#line 110 "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
 =======
 #line 110 "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
@@ -254,10 +278,14 @@ namespace AspNetCore
 #nullable restore
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 111 "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/Pages/Index.cshtml"
 =======
 #line 111 "C:\Users\justi_000\Documents\GitHub\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
 >>>>>>> fa6b8f04e7129a9e41bb26a69cacc03904ddcf54
+=======
+#line 111 "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
 =======
 #line 111 "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
@@ -270,10 +298,14 @@ namespace AspNetCore
 #nullable restore
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 113 "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/Pages/Index.cshtml"
 =======
 #line 113 "C:\Users\justi_000\Documents\GitHub\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
 >>>>>>> fa6b8f04e7129a9e41bb26a69cacc03904ddcf54
+=======
+#line 113 "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
 =======
 #line 113 "C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\Cap\pdf_capstone\_NEW\WebApplication1\WebApplication1\Pages\Index.cshtml"
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
@@ -353,8 +385,12 @@ namespace AspNetCore
                     <input type=""submit"" ");
                 WriteLiteral("value=\"Submit\" />\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <!--Scripts for the website-->\r\n    ");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd6039014942", async() => {
 >>>>>>> fa6b8f04e7129a9e41bb26a69cacc03904ddcf54
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd6039015116", async() => {
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd6039015116", async() => {
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
@@ -376,8 +412,12 @@ namespace AspNetCore
 =======
                 WriteLiteral("\r\n    ");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd6039016042", async() => {
 >>>>>>> fa6b8f04e7129a9e41bb26a69cacc03904ddcf54
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd6039016216", async() => {
+>>>>>>> parent of fa6b8f0... Finished Creating new Test Database
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf5d827d76ea19eae605d0b7dbb8a8f5dd6039016216", async() => {
 >>>>>>> parent of fa6b8f0... Finished Creating new Test Database
