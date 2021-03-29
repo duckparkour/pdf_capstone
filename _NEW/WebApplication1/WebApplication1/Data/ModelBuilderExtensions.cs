@@ -6,6 +6,7 @@ namespace WebApplication1.Data
 {
     public static class ModelBuilderExtensions
     {
+        /*
         public static ModelBuilder Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AudioModel>().HasData(
@@ -18,6 +19,19 @@ namespace WebApplication1.Data
                 {
                     Id = 2,
                     Name = "Lemon Tart"
+                }
+            );
+
+            return modelBuilder;
+        }
+        */
+        public static ModelBuilder Seed(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DatabaseFile>().HasData(
+                new DatabaseFile
+                {
+                    FileID = 1,
+                    FileName = "TestFile"
                 }
             );
 
