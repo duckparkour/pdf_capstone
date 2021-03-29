@@ -4,6 +4,7 @@
     ViewData["Title"] = "Home page";
 }
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,6 +71,11 @@
                     <button class="media-icon" id="new-pdf-doc-button">
                         <i class="fas fa-plus" id="new-pdf-icon"></i>
                     </button>
+                    <form method="post" asp-page ="index">
+                        File <input type = "file" name=" = "record" />
+                        <br/>
+                        <input type="submit" value="Upload" />
+                    </form>
                     <button class="media-icon" id="save-pdf-button">
                         <i class="far fa-save" id="save-pdf-icon"></i>
                     </button>
