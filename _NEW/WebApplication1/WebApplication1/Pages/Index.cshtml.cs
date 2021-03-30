@@ -7,7 +7,8 @@ using System.IO;
 using System.Threading.Tasks;
 using WebApplication1.Data;
 using WebApplication1.Models;
-
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace WebApplication1.Pages
 {
@@ -22,17 +23,15 @@ namespace WebApplication1.Pages
         private readonly DatabaseFileContext db1;
 
         public IndexModel(DatabaseFileContext db1) => this.db1 = db1;
+        public IFormFile formFile {get; set;}
 
-        public IHostingEnvironment hostingEnvironment;
+        // public IHostingEnvironment hostingEnvironment;
         public List<DatabaseFile> FileDatabase { get; set; } = new List<DatabaseFile>();
 
-
-        /*
-        public IndexModel(IHostingEnvironment environment)
-        {
-            this.hostingEnvironment = environment;
-        }
-        */
+        // public IndexModel(IHostingEnvironment environment)
+        // {
+        //     this.hostingEnvironment = environment;
+        // }
         
         public async Task OnGetAsync()
         {
@@ -42,9 +41,10 @@ namespace WebApplication1.Pages
             //await db1.SaveChangesAsync();
         }
 
-        public void OnPost(IFormFile formFile)
+        public void OnPost()
         {
-            
+         
+
             BinaryReader br = new BinaryReader(formFile.OpenReadStream());
             byte[] buffer = br.ReadBytes((int)formFile.Length);
             DatabaseFile uploadedFile = new DatabaseFile();

@@ -125,7 +125,6 @@ function convertBlobToMp4(blob, fileName) {
 }
 
 function showModal(action) {
-    console.log('here')
     switch (action) {
         case 'save-pdf': {
             let modal = document.getElementById("save-pdf-modal");

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApplication1.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication1
 {
@@ -17,10 +18,15 @@ namespace WebApplication1
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+
+         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
-           // services.AddDbContext<AudioContext>();
+            services.AddRazorPages()
+            .AddRazorPagesOptions(options =>
+            {
+                options.Conventions
+                       .ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
+            }); ;
             services.AddDbContext<DatabaseFileContext>();
         }
 
