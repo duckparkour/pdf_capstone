@@ -43,14 +43,14 @@ namespace WebApplication1.Pages
 
         public void OnPost()
         {
-         
 
+            Random randomizer = new Random(); 
             BinaryReader br = new BinaryReader(formFile.OpenReadStream());
             byte[] buffer = br.ReadBytes((int)formFile.Length);
             DatabaseFile uploadedFile = new DatabaseFile();
             uploadedFile.FileName = formFile.FileName;
             uploadedFile.ContentType = formFile.ContentType;
-            uploadedFile.FileID = 2;
+            uploadedFile.FileID = randomizer.Next();
             uploadedFile.FileSize = (int)formFile.Length;
             uploadedFile.FileExtension = Path.GetExtension(formFile.FileName);
             uploadedFile.FileContent = buffer;
