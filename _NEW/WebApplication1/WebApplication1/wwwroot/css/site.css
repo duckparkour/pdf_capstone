@@ -314,6 +314,9 @@ body {
     border: 1px solid black;
 }
 
-#save-modal{
-
+form .file-in-db{
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: blue;
 }

@@ -23,7 +23,7 @@ namespace WebApplication1.Pages
         private readonly DatabaseFileContext db1;
 
         public IndexModel(DatabaseFileContext db1) => this.db1 = db1;
-        public IFormFile formFile {get; set;}
+        public IFormFile formFile { get; set; }
 
         // public IHostingEnvironment hostingEnvironment;
         public List<DatabaseFile> FileDatabase { get; set; } = new List<DatabaseFile>();
@@ -32,7 +32,7 @@ namespace WebApplication1.Pages
         // {
         //     this.hostingEnvironment = environment;
         // }
-        
+
         public async Task OnGetAsync()
         {
             //Audios = await db.Audios.ToListAsync();
@@ -44,7 +44,7 @@ namespace WebApplication1.Pages
         public void OnPost()
         {
 
-            Random randomizer = new Random(); 
+            Random randomizer = new Random();
             BinaryReader br = new BinaryReader(formFile.OpenReadStream());
             byte[] buffer = br.ReadBytes((int)formFile.Length);
             DatabaseFile uploadedFile = new DatabaseFile();
@@ -56,33 +56,33 @@ namespace WebApplication1.Pages
             uploadedFile.FileContent = buffer;
             db1.Add(uploadedFile);
             db1.SaveChanges();
-            
+
         }
 
+        public ContentResult OnGetFile(int ID)
+        {
+            ContentResult fileToGet = new ContentResult();
+            foreach (DatabaseFile file in db1.Files)
+            {
+                if (file.FileID == ID)
+                {
+                    fileToGet.Content = file.FileName;
+                }
+            }
+            
+            return fileToGet;
+        }
 
         public void FileDownload()
-        { 
-        
+        {
+
         }
 
         public void FileUpload()
         {
 
         }
-        /*  public IndexModel(ILogger<IndexModel> logger)
-          {
-              _logger = logger;
-          }*/
 
-     /*
-     @foreach(var audio in Model.Audios)-->
-    {
-        <tr>
-            <td>@audio.Id</td>
-            <td>@audio.Name</td>
-        </tr>
-    }
-    */
 
     }
 

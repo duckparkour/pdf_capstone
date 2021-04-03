@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+  "FilePath": "c:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\!n\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15603,7 +15603,7 @@
   "RootNamespace": "WebApplication1",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\Pages\\Index.cshtml",
+      "FilePath": "c:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\!n\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\Pages\\Index.cshtml",
       "TargetPath": "Pages\\Index.cshtml",
       "FileKind": "mvc"
     }
