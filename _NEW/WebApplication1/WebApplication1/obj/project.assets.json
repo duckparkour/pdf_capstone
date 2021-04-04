@@ -6150,23 +6150,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\n16611\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\justi_000\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\!n\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\justi_000\\Documents\\GitHub\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\!n\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
-      "packagesPath": "C:\\Users\\n16611\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\!n\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\obj\\",
+      "projectPath": "C:\\Users\\justi_000\\Documents\\GitHub\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "packagesPath": "C:\\Users\\justi_000\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\justi_000\\Documents\\GitHub\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\n16611\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\justi_000\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6175,7 +6177,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://packages.nuget.org/v1/FeedService.svc": {}
       },
       "frameworks": {
         "net5.0": {

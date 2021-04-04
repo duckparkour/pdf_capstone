@@ -21,7 +21,7 @@ namespace WebApplication1.Pages
         // public List<AudioModel> Audios { get; set; } = new List<AudioModel>();
 
         private readonly DatabaseFileContext db1;
-
+                                 //  <td><a href = "@Url.Page("Index", "DownloadFile", new { downloadableFile = file })">Download</a></td>
         public IndexModel(DatabaseFileContext db1) => this.db1 = db1;
         public IFormFile formFile { get; set; }
 
@@ -39,6 +39,18 @@ namespace WebApplication1.Pages
             FileDatabase = await db1.Files.ToListAsync();
             //FileDatabase = await db1.Files.AddAsync();
             //await db1.SaveChangesAsync();
+        }
+
+
+        public FileResult OnGetDownloadFile(DatabaseFile downloadableFile)
+        {
+            //Build the File Path.
+            //string path = Path.Combine(this.FileDatabase.IndexOf(downloadableFile) + downloadableFile.FileName);
+
+            //Read the File data into Byte Array.
+            byte[] bytes = downloadableFile.FileContent; //System.IO.File.ReadAllBytes();
+            //Send the File to Download.
+            return File(bytes, downloadableFile.ContentType, downloadableFile.FileName);
         }
 
         public void OnPost()
