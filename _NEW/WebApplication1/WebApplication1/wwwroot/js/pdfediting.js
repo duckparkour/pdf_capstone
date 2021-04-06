@@ -24,16 +24,26 @@
     });
   });
 
-  $(".file-in-db").click(function (e) {
+  $(".file-in-db").on("click", function (e) {
     e.preventDefault();
+    let id = $(this).parent().siblings(".sister").find(".file-id").text();
+
     $.ajax({
-      url: $('.file-id').text() + "?handler=File",
+      url: "?handler=File&ID=" + id,
       type: "get",
       success: function (data) {
-          alert(data)
+        const url = "data:application/pdf;base64," + data;
+        fetch(url)
+          .then((res) => res.blob())
+          .then((res) => {
+            const url = URL.createObjectURL(res);
+            $("#frame").attr("src", url);
+          });
+
+        $("#frame").attr("src", "data:application/pdf;base64," + data);
       },
       error: function () {
-          alert('Could not find a file.')
+        alert("Could not find a file.");
       },
     });
   });

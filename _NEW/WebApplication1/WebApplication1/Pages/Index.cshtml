@@ -45,7 +45,7 @@
                     </select>
                     <input type="number" name="number" id="number-input" value="14">
                     <div class="color-container">
-                        <input type="color" name="color" id="color-picker" value="#fff">
+                        <input type="color" name="color" id="color-picker" value="#ffffff">
                     </div>
                 </div>
             </div>
@@ -93,8 +93,7 @@
 
         <!-- Main Content Section -->
         <div class="main">
-            <iframe src="" id="frame" frameborder="1" width="100%" height="100%"></iframe>
-            @* https://pdf-lib.js.org/assets/with_update_sections.pdf *@
+            <iframe id="frame" frameborder="1" width="100%" height="100%"></iframe>
         </div>
 
     </div>
@@ -161,14 +160,17 @@
                         if (file.FileExtension == ".pdf")
                         {
                             <tr>
-                                <td ><p class="file-id">@file.FileID</p></td>
-                                <td>
-                                    <form action="get"><button class="file-in-db">@file.FileName</button></form>
-                                </td>
-                                <td>@file.FileSize</td>
+                                <form action="get">
+                                    <td class="sister">
+                                        <p class="file-id" name="ID">@file.FileID</p>
+                                    </td>
+                                    <td>
+                                        <button class="file-in-db">@file.FileName</button>
+                                    </td>
+                                    <td>@file.FileSize</td>
+                                </form>
                             </tr>
                         }
-
                     }
                 </table>
             </div>
@@ -200,8 +202,9 @@
                     {
                         <tr>
                             <td>@file.FileName</td>
-                            <td><a href="@Url.Page("Index", "DownloadFile", new { downloadableFile = file })">Download</a></td>
-                            
+                            <td><a href="@Url.Page("Index", "DownloadFile", new { downloadableFile = file })">Download</a>
+                            </td>
+
                         </tr>
                     }
                 </table>
@@ -215,4 +218,5 @@
     <script src="~/js/video.js"></script>
     <script src="~/js/pdfediting.js"></script>
 </body>
+
 </html>

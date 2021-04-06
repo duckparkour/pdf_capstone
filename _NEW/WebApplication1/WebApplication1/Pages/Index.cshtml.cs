@@ -9,6 +9,8 @@ using WebApplication1.Data;
 using WebApplication1.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Text;
+
 
 namespace WebApplication1.Pages
 {
@@ -21,7 +23,7 @@ namespace WebApplication1.Pages
         // public List<AudioModel> Audios { get; set; } = new List<AudioModel>();
 
         private readonly DatabaseFileContext db1;
-                                 //  <td><a href = "@Url.Page("Index", "DownloadFile", new { downloadableFile = file })">Download</a></td>
+        //  <td><a href = "@Url.Page("Index", "DownloadFile", new { downloadableFile = file })">Download</a></td>
         public IndexModel(DatabaseFileContext db1) => this.db1 = db1;
         public IFormFile formFile { get; set; }
 
@@ -71,19 +73,37 @@ namespace WebApplication1.Pages
 
         }
 
-        public ContentResult OnGetFile(int ID)
+        public JsonResult OnGetFile(int ID)
         {
-            ContentResult fileToGet = new ContentResult();
             foreach (DatabaseFile file in db1.Files)
             {
                 if (file.FileID == ID)
                 {
-                    fileToGet.Content = file.FileName;
+                    byte[] fileBytes = file.FileContent;
+                    // return new JsonResult(Convert.ToBase64String(fileBytes));
+                    return new JsonResult(fileBytes);
                 }
             }
             
-            return fileToGet;
+            return null;
         }
+
+        //  public ContentResult OnGetFile(int ID)
+        // {
+        //     ContentResult contentResult = new ContentResult();
+        //     foreach (DatabaseFile file in db1.Files)
+        //     {
+        //         if (file.FileID == ID)
+        //         {
+        //             byte[] fileBytes = file.FileContent;
+        //             contentResult.Content = Convert.ToBase64String(fileBytes);
+
+        //             return contentResult;
+        //         }
+        //     }
+            
+        //     return null;
+        // }
 
         public void FileDownload()
         {
@@ -94,8 +114,5 @@ namespace WebApplication1.Pages
         {
 
         }
-
-
     }
-
 }

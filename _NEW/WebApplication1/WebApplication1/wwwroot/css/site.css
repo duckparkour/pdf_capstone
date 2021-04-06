@@ -314,7 +314,7 @@ body {
     border: 1px solid black;
 }
 
-form .file-in-db{
+.file-in-db{
     border: none;
     background: none;
     cursor: pointer;
