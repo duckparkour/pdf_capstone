@@ -9,8 +9,7 @@
       // createANewPdf();
     }
   });
-
-  $("#submit-pdf-button").click(function (e) {
+  $(".main").on("click", "#submit-pdf-button", function (e) {
     e.preventDefault();
     $.ajax({
       url: "",
@@ -23,7 +22,19 @@
       },
     });
   });
-
+    $("#submit-pdf-button").click(function (e) {
+    e.preventDefault();
+    $.ajax({
+      url: "",
+      data: new FormData(document.forms[0]),
+      contentType: false,
+      processData: false,
+      type: "post",
+      success: function () {
+        alert("Uploaded by jQuery");
+      },
+    });
+  });
   $(".file-in-db").on("click", function (e) {
     e.preventDefault();
     let id = $(this).parent().siblings(".sister").find(".file-id").text();
