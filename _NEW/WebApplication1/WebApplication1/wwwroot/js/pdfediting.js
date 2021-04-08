@@ -9,24 +9,12 @@
       // createANewPdf();
     }
   });
-  $(".main").on("click", "#submit-pdf-button", function (e) {
-    e.preventDefault();
-    $.ajax({
-      url: "",
-      data: new FormData(document.forms[0]),
-      contentType: false,
-      processData: false,
-      type: "post",
-      success: function () {
-        alert("Uploaded by jQuery");
-      },
-    });
-  });
     $("#submit-pdf-button").click(function (e) {
     e.preventDefault();
+    let form = document.getElementById('upload-form');
     $.ajax({
       url: "",
-      data: new FormData(document.forms[0]),
+      data: new FormData(form),
       contentType: false,
       processData: false,
       type: "post",
