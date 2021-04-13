@@ -72,9 +72,9 @@
                     <h1>PDF Controls</h1>
                 </div>
                 <div class="media-controls-container">
-                    @* <button class="media-icon" id="new-pdf-doc-button">
+                    <button class="media-icon" id="new-pdf-doc-button">
                         <i class="fas fa-plus" id="new-pdf-icon"></i>
-                        </button> *@
+                        </button>
                     <button class="media-icon" id="save-pdf-button">
                         <i class="far fa-save" id="save-pdf-icon"></i>
                     </button>
@@ -114,6 +114,13 @@
                         <th>#</th>
                         <th>Name</th>
                     </tr>
+                    @foreach (var file in Model.FileDatabase)
+                    {
+                        <tr>
+                            <td>@file.FileID</td>
+                            <td>@file.FileName</td>
+                        </tr>
+                    }
                 </table>
             </div>
         </div>
@@ -131,8 +138,8 @@
             </div>
             <div class="audio-file-table">
                 <form>
-                    <input type="text" placeholder="Enter file name" />
-                    <input type="submit" value="Submit" />
+                    <input type="text" placeholder="Enter file name" id="audio-file-name" />
+                    <button type="button" id="submit-audio-file">Submit</button>
                 </form>
             </div>
         </div>

@@ -702,3 +702,7 @@ C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\!n\pdf_capstone\_NE
 C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\!n\pdf_capstone\_NEW\WebApplication1\WebApplication1\obj\Debug\net5.0\ref\WebApplication1.dll
 C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\!n\pdf_capstone\_NEW\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.pdb
 C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\!n\pdf_capstone\_NEW\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.genruntimeconfig.cache
+C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\!n\pdf_capstone\_NEW\WebApplication1\WebApplication1\bin\Debug\net5.0\gfoidl.Base64.dll
+C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\!n\pdf_capstone\_NEW\WebApplication1\WebApplication1\bin\Debug\net5.0\Aspose.PDF.dll
+C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\!n\pdf_capstone\_NEW\WebApplication1\WebApplication1\bin\Debug\net5.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\n16611\OneDrive - Neenah\Documents\2021 Assignments\!n\pdf_capstone\_NEW\WebApplication1\WebApplication1\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll

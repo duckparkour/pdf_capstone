@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspose.PDF" Version="21.4.0" />
+    <PackageReference Include="gfoidl.Base64" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
       <PrivateAssets>all</PrivateAssets>

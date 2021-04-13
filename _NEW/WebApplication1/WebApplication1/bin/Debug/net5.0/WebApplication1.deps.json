@@ -33,11 +33,13 @@
     ".NETCoreApp,Version=v5.0": {
       "WebApplication1/1.0.0": {
         "dependencies": {
+          "Aspose.PDF": "21.4.0",
           "Microsoft.EntityFrameworkCore.Analyzers": "5.0.4",
           "Microsoft.EntityFrameworkCore.Design": "5.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.4",
           "Microsoft.EntityFrameworkCore.Sqlite": "5.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.4",
+          "gfoidl.Base64": "1.1.1",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -325,6 +327,40 @@
         },
         "compile": {
           "WebApplication1.dll": {}
+        }
+      },
+      "Aspose.PDF/21.4.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyModel": "5.0.0",
+          "System.Diagnostics.PerformanceCounter": "4.5.0",
+          "System.Drawing.Common": "4.7.0",
+          "System.Security.Cryptography.Pkcs": "4.7.0",
+          "System.Security.Permissions": "4.7.0",
+          "System.Text.Encoding.CodePages": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Aspose.PDF.dll": {
+            "assemblyVersion": "21.4.0.0",
+            "fileVersion": "21.4.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/Aspose.PDF.dll": {}
+        }
+      },
+      "gfoidl.Analyzers/0.2.0": {},
+      "gfoidl.Base64/1.1.1": {
+        "dependencies": {
+          "gfoidl.Analyzers": "0.2.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/gfoidl.Base64.dll": {
+            "assemblyVersion": "1.1.1501.1",
+            "fileVersion": "1.1.1501.1"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.0/gfoidl.Base64.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -687,7 +723,7 @@
         "dependencies": {
           "Microsoft.IdentityModel.Logging": "5.6.0",
           "Newtonsoft.Json": "10.0.1",
-          "System.Security.Cryptography.Cng": "4.5.0"
+          "System.Security.Cryptography.Cng": "4.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {
@@ -980,6 +1016,31 @@
           "lib/net5.0/System.Diagnostics.DiagnosticSource.dll": {}
         }
       },
+      "System.Diagnostics.PerformanceCounter/4.5.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "3.1.0",
+          "Microsoft.Win32.Registry": "4.7.0",
+          "System.Configuration.ConfigurationManager": "4.7.0",
+          "System.Security.Principal.Windows": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Diagnostics.PerformanceCounter.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.0/System.Diagnostics.PerformanceCounter.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Diagnostics.PerformanceCounter.dll": {}
+        }
+      },
       "System.Diagnostics.Tools/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -998,6 +1059,9 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
           "Microsoft.Win32.SystemEvents": "4.7.0"
+        },
+        "compile": {
+          "ref/netcoreapp3.0/System.Drawing.Common.dll": {}
         }
       },
       "System.Dynamic.Runtime/4.3.0": {
@@ -1326,7 +1390,15 @@
           "System.Security.Principal.Windows": "4.7.0"
         }
       },
-      "System.Security.Cryptography.Cng/4.5.0": {},
+      "System.Security.Cryptography.Cng/4.7.0": {},
+      "System.Security.Cryptography.Pkcs/4.7.0": {
+        "dependencies": {
+          "System.Security.Cryptography.Cng": "4.7.0"
+        },
+        "compile": {
+          "ref/netcoreapp3.0/System.Security.Cryptography.Pkcs.dll": {}
+        }
+      },
       "System.Security.Cryptography.Primitives/4.3.0": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.3.0",
@@ -3187,6 +3259,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Aspose.PDF/21.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZUDsMOgKgIZP0akjspTuEZfEJ/gWLc3oUnJcGr+oqYN8wOCD4cjRXMCY29SMGyjlXO37MziLyWuDsciQPL4i0Q==",
+      "path": "aspose.pdf/21.4.0",
+      "hashPath": "aspose.pdf.21.4.0.nupkg.sha512"
+    },
+    "gfoidl.Analyzers/0.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4rXIXpf3SGCv2RK2zRAm2XhW2XPT2wOPnTXlVn7XpgvqdVo7pIh6GegC9M3z+sCnbqwFSgTsV7VQ19HRCn77DA==",
+      "path": "gfoidl.analyzers/0.2.0",
+      "hashPath": "gfoidl.analyzers.0.2.0.nupkg.sha512"
+    },
+    "gfoidl.Base64/1.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-k9qR9MjNpkBRIS3Jqg/ehz+RanM6BDmZ1antE08kCmjuqGLVgEVhcLcWuWdEp1ghCmiBUS7dFjueqKymspUIBg==",
+      "path": "gfoidl.base64/1.1.1",
+      "hashPath": "gfoidl.base64.1.1.1.nupkg.sha512"
+    },
     "Humanizer.Core/2.8.26": {
       "type": "package",
       "serviceable": true,
@@ -3558,6 +3651,13 @@
       "path": "system.diagnostics.diagnosticsource/5.0.1",
       "hashPath": "system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512"
     },
+    "System.Diagnostics.PerformanceCounter/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JUO5/moXgchWZBMBElgmPebZPKCgwW8kY3dFwVJavaNR2ftcc/YjXXGjOaCjly2KBXT7Ld5l/GTkMVzNv41yZA==",
+      "path": "system.diagnostics.performancecounter/4.5.0",
+      "hashPath": "system.diagnostics.performancecounter.4.5.0.nupkg.sha512"
+    },
     "System.Diagnostics.Tools/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -3810,12 +3910,19 @@
       "path": "system.security.accesscontrol/4.7.0",
       "hashPath": "system.security.accesscontrol.4.7.0.nupkg.sha512"
     },
-    "System.Security.Cryptography.Cng/4.5.0": {
+    "System.Security.Cryptography.Cng/4.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-WG3r7EyjUe9CMPFSs6bty5doUqT+q9pbI80hlNzo2SkPkZ4VTuZkGWjpp77JB8+uaL4DFPRdBsAY+DX3dBK92A==",
-      "path": "system.security.cryptography.cng/4.5.0",
-      "hashPath": "system.security.cryptography.cng.4.5.0.nupkg.sha512"
+      "sha512": "sha512-4WQjFuypWtxb/bl/YwEE7LYGn4fgpsikFfBU6xwEm4YBYiRAhXAEJ62lILBu2JJSFbClIAntFTGfDZafn8yZTg==",
+      "path": "system.security.cryptography.cng/4.7.0",
+      "hashPath": "system.security.cryptography.cng.4.7.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.Pkcs/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0Srzh6YlhjuMxaqMyeCCdZs22cucaUAG6SKDd3gNHBJmre0VZ71ekzWu9rvLD4YXPetyNdPvV6Qst+8C++9v3Q==",
+      "path": "system.security.cryptography.pkcs/4.7.0",
+      "hashPath": "system.security.cryptography.pkcs.4.7.0.nupkg.sha512"
     },
     "System.Security.Cryptography.Primitives/4.3.0": {
       "type": "package",

@@ -7,9 +7,11 @@
   $("#file-button").click(function (e) {
     e.preventDefault();
     $(".main").empty();
+
     if ($("#toolkit3").is(":hidden")) {
       $("#toolkit3").show();
     }
+
     $(".main").append(`<iframe src="" id="frame"
             frameborder="1" width="100%" height="100%"></iframe>`);
   });
@@ -39,12 +41,12 @@
             </div>`);
   });
 
-  $(".main").on("click", "#youtube-search-button", function (e) {
-    e.preventDefault();
-    let source = $("#youtube-search-bar").val();
-    let x = $("#youtube-video").attr("src");
-    console.log(x);
-  });
+  // $(".main").on("click", "#youtube-search-button", function (e) {
+  //   e.preventDefault();
+  //   let source = $("#youtube-search-bar").val();
+  //   let x = $("#youtube-video").attr("src");
+  //   console.log(x);
+  // });
 
   //Audio Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -92,13 +94,13 @@
 
       mediaRecorder.addEventListener("stop", () => {
         const audioBlob = new Blob(audioChunks);
-        const blobToSave = convertBlobToMp4(audioBlob, "Blobbie");
+        // const blobToSave = convertBlobToMp4(audioBlob, "Blobbie");
         const audioUrl = URL.createObjectURL(audioBlob);
 
         let audio = document.querySelector("audio");
         audio.src = audioUrl;
 
-        console.log(blobToSave);
+        // console.log(blobToSave);
       });
     });
   });
@@ -118,6 +120,34 @@
 
   $(".main").on("click", "#open-recording-button", function (e) {
     showModal("open-audio");
+  });
+
+  $("#submit-audio-file").click(async function (e) {
+    e.preventDefault();
+    let fileName = $("#audio-file-name").val();
+    let audioUrl = $("audio").attr("src");
+    let blob = await fetch(audioUrl).then((r) => r.blob());
+    //Make a "new" blob to set the name
+    blob = blob.slice(0, blob.size, "audio/mp4");
+    blob.name = fileName;
+
+    let reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onload = function() {
+      $.ajax({
+        type: "post",
+        url: `?handler=Audio&fileName=${blob.name}&fileSize=${blob.size}&base64EncodedFile=${reader.result}`,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          alert("Success");
+        },
+        fail: function (resonse) {
+          alert("Failure");
+        },
+      });
+    };
+
   });
 });
 

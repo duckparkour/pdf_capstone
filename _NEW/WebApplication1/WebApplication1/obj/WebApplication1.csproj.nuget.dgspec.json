@@ -44,6 +44,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Aspose.PDF": {
+              "target": "Package",
+              "version": "[21.4.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Analyzers": {
               "target": "Package",
               "version": "[5.0.4, )"
@@ -67,6 +71,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.4, )"
+            },
+            "gfoidl.Base64": {
+              "target": "Package",
+              "version": "[1.1.1, )"
             }
           },
           "imports": [
