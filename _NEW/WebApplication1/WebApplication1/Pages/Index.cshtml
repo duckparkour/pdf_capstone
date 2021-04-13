@@ -81,12 +81,9 @@
                     <button class="media-icon" id="open-pdf-button">
                         <i class="far fa-folder-open" id="open-pdf-icon"></i>
                     </button>
-                    <form method="post" enctype="multipart/form-data">
-                        File <input type="file" name="formFile" />
-                        <br />
-                        <button type="submit" id="submit-pdf-button">Submit</button>
-                    </form>
-
+                    <button class="media-icon" id="upload-pdf-button">
+                        <i class="fas fa-folder-open" id="upload-pdf-icon"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -219,7 +216,21 @@
 
         </div>
     </div>
-
+<div id="upload-pdf-modal" class="modal">
+        <div class="modal-content">
+            <div class="exit-container">
+                <span class="close" id="upload-pdf-modal-close-button">&times;</span>
+            </div>
+            <div id="modal-header">
+                <h3>Upload your PDF file</h3>
+            </div>
+            <form method="post" enctype="multipart/form-data" id="upload-form">
+                File <input type="file" name="formFile" />
+                <br />
+                <button type="submit" id="submit-pdf-button">Submit</button>
+            </form>
+        </div>
+    </div>
     <!--Scripts for the website-->
     <script src="~/js/site.js"></script>
     <script src="~/js/video.js"></script>

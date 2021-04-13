@@ -28,12 +28,12 @@
       },
     });
   });
-
-  $("#submit-pdf-button").click(function (e) {
+    $("#submit-pdf-button").click(function (e) {
     e.preventDefault();
+    let form = document.getElementById('upload-form');
     $.ajax({
       url: "",
-      data: new FormData(document.forms[0]),
+      data: new FormData(form),
       contentType: false,
       processData: false,
       type: "post",
@@ -42,7 +42,6 @@
       },
     });
   });
-
   $(".file-in-db").on("click", function (e) {
     e.preventDefault();
     //Find the ID of the file to get from the modal

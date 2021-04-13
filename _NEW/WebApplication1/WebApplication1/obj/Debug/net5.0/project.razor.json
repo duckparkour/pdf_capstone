@@ -15617,12 +15617,6 @@
     "CSharpLanguageVersion": 900
   },
   "RootNamespace": "WebApplication1",
-  "Documents": [
-    {
-      "FilePath": "c:\\Users\\n16611\\OneDrive - Neenah\\Documents\\2021 Assignments\\!n\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\Pages\\Index.cshtml",
-      "TargetPath": "Pages\\Index.cshtml",
-      "FileKind": "mvc"
-    }
-  ],
+  "Documents": [],
   "SerializationFormat": "0.2"
 }

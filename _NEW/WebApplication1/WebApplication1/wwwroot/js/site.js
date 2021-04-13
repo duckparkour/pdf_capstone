@@ -23,6 +23,9 @@
   $("#open-pdf-button").click(function (e) {
     showModal("open-pdf");
   });
+  $("#upload-pdf-button").click(function (e) {
+    showModal("upload-pdf");
+  });
 
   //Video Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -184,7 +187,27 @@ function showModal(action) {
       };
       break;
     }
+    case "upload-pdf": {
+      let modal = document.getElementById("upload-pdf-modal");
 
+      modal.style.display = "block";
+
+      this.onclick = function () {
+        modal.style.display = "block";
+      };
+
+      $("#upload-pdf-modal-close-button").click(function () {
+        modal.style.display = "none";
+      });
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+      break;
+    }
     case "open-pdf": {
       let modal = document.getElementById("open-pdf-modal");
 
