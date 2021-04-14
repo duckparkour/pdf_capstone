@@ -10,7 +10,6 @@ body, html {
 
 body {
     font-family: 'Palanquin', sans-serif;
-    background-color: #F7F7F6;
     color: #30333A;
 }
 
@@ -21,7 +20,7 @@ body {
     grid-template-rows: .05fr .2fr auto;
     grid-template-columns: .5fr 1fr .5fr;
     grid-template-areas: "header header header" "toolbar toolbar toolbar" ". main .";
-    background-color: #cacaca;
+    background-color: rgb(195, 195, 195);
 }
 /* Header */
 .header {
@@ -39,7 +38,6 @@ body {
     display: flex;
     background-color: #B8ABA4;
     box-shadow: 2.5px 5px #989A98;
-    padding: 1px;
     border-bottom: 1px solid #989A98;
 }
 
@@ -82,7 +80,8 @@ body {
 
 .media-controls-container {
     height: 50%;
-    width: 100%;
+    min-width: 60%;
+    width: auto;
     align-self: center;
     display: flex;
     align-items: center;
@@ -90,25 +89,55 @@ body {
 }
 
 .media-icon {
-    width: 15%;
+    min-width: 33%;
     height: 100%;
-    background-color: #F7F7F6;
+    background-color:  rgb(195, 195, 195);
     margin: 5px 5px 0 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
 }
-
+.media-icon:hover{
+    background-color: #D2C5BE;
+}
+.media-icon:hover .tooltip{
+    visibility: visible;
+    top: 20%;
+}
+.tooltip{
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
 #file-icon {
-    color: lightblue;
+    color: teal;
 }
 
 #video-icon {
-    color: lightsalmon;
+    color: orangered;
 }
 
 #audio-icon {
-    color: lightpink;
+    color: palevioletred;
+}
+#new-pdf-icon{
+    color: rgb(97, 156, 97);
+}
+#save-pdf-icon{
+    color: blue
+}
+#open-pdf-icon{
+    color: red;
+}
+#upload-pdf-icon{
+    color: darkslategray;
 }
 #start-recording-icon{
     color: red;
@@ -204,6 +233,8 @@ body {
     background-color: #eeeeee;
     border: 1px solid black;
     border-radius: 3px;
+    box-shadow: 5px -2.5px #989A98;
+
 }
 
 #youtube-search-bar {
@@ -217,10 +248,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#youtube-video-frame {
-    /* align-self: center; */
 }
 .recording-buttons-container{
     display: flex;
