@@ -40,7 +40,11 @@ body {
     box-shadow: 2.5px 5px #989A98;
     border-bottom: 1px solid #989A98;
 }
-
+#media-selector{
+    min-width: 100%;
+    display: block;
+    border-bottom: 3px solid black;
+}
 .toolkit {
     min-width: 20%;
     display: flex;
@@ -236,18 +240,52 @@ body {
     box-shadow: 5px -2.5px #989A98;
 
 }
-
 #youtube-search-bar {
-    width: 80%;
     align-self: center;
 }
 
 .video-container {
     height: 100%;
+    width: 97.5%;
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 15px 15px 0px 15px;
+    background-color: #30333A;
+    border-radius: 5px;
+}
+#youtube-video{
+    width: 100%;
+}
+.youtube-url-control{
+    display: none;
+    width: 80%;
+    text-align: center;
+    padding: 5px;
+}
+#url-control-button{
+
+}
+#youtube-search-bar{
+    min-height: 25px;
+    width: 80%;
+}
+.yt-button{
+    padding: 5px 15px;
+    background-color:  #eeeeee;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+#youtube-search-button{
+    background-color: #fefefe;
+    padding: 5px;
+    margin: 5px auto;
+    min-width: 15%;
 }
 .recording-buttons-container{
     display: flex;

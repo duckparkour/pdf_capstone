@@ -31,25 +31,20 @@
 
   $("#video-button").click(function (e) {
     $(".main").empty();
-    $("#toolkit3").hide();
+    $("#toolkit3").toggle("fast");
 
-    $(
-      ".main"
-    ).append(`<h1 id="youtube-title"><i class="fab fa-youtube"></i>Youtube Playback Function </h1>
-            <input type="text" name="youtube-input" id="youtube-search-bar" placeholder="Enter a youtube embedded url">
-            <button id="youtube-search-button">Go!</button>
+    $(".main").append(`
+            
             <div class="video-container">
                 <iframe id="youtube-video"width="860" height="615" src="https://www.youtube.com/embed/Oa9QeMHNOm4?enablejsapi=1" frameborder="0" allow="accelerometer;
-                    autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>`);
+                    autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><button class="yt-button" id="url-control-button"><h4>Change the video</h4></button><div class="youtube-url-control" >
+                    <input type="text" name="youtube-input" id="youtube-search-bar" placeholder="Enter a youtube embedded url">
+            <button class="yt-button" id="youtube-search-button"><h4>Go!</h4></button>
+            </div></div>`);
+    $("#url-control-button").click(function(e){
+        $(".youtube-url-control").toggle("slow");
+    });
   });
-
-  // $(".main").on("click", "#youtube-search-button", function (e) {
-  //   e.preventDefault();
-  //   let source = $("#youtube-search-bar").val();
-  //   let x = $("#youtube-video").attr("src");
-  //   console.log(x);
-  // });
 
   //Audio Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
