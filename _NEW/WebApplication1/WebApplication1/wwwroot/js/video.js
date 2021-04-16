@@ -4,7 +4,11 @@ $(document).ready(function(){
     $(".main").on('click', '#youtube-search-button', function (e) {
         e.preventDefault();
         let source = $('#youtube-search-bar').val();
-        //player.loadVideoById(source);
-        $('#youtube-video').attr('src',source+trailer);
+        if(source.startsWith("https://www.youtube.com/embed/")){
+            $('#youtube-video').attr('src',source+trailer);
+        }else{
+            alert("Please enter a valid embed URL.");
+        }
+        
     })
 });

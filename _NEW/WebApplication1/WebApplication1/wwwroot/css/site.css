@@ -258,6 +258,8 @@ body {
 }
 #youtube-video{
     width: 100%;
+    border: 2px solid black;
+    margin: 2px;
 }
 .youtube-url-control{
     display: none;
@@ -266,7 +268,8 @@ body {
     padding: 5px;
 }
 #url-control-button{
-
+    margin: 6px;
+    padding: 10px;
 }
 #youtube-search-bar{
     min-height: 25px;
