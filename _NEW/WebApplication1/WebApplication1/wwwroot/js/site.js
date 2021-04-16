@@ -31,7 +31,7 @@
 
   $("#video-button").click(function (e) {
     $(".main").empty();
-    $("#toolkit3").toggle("fast");
+    $("#toolkit3").hide("fast");
 
     $(".main").append(`
             
@@ -50,7 +50,7 @@
 
   $("#audio-button").click(function (e) {
     $(".main").empty();
-    $("#toolbar3").hide();
+    $("#toolkit3").hide("fast");
 
     let audioControlsDiv = $(`<div></div>`);
     let startButton = `<button id="start-recording-button"><i id='start-recording-icon' class="fas fa-circle"></i><h4>Start Recording</h4></button>`;

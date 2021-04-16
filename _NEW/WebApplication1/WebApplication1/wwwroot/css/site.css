@@ -69,14 +69,18 @@ body {
     align-items: center;
     justify-content: center;
     margin: 5px 5px 0 5px;
+    padding: 4px;
 }
 
     #text-controls-container > select {
         margin-right: 5px;
     }
 
+#number-input {
+    width: 45px;
+}
 .color-container {
-    width: 10%;
+    width: 15%;
     display: flex;
     justify-content: flex-end;
     padding-left: 5px;
@@ -217,11 +221,6 @@ body {
     .save-icon > i {
         color: lime;
     }
-
-#number-input {
-    width: 30px;
-}
-
 /* Main */
 .main {
     grid-area: main;

@@ -65,5 +65,6 @@
         alert("Could not find a file.");
       },
     });
+    $("#open-pdf-modal").toggle();
   });
 });
