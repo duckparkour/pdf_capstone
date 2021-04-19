@@ -24,7 +24,7 @@ namespace WebApplication1.Pages
         //private readonly AudioContext db;
         // public IndexModel(AudioContext db) => this.db = db;
         // public List<AudioModel> Audios { get; set; } = new List<AudioModel>();
-
+		public Font userFont = FontFactory.GetFont("Arial", 12, Color.BLACK);
         private readonly DatabaseFileContext db1;
         //  <td><a href = "@Url.Page("Index", "DownloadFile", new { downloadableFile = file })">Download</a></td>
         public IndexModel(DatabaseFileContext db1) => this.db1 = db1;
@@ -38,6 +38,88 @@ namespace WebApplication1.Pages
         // {
         //     this.hostingEnvironment = environment;
         // }
+		
+		public Enum Colors
+		{
+			Gray = 0,
+			Black = 1,
+			Blue = 2,
+			Purple = 3,
+			Green = 4,
+			Yellow = 5,
+			Orange = 6,
+			Red = 7
+		}
+		
+		public Enum FontType
+		{
+			Helvetica = 0,
+			TimesRoman = 1,
+			Courier = 2
+		}
+		
+		public void ChangeFontType(FontType fontType,Phrase p )
+		{
+			if (fontType == Helvetica)
+			{
+				userFont = FontFactory.GetFont("Helvetica", userFont.getSize(),userFont.getColor());
+			}
+			else if (fontType == TimesRoman)
+			{
+				userFont = FontFactory.GetFont("TimesRoman", userFont.getSize(),userFont.getColor());
+			}
+			else if (fontType == Courier)
+			{
+				userFont = FontFactory.GetFont("Courier", userFont.getSize(),userFont.getColor());
+			}
+			
+			p = new Phrase(p, userFont);
+		}
+		
+		public void ChangeFontSize(int fontSize, Phrase p)
+		{
+			userFont = FontFactory.GetFont(userFont.getFamily(),fontSize,userFont.getColor());
+			p = new Phrase(p, userFont);
+		}
+		
+		public void ChangeFontColor(Colors userColor, Phrase p)
+		{
+			
+			if (userColor == Gray)
+			{
+				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.GRAY);
+			}
+			else if (userColor == Black)
+			{
+				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.BLACK);
+			}
+			else if (userColor == Blue)
+			{
+				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.BLUE);
+			}
+			else if (userColor == Purple)
+			{
+				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.PURPLE);
+			}
+			else if (userColor == Green)
+			{
+				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.GREEN);
+			}
+			else if (userColor == Yellow)
+			{
+				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.YELLOW);
+			}
+			else if (userColor == Orange)
+			{
+				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.ORANGE);
+			}
+			else if (userColor == Red)
+			{
+				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.RED);
+			}
+		
+			p = new Phrase(p, userFont);
+		}
 
         public async Task OnGetAsync()
         {
@@ -96,6 +178,7 @@ namespace WebApplication1.Pages
             // uploadedFile.FileContent = buffer;            
             // db1.Add(uploadedFile);
             // db1.SaveChanges();
+			FileDatabase = db1.Files();
         }
 
         public JsonResult OnGetFile(int ID)
@@ -111,16 +194,6 @@ namespace WebApplication1.Pages
             }
 
             return null;
-        }
-
-        public void FileDownload()
-        {
-
-        }
-
-        public void FileUpload()
-        {
-
         }
 
         public JsonResult OnGetANewPdfFile(string fileName)
