@@ -58,6 +58,7 @@ namespace WebApplication1.Pages
 			Courier = 2
 		}
 		
+		/*
 		public void ChangeFontType(FontType fontType,Phrase p )
 		{
 			if (fontType == Helvetica)
@@ -120,7 +121,7 @@ namespace WebApplication1.Pages
 		
 			p = new Phrase(p, userFont);
 		}
-
+		*/
         public async Task OnGetAsync()
         {
             //Audios = await db.Audios.ToListAsync();
