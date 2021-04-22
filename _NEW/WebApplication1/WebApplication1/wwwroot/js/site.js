@@ -41,8 +41,8 @@
                     <input type="text" name="youtube-input" id="youtube-search-bar" placeholder="Enter a youtube embedded url">
             <button class="yt-button" id="youtube-search-button"><h4>Go!</h4></button>
             </div></div>`);
-    $("#url-control-button").click(function(e){
-        $(".youtube-url-control").toggle("slow");
+    $("#url-control-button").click(function (e) {
+      $(".youtube-url-control").toggle("slow");
     });
   });
 
@@ -71,6 +71,8 @@
     );
     $("#save-audio-button").hide();
   });
+
+  
 
   //The click handler has to be binded this way since it does not exist until the audio button is selected from the media tab.
   $(".main").on("click", "#start-recording-button", function (e) {
@@ -124,28 +126,50 @@
     e.preventDefault();
     let fileName = $("#audio-file-name").val();
     let audioUrl = $("audio").attr("src");
-    let blob = await fetch(audioUrl).then((r) => r.blob());
-    //Make a "new" blob to set the name
-    blob = blob.slice(0, blob.size, "audio/mp4");
-    blob.name = fileName;
+    let file = await fetch(audioUrl)
+      .then((r) => r.arrayBuffer())
+    let fileAsBase64String = btoa(String.fromCharCode(...new Uint8Array(file)));
+    console.log(fileAsBase64String)
 
-    let reader = new FileReader();
-    reader.readAsDataURL(blob);
-    reader.onload = function() {
-      $.ajax({
-        type: "post",
-        url: `?handler=Audio&fileName=${blob.name}&fileSize=${blob.size}&base64EncodedFile=${reader.result}`,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-          alert("Success");
-        },
-        fail: function (resonse) {
-          alert("Failure");
-        },
-      });
-    };
+    $.ajax({
+      type: "post",
+      url: `?handler=Audio&fileName=${fileName}`,
+      data: fileAsBase64String,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        alert("Success");
+      },
+      fail: function (response) {
+        alert("Failure");
+      },
+    });
+  });
 
+  $('.audio-file-in-db').on('click', function (e) {
+    e.preventDefault();
+     let id = $(this)
+      .parent()
+      .siblings(".audio-sister")
+      .find(".audio-file-id")
+      .text();
+
+    $.ajax({
+      url: "?handler=File&ID=" + id,
+      type: "get",
+      success: async function (data) {
+        let blob = await fetch(`data:audio/mp4;base64,${data}`)
+        blob = await blob.blob()
+        console.log(blob)
+
+        let urlForAudioBlob = URL.createObjectURL(blob)
+        $("audio").attr("src", urlForAudioBlob);
+
+      },
+      error: function () {
+        alert("Could not find a file.");
+      },
+    });
   });
 });
 

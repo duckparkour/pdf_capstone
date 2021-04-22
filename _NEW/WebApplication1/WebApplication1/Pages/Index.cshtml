@@ -78,7 +78,7 @@
                     <button class="media-icon" id="new-pdf-doc-button">
                         <i class="fas fa-plus" id="new-pdf-icon"></i>
                         <span class="tooltip">Blank PDF</span>
-                        </button>
+                    </button>
                     <button class="media-icon" id="save-pdf-button">
                         <i class="far fa-save" id="save-pdf-icon"></i>
                         <span class="tooltip">Save PDF</span>
@@ -120,10 +120,20 @@
                     </tr>
                     @foreach (var file in Model.FileDatabase)
                     {
-                        <tr>
-                            <td>@file.FileID</td>
-                            <td>@file.FileName</td>
-                        </tr>
+                        if (file.FileExtension == ".mp4" || file.FileExtension == ".mp3")
+                        {
+                            <tr>
+                                <form method="GET">
+                                    <td class="audio-sister">
+                                        <p class="audio-file-id" name="ID">@file.FileID</p>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="audio-file-in-db">@file.FileName</button>
+                                    </td>
+                                    <td>@file.FileSize</td>
+                                </form>
+                            </tr>
+                        }
                     }
                 </table>
             </div>
@@ -200,8 +210,9 @@
             <div class="audio-file-table">
                 <form>
                     @* inputs need a name that matches controller fields *@
-                    <input type="text" placeholder="Enter file name" />
-                    <input type="submit" value="Submit" />
+                    <input type="text" placeholder="Enter file name" id="new-pdf-filename" />
+
+                    <button type="submit" id="submit-pdf-button">Submit</button>
                 </form>
 
                 <table>
@@ -223,7 +234,7 @@
 
         </div>
     </div>
-<div id="upload-pdf-modal" class="modal">
+    <div id="upload-pdf-modal" class="modal">
         <div class="modal-content">
             <div class="exit-container">
                 <span class="close" id="upload-pdf-modal-close-button">&times;</span>
@@ -232,9 +243,9 @@
                 <h3>Upload your PDF file</h3>
             </div>
             <form method="post" enctype="multipart/form-data" id="upload-form">
-                File <input type="file" name="formFile" />
+                File <input type="file" name="formFile" id="test-btn" />
                 <br />
-                <button type="submit" id="submit-pdf-button">Submit</button>
+                <button type="submit" id="pdf-button">Submit</button>
             </form>
         </div>
     </div>

@@ -1,17 +1,12 @@
 ﻿$(document).ready(function () {
+  let currentPdfAsBase64;
+
   $("#new-pdf-doc-button").click(function (e) {
-    // e.preventDefault();
-    // if (
-    //   confirm(
-    //     "Are you sure you want to make a new pdf file? Unsaved changes will be lost."
-    //   )
-    // ) {
-    //   createANewPdf();
-    // }
     $.ajax({
       url: "?handler=ANewPdfFile&fileName=testfile",
       type: "get",
       success: (data) => {
+        currentPdfAsBase64 = data;
         const url = "data:application/pdf;base64," + data;
         fetch(url)
           .then((res) => res.blob())
@@ -19,8 +14,6 @@
             const url = URL.createObjectURL(res);
             $("#frame").attr("src", url);
           });
-
-        $("#frame").attr("src", "data:application/pdf;base64," + data);
       },
 
       error: (data) => {
@@ -28,20 +21,31 @@
       },
     });
   });
-    $("#submit-pdf-button").click(function (e) {
+
+  $("#submit-pdf-button").click(async function (e) {
     e.preventDefault();
-    let form = document.getElementById('upload-form');
+    let fileName = $("#new-pdf-filename").val();
+    let file = await fetch($("#frame").attr("src")).then((res) =>
+      res.arrayBuffer()
+    );
+    let fileAsBase64String = btoa(String.fromCharCode(...new Uint8Array(file)));
+
     $.ajax({
-      url: "",
-      data: new FormData(form),
+      url: "?handler=NewPdf&fileName=" + fileName,
+      type: "post",
       contentType: false,
       processData: false,
-      type: "post",
+      data: fileAsBase64String,
       success: function () {
-        alert("success");
+        alert("file saved");
+        console.log(fileName);
+      },
+      error: function (err) {
+        alert("error");
       },
     });
   });
+
   $(".file-in-db").on("click", function (e) {
     e.preventDefault();
     //Find the ID of the file to get from the modal
@@ -51,6 +55,7 @@
       url: "?handler=File&ID=" + id,
       type: "get",
       success: function (data) {
+        currentPdfAsBase64 = data;
         const url = "data:application/pdf;base64," + data;
         fetch(url)
           .then((res) => res.blob())
@@ -58,8 +63,6 @@
             const url = URL.createObjectURL(res);
             $("#frame").attr("src", url);
           });
-
-        $("#frame").attr("src", "data:application/pdf;base64," + data);
       },
       error: function () {
         alert("Could not find a file.");

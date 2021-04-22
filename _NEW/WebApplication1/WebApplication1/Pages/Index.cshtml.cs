@@ -13,7 +13,13 @@ using System.Text;
 using System.Buffers.Text;
 using System.Diagnostics;
 using System.IO.Pipelines;
-using Aspose.Pdf;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using System.Web;
+
+
 
 namespace WebApplication1.Pages
 {
@@ -24,7 +30,8 @@ namespace WebApplication1.Pages
         //private readonly AudioContext db;
         // public IndexModel(AudioContext db) => this.db = db;
         // public List<AudioModel> Audios { get; set; } = new List<AudioModel>();
-		public Font userFont = FontFactory.GetFont("Arial", 12, Color.BLACK);
+        /*		public Font userFont = FontFactory.GetFont("Arial", 12, Color.BLACK);
+        */
         private readonly DatabaseFileContext db1;
         //  <td><a href = "@Url.Page("Index", "DownloadFile", new { downloadableFile = file })">Download</a></td>
         public IndexModel(DatabaseFileContext db1) => this.db1 = db1;
@@ -38,8 +45,8 @@ namespace WebApplication1.Pages
         // {
         //     this.hostingEnvironment = environment;
         // }
-		
-		public Enum Colors
+
+        /*public Enum Colors
 		{
 			Gray = 0,
 			Black = 1,
@@ -57,8 +64,8 @@ namespace WebApplication1.Pages
 			TimesRoman = 1,
 			Courier = 2
 		}
-		
-		/*
+		*/
+        /*
 		public void ChangeFontType(FontType fontType,Phrase p )
 		{
 			if (fontType == Helvetica)
@@ -159,27 +166,25 @@ namespace WebApplication1.Pages
 
         }
 
-        public void OnPostAudio(string fileName, int fileSize, string base64EncodedFile)
+        public void OnPostAudio(string fileName)
         {
-            Guid guid = Guid.NewGuid();
-            base64EncodedFile = Convert.ToBase64String(guid.ToByteArray());
-            // byte[] buffer = Base64.Default.Decode(base64EncodedFile);
-            // base64EncodedFile = base64EncodedFile.Split(',')[1];
-            // Console.WriteLine(base64EncodedFile);
+            Task<string> audioFileToBeSavedAsBase64;
+            var reader = new StreamReader(Request.Body);
+            audioFileToBeSavedAsBase64 = reader.ReadToEndAsync();
 
-            // byte[] buffer = Convert.FromBase64String(base64EncodedFile);
-            // Random randomizer = new Random();
-            // DatabaseFile uploadedFile = new DatabaseFile();
+            byte[] buffer = System.Convert.FromBase64String(audioFileToBeSavedAsBase64.Result);
+            Random randomizer = new Random();
+            DatabaseFile audioToBeSaved = new DatabaseFile();
+            audioToBeSaved.FileName = fileName;
+            audioToBeSaved.ContentType = "audio/mp4";
+            audioToBeSaved.FileID = randomizer.Next();
+            audioToBeSaved.FileExtension = ".mp4";
+            audioToBeSaved.FileContent = buffer;
+            audioToBeSaved.FileSize = buffer.Length;
+            db1.Add(audioToBeSaved);
+            db1.SaveChanges();
 
-            // uploadedFile.FileName = fileName;
-            // uploadedFile.ContentType = "audio/mp4";
-            // uploadedFile.FileID = randomizer.Next();
-            // uploadedFile.FileSize = fileSize;
-            // uploadedFile.FileExtension = ".mp4";
-            // uploadedFile.FileContent = buffer;            
-            // db1.Add(uploadedFile);
-            // db1.SaveChanges();
-			FileDatabase = db1.Files();
+            
         }
 
         public JsonResult OnGetFile(int ID)
@@ -197,17 +202,38 @@ namespace WebApplication1.Pages
             return null;
         }
 
+        //This method post the current file in the iFrame to the database when it is saved.
+        public void OnPostNewPdf(string fileName)
+        {
+            Task<string> pdfToBeSavedAsBase64;
+            var reader = new StreamReader(Request.Body);
+            pdfToBeSavedAsBase64 = reader.ReadToEndAsync();
+
+            byte[] buffer = System.Convert.FromBase64String(pdfToBeSavedAsBase64.Result);
+            Random randomizer = new Random();
+            DatabaseFile pdfToBeSaved = new DatabaseFile();
+            pdfToBeSaved.FileName = fileName;
+            pdfToBeSaved.ContentType = "application/pdf";
+            pdfToBeSaved.FileID = randomizer.Next();
+            pdfToBeSaved.FileExtension = ".pdf";
+            pdfToBeSaved.FileContent = buffer;
+            pdfToBeSaved.FileSize = buffer.Length;
+            db1.Add(pdfToBeSaved);
+            db1.SaveChanges();
+
+        }
+
+
         public JsonResult OnGetANewPdfFile(string fileName)
         {
-            byte[] fileBytes = null;
-            Document newPdfDocument = new Document();
-            Aspose.Pdf.Page page = newPdfDocument.Pages.Add();
-            MemoryStream outStream = new MemoryStream();
+            var stream = new MemoryStream();
+            var writer = new PdfWriter(stream);
+            var pdf = new PdfDocument(writer);
+            var document = new Document(pdf);
+            document.Add(new Paragraph(""));
+            document.Close();
 
-            newPdfDocument.Save(outStream, SaveFormat.Pdf);
-            fileBytes = outStream.ToArray();
-
-            return new JsonResult(fileBytes);
+            return new JsonResult(stream.ToArray());
         }
     }
 }

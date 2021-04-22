@@ -381,7 +381,8 @@ body {
     border: 1px solid black;
 }
 
-.file-in-db{
+.file-in-db,
+.audio-file-in-db{
     border: none;
     background: none;
     cursor: pointer;
