@@ -19,10 +19,9 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using System.Web;
 
-
-
 namespace WebApplication1.Pages
 {
+
     public class IndexModel : PageModel
     {
         /*        private readonly ILogger<IndexModel> _logger;
@@ -148,6 +147,14 @@ namespace WebApplication1.Pages
             return File(bytes, downloadableFile.ContentType, downloadableFile.FileName);
         }
 
+        /**
+         * Upload a PDF file on your local machine to our server
+         *
+         * This method sends a file to our database that is populated by a file chooser input on the front end.
+         * A DatabaseFile object is generated based on the uploaded file's data and posted to the database
+         *
+         * @return <void> 
+         **/
         public void OnPost()
         {
 
@@ -166,7 +173,19 @@ namespace WebApplication1.Pages
 
         }
 
-        public void OnPostAudio(string fileName)
+        /**
+         * This method posts a new file to the server
+         *
+         * This method is called when the corresponding HTTP post method is called from the front end. The response body is read 
+         * which is a base64 string representing the file to be posted. The method then converts this base64 string into byte[] 
+         * representing the files contents. A DatabaseFile object is generated and posted to the server. Depending on the type of file
+         * being passed the content type and file extension will either be set to pdf or audio accordingly.
+         * 
+         * @param <string> <fileName> <The name of the file which is a url query string param in the ajax method calling this method>
+         * @param <string> <typeOfFile> <The type of file being passed. Acceptable values are "pdf" or "audio" >
+         * @return <void> 
+         **/
+        public void OnPostFile(string fileName, string typeOfFile)
         {
             Task<string> audioFileToBeSavedAsBase64;
             var reader = new StreamReader(Request.Body);
@@ -176,17 +195,26 @@ namespace WebApplication1.Pages
             Random randomizer = new Random();
             DatabaseFile audioToBeSaved = new DatabaseFile();
             audioToBeSaved.FileName = fileName;
-            audioToBeSaved.ContentType = "audio/mp4";
+            audioToBeSaved.ContentType = typeOfFile.Equals("pdf") ? "application/pdf" : "audio/mp4";
             audioToBeSaved.FileID = randomizer.Next();
-            audioToBeSaved.FileExtension = ".mp4";
+            audioToBeSaved.FileExtension = typeOfFile.Equals("pdf") ? ".pdf" : ".mp4";
             audioToBeSaved.FileContent = buffer;
             audioToBeSaved.FileSize = buffer.Length;
             db1.Add(audioToBeSaved);
             db1.SaveChanges();
-
-            
         }
 
+        /**
+         * Return a file from the database which will be represented as a base64 string.
+         *
+         * This method is used when we need to recieve a file from our database to be used inside of our User Interface. The ID
+         * of the file to recieve is passed as a parameter which is then compared against a list of our DatabaseFile objects. If one is
+         * not found null is returned. If one is found then the files contents are stored inside a byte array and sent as a Json object
+         * which is represented as a base64 string when it reaches the frontend. 
+         *
+         * @param <int> <ID> <The ID number of the file in the database>
+         * @return <JsonResult> <The files contents are being returned>
+         **/
         public JsonResult OnGetFile(int ID)
         {
             foreach (DatabaseFile file in db1.Files)
@@ -194,7 +222,6 @@ namespace WebApplication1.Pages
                 if (file.FileID == ID)
                 {
                     byte[] fileBytes = file.FileContent;
-                    // return new JsonResult(Convert.ToBase64String(fileBytes));
                     return new JsonResult(fileBytes);
                 }
             }
@@ -202,29 +229,15 @@ namespace WebApplication1.Pages
             return null;
         }
 
-        //This method post the current file in the iFrame to the database when it is saved.
-        public void OnPostNewPdf(string fileName)
-        {
-            Task<string> pdfToBeSavedAsBase64;
-            var reader = new StreamReader(Request.Body);
-            pdfToBeSavedAsBase64 = reader.ReadToEndAsync();
-
-            byte[] buffer = System.Convert.FromBase64String(pdfToBeSavedAsBase64.Result);
-            Random randomizer = new Random();
-            DatabaseFile pdfToBeSaved = new DatabaseFile();
-            pdfToBeSaved.FileName = fileName;
-            pdfToBeSaved.ContentType = "application/pdf";
-            pdfToBeSaved.FileID = randomizer.Next();
-            pdfToBeSaved.FileExtension = ".pdf";
-            pdfToBeSaved.FileContent = buffer;
-            pdfToBeSaved.FileSize = buffer.Length;
-            db1.Add(pdfToBeSaved);
-            db1.SaveChanges();
-
-        }
-
-
-        public JsonResult OnGetANewPdfFile(string fileName)
+        /**
+         * Get a new blank PDF file
+         *
+         * A new PDF file is genereated when this method is called. A memory stream object is created which is used in conjunction with 
+         * iText 7's PDF api to read the file's bytes into a stream which is returned as a JsonResult. Will be a base64 on the front end. 
+         * 
+         * @return <JsonResult> <Return the new pdf's bytes as a base64 string> 
+         **/
+        public JsonResult OnGetANewPdfFile()
         {
             var stream = new MemoryStream();
             var writer = new PdfWriter(stream);

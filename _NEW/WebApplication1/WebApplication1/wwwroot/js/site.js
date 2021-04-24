@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+  // These variables are for the audio recording funtionality and are declared as "globals" in this script to be accessed by
+  // different parts of the script
   let mediaRecorder;
   let audioChunks;
 
@@ -16,6 +18,7 @@
             frameborder="1" width="100%" height="100%"></iframe>`);
   });
 
+  //The following four methods handle displaying the modals for opening, saving, and uploading a pdf
   $("#save-pdf-button").click(function (e) {
     showModal("save-pdf");
   });
@@ -29,18 +32,26 @@
 
   //Video Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  /**
+   * This JQuery function handles events that trigger when the video state button is clicked.
+   *
+   **/
   $("#video-button").click(function (e) {
     $(".main").empty();
     $("#toolkit3").hide("fast");
 
+    /**
+     * This function renders the html for when the video state button is clicked
+     *
+     **/
     $(".main").append(`
-            
             <div class="video-container">
                 <iframe id="youtube-video"width="860" height="615" src="https://www.youtube.com/embed/Oa9QeMHNOm4?enablejsapi=1" frameborder="0" allow="accelerometer;
                     autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><button class="yt-button" id="url-control-button"><h4>Change the video</h4></button><div class="youtube-url-control" >
                     <input type="text" name="youtube-input" id="youtube-search-bar" placeholder="Enter a youtube embedded url">
             <button class="yt-button" id="youtube-search-button"><h4>Go!</h4></button>
             </div></div>`);
+
     $("#url-control-button").click(function (e) {
       $(".youtube-url-control").toggle("slow");
     });
@@ -48,6 +59,12 @@
 
   //Audio Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  /**
+   * This click handler creates UI controls for the audio state
+   *
+   * The controls created are attatched to the "main" element in the DOM. 
+   * 
+   **/
   $("#audio-button").click(function (e) {
     $(".main").empty();
     $("#toolkit3").hide("fast");
@@ -72,9 +89,13 @@
     $("#save-audio-button").hide();
   });
 
-  
-
-  //The click handler has to be binded this way since it does not exist until the audio button is selected from the media tab.
+  /**
+   * This is the click handler when start recording is pressed
+   *
+   * All of the logic behind starting a recording resides inside this function.
+   * The display text is changed here as well as the logic for hiding the UI controls.
+   *
+   **/
   $(".main").on("click", "#start-recording-button", function (e) {
     e.preventDefault();
     $("#recording-status-text")
@@ -82,6 +103,7 @@
       .addClass("recording-active");
     $("#save-audio-button").hide();
 
+    // the recording is started here. microphone access is gained and events are binded
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
       mediaRecorder = new MediaRecorder(stream);
       mediaRecorder.start();
@@ -92,15 +114,14 @@
         audioChunks.push(event.data);
       });
 
+      // create a blob from the audio chunks that were recorded, then create a url
       mediaRecorder.addEventListener("stop", () => {
         const audioBlob = new Blob(audioChunks);
-        // const blobToSave = convertBlobToMp4(audioBlob, "Blobbie");
         const audioUrl = URL.createObjectURL(audioBlob);
 
+        //set the source of the audio element to the url created
         let audio = document.querySelector("audio");
         audio.src = audioUrl;
-
-        // console.log(blobToSave);
       });
     });
   });
@@ -122,18 +143,33 @@
     showModal("open-audio");
   });
 
+  /**
+   * Click handler for saving the current audio to the server
+   *
+   * This method first gets the file name entered into the input field. Then a fetch request is made
+   * to the src property of the audio which loads its contents into an array buffer. This array buffer is
+   * converted into a base64 string and passed along inside the AJAX call
+   *
+   **/
   $("#submit-audio-file").click(async function (e) {
     e.preventDefault();
     let fileName = $("#audio-file-name").val();
     let audioUrl = $("audio").attr("src");
-    let file = await fetch(audioUrl)
-      .then((r) => r.arrayBuffer())
+    let file = await fetch(audioUrl).then((r) => r.arrayBuffer());
     let fileAsBase64String = btoa(String.fromCharCode(...new Uint8Array(file)));
-    console.log(fileAsBase64String)
 
+    /**
+     * AJAX call to send the file to the server
+     *
+     * Post request is made to the OnPostFile method in the page controller. The data being
+     * sent is the base64 representation of the file to be uploaded.
+     *
+     * @httptype POST
+     *
+     **/
     $.ajax({
       type: "post",
-      url: `?handler=Audio&fileName=${fileName}`,
+      url: `?handler=File&fileName=${fileName}&typeOfFile=audio`,
       data: fileAsBase64String,
       contentType: false,
       processData: false,
@@ -146,25 +182,41 @@
     });
   });
 
-  $('.audio-file-in-db').on('click', function (e) {
+  /**
+   * Retrieve the desired file from our database to be loaded into the front end
+   *
+   * When a file inside open a audio modal is clicked this method is fired. The ID of the file is obtained
+   * from the modal and then passed as a parameter inside the AJAX call to get it.
+   *
+   **/
+  $(".audio-file-in-db").on("click", function (e) {
     e.preventDefault();
-     let id = $(this)
+    let id = $(this)
       .parent()
       .siblings(".audio-sister")
       .find(".audio-file-id")
       .text();
 
+    /**
+     * AJAX call to get the file to be displayed.
+     *
+     * The AJAX call recieves a base64
+     * representation of the file when it is successful. Then a blob object is created from the base64 string. From this blob
+     * an Object Url is created on the browser to store the file. Finally the URL of the file is set to the audio's source which
+     * in turn displays it
+     *
+     *@httptype GET
+     **/
     $.ajax({
       url: "?handler=File&ID=" + id,
       type: "get",
       success: async function (data) {
-        let blob = await fetch(`data:audio/mp4;base64,${data}`)
-        blob = await blob.blob()
-        console.log(blob)
+        let blob = await fetch(`data:audio/mp4;base64,${data}`);
+        blob = await blob.blob();
+        console.log(blob);
 
-        let urlForAudioBlob = URL.createObjectURL(blob)
+        let urlForAudioBlob = URL.createObjectURL(blob);
         $("audio").attr("src", urlForAudioBlob);
-
       },
       error: function () {
         alert("Could not find a file.");
@@ -175,14 +227,15 @@
 
 //Helper functions///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function convertBlobToMp4(blob, fileName) {
-  blob.lastModifiedDate = new Date();
-  blob.name = fileName;
-  blob.type = "audio/mp3";
-
-  return blob;
-}
-
+/**
+ * This function displays the correct modal based on the parameter passed
+ *
+ * A switch statement is used to display to modal. Values are represented as a string
+ * when passed as a parameter
+ *
+ * @param <action> Depending on the value passed, the correct modal will open. Acceptable
+ *  values are "save-pdf" "upload-pdf" "open-pdf" "save-audio" "open-audio"
+ **/
 function showModal(action) {
   switch (action) {
     case "save-pdf": {
@@ -245,7 +298,6 @@ function showModal(action) {
       };
       break;
     }
-
     case "save-audio": {
       let modal = document.getElementById("save-modal");
 
