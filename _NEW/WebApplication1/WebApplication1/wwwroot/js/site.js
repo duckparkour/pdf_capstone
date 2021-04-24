@@ -233,7 +233,7 @@
  * A switch statement is used to display to modal. Values are represented as a string
  * when passed as a parameter
  *
- * @param <action> Depending on the value passed, the correct modal will open. Acceptable
+ * @param action Depending on the value passed, the correct modal will open. Acceptable
  *  values are "save-pdf" "upload-pdf" "open-pdf" "save-audio" "open-audio"
  **/
 function showModal(action) {
