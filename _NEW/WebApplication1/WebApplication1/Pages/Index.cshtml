@@ -21,6 +21,8 @@
     <script src="https://kit.fontawesome.com/19009d6c71.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <a href="https://icons8.com/icon/34402/new-file"></a>
+    <a href="https://icons8.com/icon/ESbBRKYcfcYM/audio-wave"></a>
     <title>PDF Editor</title>
 </head>
 
@@ -56,15 +58,15 @@
                 </div>
                 <div class="media-controls-container">
                     <button class="media-icon" id="file-button">
-                        <i class="fas fa-file blueiconcolor" id="file-icon"></i>
+                        <img src="https://img.icons8.com/office/24/000000/pdf-2.png" />
                         <span class="tooltip">PDF Editor</span>
                     </button>
                     <button class="media-icon" id="audio-button">
-                        <i class="fas fa-play" id="audio-icon"></i>
+                        <img src="https://img.icons8.com/office/24/000000/microphone--v1.png" />
                         <span class="tooltip">Audio Recording</span>
                     </button>
                     <button class="media-icon" id="video-button">
-                        <i class="fas fa-video" id="video-icon"></i>
+                        <img src="https://img.icons8.com/office/24/000000/youtube.png" />
                         <span class="tooltip">Video</span>
                     </button>
                 </div>
@@ -76,19 +78,19 @@
                 </div>
                 <div class="media-controls-container">
                     <button class="media-icon" id="new-pdf-doc-button">
-                        <i class="fas fa-plus" id="new-pdf-icon"></i>
+                        <img src="https://img.icons8.com/office/24/000000/new-file.png" />
                         <span class="tooltip">Blank PDF</span>
                     </button>
                     <button class="media-icon" id="save-pdf-button">
-                        <i class="far fa-save" id="save-pdf-icon"></i>
+                        <img src="https://img.icons8.com/office/24/000000/save-as.png" />
                         <span class="tooltip">Save PDF</span>
                     </button>
                     <button class="media-icon" id="open-pdf-button">
-                        <i class="far fa-folder-open" id="open-pdf-icon"></i>
+                        <img src="https://img.icons8.com/office/24/000000/live-folder.png" />
                         <span class="tooltip">Open PDF from saved</span>
                     </button>
                     <button class="media-icon" id="upload-pdf-button">
-                        <i class="fas fa-folder-open" id="upload-pdf-icon"></i>
+                        <img src="https://img.icons8.com/office/24/000000/upload--v1.png" />
                         <span class="tooltip">Upload a PDF</span>
                     </button>
                 </div>
@@ -126,9 +128,9 @@
                             <tr>
                                 <form method="GET">
                                     <td class="audio-sister">
-                                        <p class="audio-file-id" name="ID">@file.FileID</p>
+                                        <p class="audio-file-id hoverable-file" name="ID">@file.FileID</p>
                                     </td>
-                                    <td>
+                                    <td class="hoverable-cell">
                                         <button type="button" class="audio-file-in-db">@file.FileName</button>
                                     </td>
                                     <td>@file.FileSize</td>
@@ -186,8 +188,8 @@
                                     <td class="sister">
                                         <p class="file-id" name="ID">@file.FileID</p>
                                     </td>
-                                    <td>
-                                        <button class="file-in-db">@file.FileName</button>
+                                    <td class="hoverable-cell">
+                                        <button class="file-in-db hoverable-file">@file.FileName</button>
                                     </td>
                                     <td>@file.FileSize</td>
                                 </form>
@@ -254,6 +256,7 @@
     <script src="~/js/site.js"></script>
     <script src="~/js/video.js"></script>
     <script src="~/js/pdfediting.js"></script>
+    <script src="~/js/ui.js"></script>
 </body>
 
 </html>

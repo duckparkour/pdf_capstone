@@ -388,3 +388,7 @@ body {
     cursor: pointer;
     color: blue;
 }
+
+.hoverable{
+    background-color: #B8ABA4;
+}

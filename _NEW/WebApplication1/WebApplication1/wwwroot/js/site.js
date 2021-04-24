@@ -70,9 +70,9 @@
     $("#toolkit3").hide("fast");
 
     let audioControlsDiv = $(`<div></div>`);
-    let startButton = `<button id="start-recording-button"><i id='start-recording-icon' class="fas fa-circle"></i><h4>Start Recording</h4></button>`;
-    let stopButton = `<button id="stop-recording-button"><i id='stop-recording-icon' class="fas fa-square"></i><h4>Stop Recording</h4></button>`;
-    let openRecordingButton = `<button id="open-recording-button"><i id='open-recording-icon' class="fas fa-file-audio"></i><h4>Open a Recording</h4></button>`;
+    let startButton = `<button id="start-recording-button"><img src="https://img.icons8.com/office/24/000000/start.png"/><h4>Start Recording</h4></button>`;
+    let stopButton = `<button id="stop-recording-button"><img src="https://img.icons8.com/office/24/000000/stop.png"/><h4>Stop Recording</h4></button>`;
+    let openRecordingButton = `<button id="open-recording-button"><img src="https://img.icons8.com/office/24/000000/opened-folder.png"/><h4>Open a Recording</h4></button>`;
     let mainAudioControl = `<audio id="recording-controller" controls><source src="#" type="audio/mp3">Audio not supported</audio>`;
     let saveAudioButton = `<button id="save-audio-button"><i class="fas fa-save" id="save-recording-icon"></i><h4>Save</h4></button>`;
     let recordingStatusText = `<h1 id="recording-status-text">Press "Start Recording" To Begin.</h1>`;
