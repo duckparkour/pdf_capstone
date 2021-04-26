@@ -18,12 +18,35 @@ using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using System.Web;
+using iTextSharp;
+using iTextSharp.text;
+using Document = iTextSharp.text.Document;
+using Paragraph = iTextSharp.text.Paragraph;
 
 namespace WebApplication1.Pages
 {
 
     public class IndexModel : PageModel
     {
+        public enum Colors
+        {
+            Gray = 0,
+			Black = 1,
+			Blue = 2,
+			Purple = 3,
+			Green = 4,
+			Yellow = 5,
+			Orange = 6,
+			Red = 7
+		}
+
+        public enum FontType
+        {
+            Helvetica = 0,
+			TimesRoman = 1,
+			Courier = 2
+		} 
+       
         /*        private readonly ILogger<IndexModel> _logger;
         */
         //private readonly AudioContext db;
@@ -36,7 +59,6 @@ namespace WebApplication1.Pages
         public IndexModel(DatabaseFileContext db1) => this.db1 = db1;
         public IFormFile formFile { get; set; }
         public IFormFile audioFormFile { get; set; }
-
         // public IHostingEnvironment hostingEnvironment;
         public List<DatabaseFile> FileDatabase { get; set; } = new List<DatabaseFile>();
 
@@ -45,89 +67,74 @@ namespace WebApplication1.Pages
         //     this.hostingEnvironment = environment;
         // }
 
-        /*public Enum Colors
-		{
-			Gray = 0,
-			Black = 1,
-			Blue = 2,
-			Purple = 3,
-			Green = 4,
-			Yellow = 5,
-			Orange = 6,
-			Red = 7
-		}
 		
-		public Enum FontType
+        
+		public void ChangeFontType(FontType fontType, iTextSharp.text.Paragraph p, Chunk c )
 		{
-			Helvetica = 0,
-			TimesRoman = 1,
-			Courier = 2
-		}
-		*/
-        /*
-		public void ChangeFontType(FontType fontType,Phrase p )
-		{
-			if (fontType == Helvetica)
+            FontFactory userFont;
+
+			if (fontType == FontType.Helvetica)
 			{
-				userFont = FontFactory.GetFont("Helvetica", userFont.getSize(),userFont.getColor());
+				c.Font = FontFactory.GetFont("Helvetica", c.Font.Size,c.Font.Color);
 			}
-			else if (fontType == TimesRoman)
+			else if (fontType == FontType.TimesRoman)
 			{
-				userFont = FontFactory.GetFont("TimesRoman", userFont.getSize(),userFont.getColor());
+				c.Font = FontFactory.GetFont("TimesRoman", c.Font.Size,c.Font.Color);
 			}
-			else if (fontType == Courier)
+			else if (fontType == FontType.Courier)
 			{
-				userFont = FontFactory.GetFont("Courier", userFont.getSize(),userFont.getColor());
+				c.Font = FontFactory.GetFont("Courier", c.Font.Size,c.Font.Color);
 			}
 			
-			p = new Phrase(p, userFont);
+			p = new iTextSharp.text.Paragraph(c);
+            
 		}
 		
-		public void ChangeFontSize(int fontSize, Phrase p)
+		public void ChangeFontSize(int fontSize, iTextSharp.text.Paragraph p, Chunk c)
 		{
-			userFont = FontFactory.GetFont(userFont.getFamily(),fontSize,userFont.getColor());
-			p = new Phrase(p, userFont);
+			c.Font = FontFactory.GetFont(c.Font.Family.ToString(),fontSize,c.Font.Color);
+			p = new iTextSharp.text.Paragraph(c);
 		}
 		
-		public void ChangeFontColor(Colors userColor, Phrase p)
+		public void ChangeFontColor(Colors userColor, iTextSharp.text.Paragraph p, Chunk c)
 		{
 			
-			if (userColor == Gray)
+			if (userColor == Colors.Gray)
 			{
-				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.GRAY);
+				c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.GRAY);
 			}
-			else if (userColor == Black)
+			else if (userColor == Colors.Black)
 			{
-				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.BLACK);
-			}
-			else if (userColor == Blue)
+                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.BLACK);
+            }
+			else if (userColor == Colors.Blue)
 			{
-				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.BLUE);
-			}
-			else if (userColor == Purple)
+                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.BLUE);
+            }
+			else if (userColor == Colors.Purple)
 			{
-				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.PURPLE);
-			}
-			else if (userColor == Green)
+                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.MAGENTA);
+            }
+			else if (userColor == Colors.Green)
 			{
-				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.GREEN);
-			}
-			else if (userColor == Yellow)
+                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.GREEN);
+            }
+			else if (userColor == Colors.Yellow)
 			{
-				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.YELLOW);
-			}
-			else if (userColor == Orange)
+                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.YELLOW);
+            }
+			else if (userColor == Colors.Orange)
 			{
-				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.ORANGE);
-			}
-			else if (userColor == Red)
+                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.ORANGE);
+            }
+			else if (userColor == Colors.Red)
 			{
-				userFont = FontFactory.GetFont(userFont.getFamily(), userFont.getSize(), Color.RED);
-			}
+                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.RED);
+            }
+
+            p = new iTextSharp.text.Paragraph(c);
+        }
 		
-			p = new Phrase(p, userFont);
-		}
-		*/
         public async Task OnGetAsync()
         {
             //Audios = await db.Audios.ToListAsync();
@@ -136,11 +143,18 @@ namespace WebApplication1.Pages
             //await db1.SaveChangesAsync();
         }
 
-        public FileResult OnGetDownloadFile(DatabaseFile downloadableFile)
+        public FileResult OnGetDownloadFile(int fileID)
         {
+            DatabaseFile downloadableFile = new DatabaseFile();
             //Build the File Path.
             //string path = Path.Combine(this.FileDatabase.IndexOf(downloadableFile) + downloadableFile.FileName);
-
+            foreach (var f in FileDatabase)
+            {
+                if (f.FileID == fileID)
+                {
+                    downloadableFile = f;
+                }
+            }
             //Read the File data into Byte Array.
             byte[] bytes = downloadableFile.FileContent; //System.IO.File.ReadAllBytes();
             //Send the File to Download.
@@ -203,6 +217,10 @@ namespace WebApplication1.Pages
             db1.Add(audioToBeSaved);
             db1.SaveChanges();
         }
+        public void OnPostSplitPDF(int startPage, int endPage, )
+        { 
+        
+        }
 
         /**
          * Return a file from the database which will be represented as a base64 string.
@@ -242,7 +260,7 @@ namespace WebApplication1.Pages
             var stream = new MemoryStream();
             var writer = new PdfWriter(stream);
             var pdf = new PdfDocument(writer);
-            var document = new Document(pdf);
+            var document = new Document();
             document.Add(new Paragraph(""));
             document.Close();
 

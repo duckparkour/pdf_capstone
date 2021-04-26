@@ -217,22 +217,22 @@
 
                     <button type="submit" id="submit-pdf-button">Submit</button>
                 </form>
-
-                <table>
-                    <tr>
-                        <th>File Name</th>
-                        <th></th>
-                    </tr>
-                    @foreach (DatabaseFile file in Model.FileDatabase)
-                    {
+                    <table>
                         <tr>
-                            <td>@file.FileName</td>
-                            <td><a href="@Url.Page("Index", "DownloadFile", new { downloadableFile = file })">Download</a>
-                            </td>
-
+                            <th>File Name</th>
+                            <th></th>
                         </tr>
-                    }
-                </table>
+                        @foreach (DatabaseFile file in Model.FileDatabase)
+                        {
+                            <tr>
+                                <td>@file.FileName</td>
+                                <td>
+                                    <a href="@Url.Page("Index", "DownloadFile", new {downloadableFile = file })">Download</a>
+                                </td>
+
+                            </tr>
+                        }
+                    </table>
             </div>
 
         </div>

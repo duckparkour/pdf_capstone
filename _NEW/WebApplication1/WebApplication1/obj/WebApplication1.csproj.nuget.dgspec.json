@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Capstone Project\\!latest\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
+    "C:\\Users\\justi_000\\Documents\\GitHub\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Capstone Project\\!latest\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
+    "C:\\Users\\justi_000\\Documents\\GitHub\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Capstone Project\\!latest\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "C:\\Users\\justi_000\\Documents\\GitHub\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "C:\\Capstone Project\\!latest\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
-        "packagesPath": "C:\\Users\\n16611\\.nuget\\packages\\",
-        "outputPath": "C:\\Capstone Project\\!latest\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\obj\\",
+        "projectPath": "C:\\Users\\justi_000\\Documents\\GitHub\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "packagesPath": "C:\\Users\\justi_000\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\justi_000\\Documents\\GitHub\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\n16611\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\justi_000\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +27,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://packages.nuget.org/v1/FeedService.svc": {}
         },
         "frameworks": {
           "net5.0": {
@@ -76,6 +77,10 @@
               "target": "Package",
               "version": "[1.1.1, )"
             },
+            "iTextSharp": {
+              "target": "Package",
+              "version": "[5.5.13.2, )"
+            },
             "itext7": {
               "target": "Package",
               "version": "[7.1.15, )"
@@ -99,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
