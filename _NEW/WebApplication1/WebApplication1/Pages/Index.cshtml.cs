@@ -217,7 +217,7 @@ namespace WebApplication1.Pages
             db1.Add(audioToBeSaved);
             db1.SaveChanges();
         }
-        public void OnPostSplitPDF(int startPage, int endPage, )
+        public void OnPostSplitPDF(int startPage, int endPage)
         { 
         
         }
