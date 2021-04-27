@@ -115,4 +115,8 @@
     });
     $("#open-pdf-modal").toggle();
   });
+  $("#split-pdf-submit-button").on("click", function (e){
+    e.preventDefault();
+    $("#split-pdf-modal").hide();
+  });
 });

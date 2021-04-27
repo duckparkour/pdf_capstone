@@ -29,7 +29,9 @@
   $("#upload-pdf-button").click(function (e) {
     showModal("upload-pdf");
   });
-
+  $("#split-pdf-button").click(function (e) {
+    showModal("split-pdf");
+  });
   //Video Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   /**
@@ -46,7 +48,7 @@
      **/
     $(".main").append(`
             <div class="video-container">
-                <iframe id="youtube-video"width="860" height="615" src="https://www.youtube.com/embed/Oa9QeMHNOm4?enablejsapi=1" frameborder="0" allow="accelerometer;
+                <iframe id="youtube-video"width="860" height="615" src="https://www.youtube.com/embed/_84yDAKtjIo?enablejsapi=1" frameborder="0" allow="accelerometer;
                     autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><button class="yt-button" id="url-control-button"><h4>Change the video</h4></button><div class="youtube-url-control" >
                     <input type="text" name="youtube-input" id="youtube-search-bar" placeholder="Enter a youtube embedded url">
             <button class="yt-button" id="youtube-search-button"><h4>Go!</h4></button>
@@ -287,6 +289,24 @@ function showModal(action) {
       modal.style.display = "block";
 
       $("#open-pdf-modal-close-button").click(function () {
+        modal.style.display = "none";
+      });
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+      break;
+    }
+    case "split-pdf": {
+      let modal = document.getElementById("split-pdf-modal");
+
+      // When the user clicks on the button, open the modal
+      modal.style.display = "block";
+
+      $("#split-pdf-modal-close-button").click(function () {
         modal.style.display = "none";
       });
 
