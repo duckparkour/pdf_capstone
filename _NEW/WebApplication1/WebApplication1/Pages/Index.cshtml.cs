@@ -22,6 +22,8 @@ using iTextSharp;
 using iTextSharp.text;
 using Document = iTextSharp.text.Document;
 using Paragraph = iTextSharp.text.Paragraph;
+using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.parser;
 
 namespace WebApplication1.Pages
 {
@@ -71,7 +73,7 @@ namespace WebApplication1.Pages
         
 		public void ChangeFontType(FontType fontType, iTextSharp.text.Paragraph p, Chunk c )
 		{
-            FontFactory userFont;
+     
 
 			if (fontType == FontType.Helvetica)
 			{
@@ -180,10 +182,31 @@ namespace WebApplication1.Pages
             uploadedFile.ContentType = formFile.ContentType;
             uploadedFile.FileID = randomizer.Next();
             uploadedFile.FileSize = (int)formFile.Length;
-            uploadedFile.FileExtension = Path.GetExtension(formFile.FileName);
+            uploadedFile.FileExtension = System.IO.Path.GetExtension(formFile.FileName);
             uploadedFile.FileContent = buffer;
             db1.Add(uploadedFile);
             db1.SaveChanges();
+
+        }
+
+        public void SaveFile(StringBuilder fileContents, DatabaseFile formFile)
+        {
+
+            
+
+            Random randomizer = new Random();
+            byte[] byteArray = ASCIIEncoding.ASCII.GetBytes(fileContents.ToString());
+            
+            DatabaseFile uploadedFile = new DatabaseFile();
+            uploadedFile.FileName = formFile.FileName;
+            uploadedFile.ContentType = formFile.ContentType;
+            uploadedFile.FileID = randomizer.Next();
+            uploadedFile.FileSize = byteArray.Length;
+            uploadedFile.FileExtension = System.IO.Path.GetExtension(formFile.FileName);
+            uploadedFile.FileContent = byteArray;
+            db1.Add(uploadedFile);
+            db1.SaveChanges();
+
 
         }
 
@@ -217,9 +240,42 @@ namespace WebApplication1.Pages
             db1.Add(audioToBeSaved);
             db1.SaveChanges();
         }
-        public void OnPostSplitPDF(int startPage, int endPage)
-        { 
-        
+        public void OnPostSplitPDF(int startPage, int endPage, int fileID)
+        {
+            DatabaseFile downloadableFile = new DatabaseFile();
+
+            foreach (var f in FileDatabase)
+            {
+                if (f.FileID == fileID)
+                {
+                    downloadableFile = f;
+                }
+            }
+            iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(downloadableFile.FileContent);
+            Document copyDoc = new Document();
+            copyDoc.Open();
+            FileStream fs = new FileStream("Blank.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
+            PdfCopy copy = new PdfCopy(copyDoc,fs);
+            StringBuilder text = new StringBuilder();
+            for (int pagenumber = 0; pagenumber < reader.NumberOfPages; pagenumber++)
+            {
+                    if (pagenumber >= startPage && pagenumber <= endPage)
+                    {
+                        text.Append(PdfTextExtractor.GetTextFromPage(reader, pagenumber));
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+            }
+
+                
+            copyDoc.Close();
+            reader.Close();
+            fs.Close();
+
+            SaveFile(text, downloadableFile);
         }
 
         /**
@@ -258,8 +314,8 @@ namespace WebApplication1.Pages
         public JsonResult OnGetANewPdfFile()
         {
             var stream = new MemoryStream();
-            var writer = new PdfWriter(stream);
-            var pdf = new PdfDocument(writer);
+            var writer = new iText.Kernel.Pdf.PdfWriter(stream);
+            var pdf = new iText.Kernel.Pdf.PdfDocument(writer);
             var document = new Document();
             document.Add(new Paragraph(""));
             document.Close();
