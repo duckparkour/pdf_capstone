@@ -383,3 +383,15 @@ body {
 .inputs{
     width: 45px;
 }
+.main-m{
+    display: flex;
+    flex-direction: column;
+}
+.main-m > input{
+    align-self: center;
+    width: 90%;
+    margin: 5px;
+}
+.main-m > h4{
+    max-width: 25%;
+}

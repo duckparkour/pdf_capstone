@@ -482,7 +482,7 @@
         "runtime": {
           "lib/itextsharp.dll": {
             "assemblyVersion": "5.5.13.2",
-            "fileVersion": "5.5.13.2"
+            "fileVersion": "0.0.0.0"
           }
         },
         "compile": {

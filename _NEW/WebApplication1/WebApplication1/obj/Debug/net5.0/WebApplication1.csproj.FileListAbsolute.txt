@@ -738,3 +738,5 @@ C:/Capstone Project/!latest/pdf_capstone/_NEW/WebApplication1/WebApplication1/bi
 /home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/bin/Debug/net5.0/itext.styledxmlparser.dll
 /home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/bin/Debug/net5.0/itext.svg.dll
 /home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/bin/Debug/net5.0/BouncyCastle.Crypto.dll
+/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/bin/Debug/net5.0/itextsharp.dll
+/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/obj/Debug/net5.0/Razor/_ViewImports.cshtml.g.cs
