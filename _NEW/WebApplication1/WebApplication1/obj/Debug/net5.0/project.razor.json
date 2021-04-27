@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Capstone Project\\!latest\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+  "FilePath": "c:\\Capstone Project\\APRIL26\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15619,8 +15619,13 @@
   "RootNamespace": "WebApplication1",
   "Documents": [
     {
-      "FilePath": "c:\\Capstone Project\\!latest\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\Pages\\Index.cshtml",
+      "FilePath": "c:\\Capstone Project\\APRIL26\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\Pages\\Index.cshtml",
       "TargetPath": "Pages\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Capstone Project\\APRIL26\\pdf_capstone\\_NEW\\WebApplication1\\WebApplication1\\_ViewImports.cshtml",
+      "TargetPath": "_ViewImports.cshtml",
       "FileKind": "mvc"
     }
   ],

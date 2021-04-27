@@ -77,6 +77,7 @@
                     <h1>PDF Controls</h1>
                 </div>
                 <div class="media-controls-container">
+
                     <button class="media-icon" id="new-pdf-doc-button">
                         <img src="https://img.icons8.com/office/24/000000/new-file.png" />
                         <span class="tooltip">Blank PDF</span>
@@ -92,6 +93,10 @@
                     <button class="media-icon" id="upload-pdf-button">
                         <img src="https://img.icons8.com/office/24/000000/upload--v1.png" />
                         <span class="tooltip">Upload a PDF</span>
+                    </button>
+                    <button class="media-icon" id="split-pdf-button">
+                        <img src="https://img.icons8.com/office/24/000000/split-files.png" />
+                        <span class="tooltip">Split PDF</span>
                     </button>
                 </div>
             </div>
@@ -178,6 +183,7 @@
                         <th>File ID#</th>
                         <th>File Name</th>
                         <th>File Size</th>
+
                     </tr>
                     @foreach (var file in Model.FileDatabase)
                     {
@@ -217,26 +223,26 @@
 
                     <button type="submit" id="submit-pdf-button">Submit</button>
                 </form>
-                    <table>
+                <table>
+                    <tr>
+                        <th>File Name</th>
+                        <th></th>
+                    </tr>
+                    @foreach (DatabaseFile file in Model.FileDatabase)
+                    {
                         <tr>
-                            <th>File Name</th>
-                            <th></th>
+                            <td>@file.FileName</td>
+                            <td>
+                                <a href="@Url.Page("Index", "DownloadFile", new {downloadableFile = file })">Download</a>
+                            </td>
+
                         </tr>
-                        @foreach (DatabaseFile file in Model.FileDatabase)
-                        {
-                            <tr>
-                                <td>@file.FileName</td>
-                                <td>
-                                    <a href="@Url.Page("Index", "DownloadFile", new {downloadableFile = file })">Download</a>
-                                </td>
-
-                            </tr>
-                        }
-                    </table>
+                    }
+                </table>
             </div>
-
         </div>
     </div>
+
     <div id="upload-pdf-modal" class="modal">
         <div class="modal-content">
             <div class="exit-container">
@@ -250,6 +256,26 @@
                 <br />
                 <button type="submit" id="pdf-button">Submit</button>
             </form>
+        </div>
+    </div>
+
+    <div id="split-pdf-modal" class="modal">
+        <div class="modal-content">
+            <div class="exit-container">
+                <span class="close" id="split-pdf-modal-close-button">&times;</span>
+            </div>
+            <div id="modal-header">
+                <h3>Split a file</h3>
+            </div>
+            <div class="main-m">
+                <h4>Start Page</h4>
+                <input type="number" name="" id="start-page-num">
+                <h4>End Page</h4>
+                <input type="number" name="" id="end-page-num">
+                <h4>ID</h4>
+                <input type="number" name="" id="id-num">
+                <button id="split-btn">Split</button>
+            </div>
         </div>
     </div>
     <!--Scripts for the website-->

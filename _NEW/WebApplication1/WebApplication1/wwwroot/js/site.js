@@ -29,6 +29,11 @@
   $("#upload-pdf-button").click(function (e) {
     showModal("upload-pdf");
   });
+  
+  $('#split-pdf-button').click(function (e) { 
+    
+    showModal('split-pdf')
+  });
 
   //Video Functionality/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -223,6 +228,8 @@
       },
     });
   });
+
+ 
 });
 
 //Helper functions///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -322,6 +329,25 @@ function showModal(action) {
       modal.style.display = "block";
 
       $("#open-audio-modal-close-button").click(function () {
+        modal.style.display = "none";
+      });
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+      break;
+    }
+
+    case "split-pdf": {
+      let modal = document.getElementById("split-pdf-modal");
+
+      // When the user clicks on the button, open the modal
+      modal.style.display = "block";
+
+      $("#split-pdf-modal-close-button").click(function () {
         modal.style.display = "none";
       });
 

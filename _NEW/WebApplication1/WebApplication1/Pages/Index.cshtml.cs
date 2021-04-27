@@ -192,8 +192,6 @@ namespace WebApplication1.Pages
         public void SaveFile(StringBuilder fileContents, DatabaseFile formFile)
         {
 
-            
-
             Random randomizer = new Random();
             byte[] byteArray = ASCIIEncoding.ASCII.GetBytes(fileContents.ToString());
             
@@ -240,8 +238,12 @@ namespace WebApplication1.Pages
             db1.Add(audioToBeSaved);
             db1.SaveChanges();
         }
+
         public void OnPostSplitPDF(int startPage, int endPage, int fileID)
         {
+            // Console.WriteLine(startPage);
+            // Console.WriteLine(fileID);
+            // Console.WriteLine(endPage);
             DatabaseFile downloadableFile = new DatabaseFile();
 
             foreach (var f in FileDatabase)
@@ -255,7 +257,7 @@ namespace WebApplication1.Pages
             Document copyDoc = new Document();
             copyDoc.Open();
             FileStream fs = new FileStream("Blank.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
-            PdfCopy copy = new PdfCopy(copyDoc,fs);
+            PdfCopy copy = new PdfCopy(copyDoc, fs);
             StringBuilder text = new StringBuilder();
             for (int pagenumber = 0; pagenumber < reader.NumberOfPages; pagenumber++)
             {
