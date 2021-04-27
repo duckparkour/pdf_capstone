@@ -115,8 +115,22 @@
     });
     $("#open-pdf-modal").toggle();
   });
-  $("#split-pdf-submit-button").on("click", function (e){
+
+  $("#split-btn").click(function (e) { 
     e.preventDefault();
-    $("#split-pdf-modal").hide();
+    let startPage = $('#start-page-num').val();
+    let endPage = $('#end-page-num').val();
+    let fileID = $('#id-num').val();
+
+    $.ajax({
+      url: "?handler=SplitPDF&startPage=" + startPage + "&endPage=" + endPage + "&fileID=" + fileID,
+      type: "POST",
+      success: function(e) {
+        console.log("Successfully split")
+      },
+      error: function(e) {
+        console.log("Error" + e)
+      }
+    })
   });
 });

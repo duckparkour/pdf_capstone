@@ -51,6 +51,7 @@ namespace WebApplication1
 
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

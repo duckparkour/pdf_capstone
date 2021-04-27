@@ -77,6 +77,7 @@
                     <h1>PDF Controls</h1>
                 </div>
                 <div class="media-controls-container">
+
                     <button class="media-icon" id="new-pdf-doc-button">
                         <img src="https://img.icons8.com/office/24/000000/new-file.png" />
                         <span class="tooltip">Blank PDF</span>
@@ -93,8 +94,13 @@
                         <img src="https://img.icons8.com/office/24/000000/upload--v1.png" />
                         <span class="tooltip">Upload a PDF</span>
                     </button>
+<<<<<<< HEAD
                      <button class="media-icon" id="split-pdf-button">
                         <img src="https://img.icons8.com/fluent/24/000000/split.png"/>
+=======
+                    <button class="media-icon" id="split-pdf-button">
+                        <img src="https://img.icons8.com/office/24/000000/split-files.png" />
+>>>>>>> bccbf31b3a75e1992eda0baf4a6f9e53c0bdf833
                         <span class="tooltip">Split PDF</span>
                     </button>
                 </div>
@@ -182,6 +188,7 @@
                         <th>File ID#</th>
                         <th>File Name</th>
                         <th>File Size</th>
+
                     </tr>
                     @foreach (var file in Model.FileDatabase)
                     {
@@ -221,7 +228,6 @@
 
                     <button type="submit" id="submit-pdf-button">Submit</button>
                 </form>
-
                 <table>
                     <tr>
                         <th>File Name</th>
@@ -231,16 +237,17 @@
                     {
                         <tr>
                             <td>@file.FileName</td>
-                            <td><a href="@Url.Page("Index", "DownloadFile", new { downloadableFile = file })">Download</a>
+                            <td>
+                                <a href="@Url.Page("Index", "DownloadFile", new {downloadableFile = file })">Download</a>
                             </td>
 
                         </tr>
                     }
                 </table>
             </div>
-
         </div>
     </div>
+
     <div id="upload-pdf-modal" class="modal">
         <div class="modal-content">
             <div class="exit-container">
@@ -256,12 +263,18 @@
             </form>
         </div>
     </div>
+<<<<<<< HEAD
         <div id="split-pdf-modal" class="modal">
+=======
+
+    <div id="split-pdf-modal" class="modal">
+>>>>>>> bccbf31b3a75e1992eda0baf4a6f9e53c0bdf833
         <div class="modal-content">
             <div class="exit-container">
                 <span class="close" id="split-pdf-modal-close-button">&times;</span>
             </div>
             <div id="modal-header">
+<<<<<<< HEAD
                 <h3>Split PDF file</h3>
             </div>
             <form method="post" enctype="multipart/form-data" id="split-form">
@@ -272,6 +285,21 @@
         </div>
     </div>
 
+=======
+                <h3>Split a file</h3>
+            </div>
+            <div class="main-m">
+                <h4>Start Page</h4>
+                <input type="number" name="" id="start-page-num">
+                <h4>End Page</h4>
+                <input type="number" name="" id="end-page-num">
+                <h4>ID</h4>
+                <input type="number" name="" id="id-num">
+                <button id="split-btn">Split</button>
+            </div>
+        </div>
+    </div>
+>>>>>>> bccbf31b3a75e1992eda0baf4a6f9e53c0bdf833
     <!--Scripts for the website-->
     <script src="~/js/site.js"></script>
     <script src="~/js/video.js"></script>
