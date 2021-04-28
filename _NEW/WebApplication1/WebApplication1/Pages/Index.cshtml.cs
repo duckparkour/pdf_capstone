@@ -179,6 +179,10 @@ namespace WebApplication1.Pages
 
         public void OnPostAddUserComment(String comment, int fileID, string pagenum)
         {
+            Console.WriteLine(comment);
+            Console.WriteLine(fileID);
+            Console.WriteLine(pagenum);
+
             DatabaseFile userFile = new DatabaseFile();
 
             foreach (var f in FileDatabase)

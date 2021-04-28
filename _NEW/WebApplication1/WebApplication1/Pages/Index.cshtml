@@ -49,6 +49,7 @@
                     <div class="color-container">
                         <input type="color" name="color" id="color-picker" value="#ffffff">
                     </div>
+                    <button id="add-comment">Add Comment</button>
                 </div>
             </div>
 
@@ -276,6 +277,26 @@
                 <label for="id-num"><h4>ID</h4></label>
                 <input type="number" name="" id="id-num">
                 <button id="split-btn">Split</button>
+            </div>
+        </div>
+    </div>
+
+<div id="comment-modal" class="modal">
+        <div class="modal-content">
+            <div class="exit-container">
+                <span class="close" id="comment-modal-close-button">&times;</span>
+            </div>
+            <div id="modal-header">
+                <h3>Comment a file</h3>
+            </div>
+            <div class="main-m">
+                <label for="comment">Comment</label>
+                <input type="text" name="comment" id="comment-text">
+                <label for="id">ID</label>
+                <input type="number" name="id" id="comment-id">
+                <label for="page-num">Page Num</label>
+                <input type="number" name="page-num" id="comment-page-num">
+                <button id="add-comment-btn">Add Comment</button>
             </div>
         </div>
     </div>

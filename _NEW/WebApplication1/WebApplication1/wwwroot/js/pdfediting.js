@@ -133,4 +133,23 @@
       }
     })
   });
+
+ $('#add-comment-btn').click(function (e) { 
+   let comment = $('#comment-text').val();
+   let id = $('#comment-id').val();
+   let pageNum = $('#comment-page-num').val();
+
+   $.ajax({
+     type: "post",
+     url: "?handler=AddUserComment&comment=" + comment + "&fileID=" + id + "&pagenum=" + pageNum,
+     success: function (response) {
+       alert("Added comment")
+     },
+     error: function (response) {
+       alert(response)
+     }
+   });
+ });
+
+
 });
