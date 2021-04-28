@@ -24,6 +24,7 @@ using Document = iTextSharp.text.Document;
 using Paragraph = iTextSharp.text.Paragraph;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
+using Microsoft.Data.SqlClient;
 
 namespace WebApplication1.Pages
 {
@@ -33,22 +34,22 @@ namespace WebApplication1.Pages
         public enum Colors
         {
             Gray = 0,
-			Black = 1,
-			Blue = 2,
-			Purple = 3,
-			Green = 4,
-			Yellow = 5,
-			Orange = 6,
-			Red = 7
-		}
+            Black = 1,
+            Blue = 2,
+            Purple = 3,
+            Green = 4,
+            Yellow = 5,
+            Orange = 6,
+            Red = 7
+        }
 
         public enum FontType
         {
             Helvetica = 0,
-			TimesRoman = 1,
-			Courier = 2
-		} 
-       
+            TimesRoman = 1,
+            Courier = 2
+        }
+
         /*        private readonly ILogger<IndexModel> _logger;
         */
         //private readonly AudioContext db;
@@ -63,90 +64,103 @@ namespace WebApplication1.Pages
         public IFormFile audioFormFile { get; set; }
         // public IHostingEnvironment hostingEnvironment;
         public List<DatabaseFile> FileDatabase { get; set; } = new List<DatabaseFile>();
+        Font userFont;
 
         // public IndexModel(IHostingEnvironment environment)
         // {
         //     this.hostingEnvironment = environment;
         // }
 
-		
-        
-		public void ChangeFontType(FontType fontType, iTextSharp.text.Paragraph p, Chunk c )
-		{
-     
 
-			if (fontType == FontType.Helvetica)
-			{
-				c.Font = FontFactory.GetFont("Helvetica", c.Font.Size,c.Font.Color);
-			}
-			else if (fontType == FontType.TimesRoman)
-			{
-				c.Font = FontFactory.GetFont("TimesRoman", c.Font.Size,c.Font.Color);
-			}
-			else if (fontType == FontType.Courier)
-			{
-				c.Font = FontFactory.GetFont("Courier", c.Font.Size,c.Font.Color);
-			}
-			
-			p = new iTextSharp.text.Paragraph(c);
-            
-		}
-		
-		public void ChangeFontSize(int fontSize, iTextSharp.text.Paragraph p, Chunk c)
-		{
-			c.Font = FontFactory.GetFont(c.Font.Family.ToString(),fontSize,c.Font.Color);
-			p = new iTextSharp.text.Paragraph(c);
-		}
-		
-		public void ChangeFontColor(Colors userColor, iTextSharp.text.Paragraph p, Chunk c)
-		{
-			
-			if (userColor == Colors.Gray)
-			{
-				c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.GRAY);
-			}
-			else if (userColor == Colors.Black)
-			{
+
+        public void ChangeFontType(FontType fontType, iTextSharp.text.Paragraph p, Chunk c)
+        {
+
+
+            if (fontType == FontType.Helvetica)
+            {
+                c.Font = FontFactory.GetFont("Helvetica", c.Font.Size, c.Font.Color);
+            }
+            else if (fontType == FontType.TimesRoman)
+            {
+                c.Font = FontFactory.GetFont("TimesRoman", c.Font.Size, c.Font.Color);
+            }
+            else if (fontType == FontType.Courier)
+            {
+                c.Font = FontFactory.GetFont("Courier", c.Font.Size, c.Font.Color);
+            }
+
+            p = new iTextSharp.text.Paragraph(c);
+
+        }
+
+
+
+        public void ChangeFontSize(int fontSize, iTextSharp.text.Paragraph p, Chunk c)
+        {
+            c.Font = FontFactory.GetFont(c.Font.Family.ToString(), fontSize, c.Font.Color);
+            p = new iTextSharp.text.Paragraph(c);
+        }
+
+        public void ChangeFontColor(Colors userColor, iTextSharp.text.Paragraph p, Chunk c)
+        {
+
+            if (userColor == Colors.Gray)
+            {
+                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.GRAY);
+            }
+            else if (userColor == Colors.Black)
+            {
                 c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.BLACK);
             }
-			else if (userColor == Colors.Blue)
-			{
+            else if (userColor == Colors.Blue)
+            {
                 c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.BLUE);
             }
-			else if (userColor == Colors.Purple)
-			{
+            else if (userColor == Colors.Purple)
+            {
                 c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.MAGENTA);
             }
-			else if (userColor == Colors.Green)
-			{
+            else if (userColor == Colors.Green)
+            {
                 c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.GREEN);
             }
-			else if (userColor == Colors.Yellow)
-			{
+            else if (userColor == Colors.Yellow)
+            {
                 c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.YELLOW);
             }
-			else if (userColor == Colors.Orange)
-			{
+            else if (userColor == Colors.Orange)
+            {
                 c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.ORANGE);
             }
-			else if (userColor == Colors.Red)
-			{
+            else if (userColor == Colors.Red)
+            {
                 c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.RED);
             }
 
             p = new iTextSharp.text.Paragraph(c);
         }
-		
+
+
         public async Task OnGetAsync()
         {
             //Audios = await db.Audios.ToListAsync();
             FileDatabase = await db1.Files.ToListAsync();
             //FileDatabase = await db1.Files.AddAsync();
-            //await db1.SaveChangesAsync();
+            await db1.SaveChangesAsync();
+        }
+
+        public void PopulateList()
+        {
+            foreach (var v in db1.Files)
+            {
+                FileDatabase.Add(v);
+            }
         }
 
         public FileResult OnGetDownloadFile(int fileID)
         {
+            PopulateList();
             DatabaseFile downloadableFile = new DatabaseFile();
             //Build the File Path.
             //string path = Path.Combine(this.FileDatabase.IndexOf(downloadableFile) + downloadableFile.FileName);
@@ -161,6 +175,35 @@ namespace WebApplication1.Pages
             byte[] bytes = downloadableFile.FileContent; //System.IO.File.ReadAllBytes();
             //Send the File to Download.
             return File(bytes, downloadableFile.ContentType, downloadableFile.FileName);
+        }
+
+        public void OnPostAddUserComment(String comment, int fileID, string pagenum)
+        {
+            DatabaseFile userFile = new DatabaseFile();
+
+            foreach (var f in FileDatabase)
+            {
+                if (f.FileID == fileID)
+                {
+                    userFile = f;
+                }
+            }
+
+            String pathout = @"C:\Users\justi_000\Documents\GitHub\pdf_capstone\_NEW\WebApplication1\WebApplication1\Data\NEWFILE";
+            iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(userFile.FileContent);
+            //select two pages from the original document
+            reader.SelectPages(pagenum);
+            //create PdfStamper object to write to get the pages from reader
+            PdfStamper stamper = new PdfStamper(reader, new FileStream(pathout, FileMode.Create));
+            // PdfContentByte from stamper to add content to the pages over the original content
+            PdfContentByte pbover = stamper.GetOverContent(1);
+            //add content to the page using ColumnText
+            ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(comment), 100, 400, 0);
+            // PdfContentByte from stamper to add content to the pages under the original content
+            //close the stamper
+            stamper.Close();
+
+            //SaveFile(,userFile);
         }
 
         /**
@@ -194,9 +237,8 @@ namespace WebApplication1.Pages
 
             Random randomizer = new Random();
             byte[] byteArray = ASCIIEncoding.ASCII.GetBytes(fileContents.ToString());
-            
             DatabaseFile uploadedFile = new DatabaseFile();
-            uploadedFile.FileName = formFile.FileName;
+            uploadedFile.FileName = formFile.FileName + " Copy";
             uploadedFile.ContentType = formFile.ContentType;
             uploadedFile.FileID = randomizer.Next();
             uploadedFile.FileSize = byteArray.Length;
@@ -241,6 +283,7 @@ namespace WebApplication1.Pages
 
         public void OnPostSplitPDF(int startPage, int endPage, int fileID)
         {
+            PopulateList();
             // Console.WriteLine(startPage);
             // Console.WriteLine(fileID);
             // Console.WriteLine(endPage);
@@ -254,31 +297,23 @@ namespace WebApplication1.Pages
                 }
             }
             iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(downloadableFile.FileContent);
-            Document copyDoc = new Document();
-            copyDoc.Open();
-            FileStream fs = new FileStream("Blank.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
-            PdfCopy copy = new PdfCopy(copyDoc, fs);
             StringBuilder text = new StringBuilder();
             for (int pagenumber = 0; pagenumber < reader.NumberOfPages; pagenumber++)
             {
-                    if (pagenumber >= startPage && pagenumber <= endPage)
-                    {
-                        text.Append(PdfTextExtractor.GetTextFromPage(reader, pagenumber));
-                    }
-                    else
-                    {
-                        break;
-                    }
+                if (pagenumber >= startPage && pagenumber <= endPage)
+                {
+                    text.Append(PdfTextExtractor.GetTextFromPage(reader, pagenumber));
+                }
+                else if (pagenumber > endPage)
+                {
+                    break;
+                }
 
             }
-
-                
-            copyDoc.Close();
-            reader.Close();
-            fs.Close();
-
             SaveFile(text, downloadableFile);
         }
+
+
 
         /**
          * Return a file from the database which will be represented as a base64 string.
