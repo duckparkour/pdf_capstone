@@ -179,10 +179,7 @@ namespace WebApplication1.Pages
 
         public void OnPostAddUserComment(String comment, int fileID, string pagenum)
         {
-            Console.WriteLine(comment);
-            Console.WriteLine(fileID);
-            Console.WriteLine(pagenum);
-
+            PopulateList();
             DatabaseFile userFile = new DatabaseFile();
 
             foreach (var f in FileDatabase)
@@ -193,21 +190,38 @@ namespace WebApplication1.Pages
                 }
             }
 
-            String pathout = @"C:\Users\justi_000\Documents\GitHub\pdf_capstone\_NEW\WebApplication1\WebApplication1\Data\NEWFILE";
+            String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/NEWFILE");
             iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(userFile.FileContent);
+            String tempstring = reader.NumberOfPages.ToString();
             //select two pages from the original document
-            reader.SelectPages(pagenum);
+            reader.SelectPages("1-" + tempstring);
             //create PdfStamper object to write to get the pages from reader
             PdfStamper stamper = new PdfStamper(reader, new FileStream(pathout, FileMode.Create));
             // PdfContentByte from stamper to add content to the pages over the original content
-            PdfContentByte pbover = stamper.GetOverContent(1);
+            PdfContentByte pbover = stamper.GetOverContent(Int32.Parse(pagenum));
             //add content to the page using ColumnText
-            ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(comment), 100, 400, 0);
+            ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(comment), 100, 500, 0);
             // PdfContentByte from stamper to add content to the pages under the original content
             //close the stamper
             stamper.Close();
+            FileStream tempFile = new FileStream(pathout, FileMode.Open);
 
-            //SaveFile(,userFile);
+            Random randomizer = new Random();
+            BinaryReader br = new BinaryReader(tempFile);
+            byte[] buffer = br.ReadBytes((int)tempFile.Length);
+            DatabaseFile uploadedFile = new DatabaseFile();
+            uploadedFile.FileName = userFile.FileName;
+            uploadedFile.ContentType = userFile.ContentType;
+            uploadedFile.FileID = userFile.FileID;
+            uploadedFile.FileSize = (int)tempFile.Length;
+            uploadedFile.FileExtension = userFile.FileExtension;
+            uploadedFile.FileContent = buffer;
+            db1.Remove(userFile);
+            db1.Add(uploadedFile);
+            db1.SaveChanges();
+            reader.Close();
+            stamper.Close();
+            tempFile.Close();
         }
 
         /**
