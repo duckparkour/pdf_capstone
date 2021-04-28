@@ -31,7 +31,8 @@ namespace WebApplication1.Pages
 
     public class IndexModel : PageModel
     {
-        public enum Colors
+
+        public enum Colors  //Enumerated type to allow the user to select a text color
         {
             Gray = 0,
             Black = 1,
@@ -43,113 +44,99 @@ namespace WebApplication1.Pages
             Red = 7
         }
 
-        public enum FontType
+        public enum FontType //Enumerated type to allow the user to select a font family
         {
             Helvetica = 0,
             TimesRoman = 1,
             Courier = 2
         }
 
-        /*        private readonly ILogger<IndexModel> _logger;
-        */
-        //private readonly AudioContext db;
-        // public IndexModel(AudioContext db) => this.db = db;
-        // public List<AudioModel> Audios { get; set; } = new List<AudioModel>();
-        /*		public Font userFont = FontFactory.GetFont("Arial", 12, Color.BLACK);
-        */
-        private readonly DatabaseFileContext db1;
-        //  <td><a href = "@Url.Page("Index", "DownloadFile", new { downloadableFile = file })">Download</a></td>
-        public IndexModel(DatabaseFileContext db1) => this.db1 = db1;
-        public IFormFile formFile { get; set; }
-        public IFormFile audioFormFile { get; set; }
-        // public IHostingEnvironment hostingEnvironment;
-        public List<DatabaseFile> FileDatabase { get; set; } = new List<DatabaseFile>();
-        Font userFont;
+        private readonly DatabaseFileContext db1; // Links the File Storage Database
 
-        // public IndexModel(IHostingEnvironment environment)
-        // {
-        //     this.hostingEnvironment = environment;
-        // }
+        public IndexModel(DatabaseFileContext db1) => this.db1 = db1; 
+        public IFormFile formFile { get; set; } // stores a file uploaded by the user to save to the database.
+        public IFormFile audioFormFile { get; set; } //Stores a file created by the user containing a voice recording
+        public List<DatabaseFile> FileDatabase { get; set; } = new List<DatabaseFile>(); //List containing the files from the database
+        public Font userFont = new Font(); //Contains the Font selected by the user for writing comments.
 
-
-
-        public void ChangeFontType(FontType fontType, iTextSharp.text.Paragraph p, Chunk c)
+        /* 
+         Method to allow the user to select a Font type and stores it in the userFont variable.
+         */
+        public void ChangeFontType(FontType fontType)
         {
 
 
             if (fontType == FontType.Helvetica)
             {
-                c.Font = FontFactory.GetFont("Helvetica", c.Font.Size, c.Font.Color);
+                userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
             }
             else if (fontType == FontType.TimesRoman)
             {
-                c.Font = FontFactory.GetFont("TimesRoman", c.Font.Size, c.Font.Color);
+                userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
             }
             else if (fontType == FontType.Courier)
             {
-                c.Font = FontFactory.GetFont("Courier", c.Font.Size, c.Font.Color);
+                userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
             }
-
-            p = new iTextSharp.text.Paragraph(c);
-
         }
 
 
-
-        public void ChangeFontSize(int fontSize, iTextSharp.text.Paragraph p, Chunk c)
+        /* 
+        Method to allow the user to select a Font size and stores it in the userFont variable.
+        */
+        public void ChangeFontSize(int fontSize)
         {
-            c.Font = FontFactory.GetFont(c.Font.Family.ToString(), fontSize, c.Font.Color);
-            p = new iTextSharp.text.Paragraph(c);
+            userFont = FontFactory.GetFont(userFont.Family.ToString(), fontSize, userFont.Color);
         }
 
-        public void ChangeFontColor(Colors userColor, iTextSharp.text.Paragraph p, Chunk c)
+        /* 
+        Method to allow the user to select a Font color and stores it in the userFont variable.
+        */
+        public void ChangeFontColor(Colors userColor)
         {
 
             if (userColor == Colors.Gray)
             {
-                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.GRAY);
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.GRAY);
             }
             else if (userColor == Colors.Black)
             {
-                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.BLACK);
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.BLACK);
             }
             else if (userColor == Colors.Blue)
             {
-                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.BLUE);
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.BLUE);
             }
             else if (userColor == Colors.Purple)
             {
-                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.MAGENTA);
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.MAGENTA);
             }
             else if (userColor == Colors.Green)
             {
-                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.GREEN);
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.GREEN);
             }
             else if (userColor == Colors.Yellow)
             {
-                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.YELLOW);
+                userFont = FontFactory.GetFont(userFont.Family.ToString(),userFont.Size, userFont.Color = BaseColor.YELLOW);
             }
             else if (userColor == Colors.Orange)
             {
-                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.ORANGE);
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.ORANGE);
             }
             else if (userColor == Colors.Red)
             {
-                c.Font = FontFactory.GetFont(c.Font.Family.ToString(), c.Font.Size, c.Font.Color = BaseColor.RED);
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.RED);
             }
-
-            p = new iTextSharp.text.Paragraph(c);
         }
 
-
+        //Load and refresh the database when the page is loaded.
         public async Task OnGetAsync()
         {
-            //Audios = await db.Audios.ToListAsync();
             FileDatabase = await db1.Files.ToListAsync();
-            //FileDatabase = await db1.Files.AddAsync();
             await db1.SaveChangesAsync();
         }
 
+        //Ensure that the List of files has been populated from the database. Call in each GET or POST method.
         public void PopulateList()
         {
             foreach (var v in db1.Files)
@@ -158,12 +145,15 @@ namespace WebApplication1.Pages
             }
         }
 
+        /*
+         Called when user attempts to download a file, requires a fileID to be entered.
+         */
         public FileResult OnGetDownloadFile(int fileID)
         {
             PopulateList();
             DatabaseFile downloadableFile = new DatabaseFile();
-            //Build the File Path.
-            //string path = Path.Combine(this.FileDatabase.IndexOf(downloadableFile) + downloadableFile.FileName);
+
+            //Find the file requested by the user.
             foreach (var f in FileDatabase)
             {
                 if (f.FileID == fileID)
@@ -177,11 +167,15 @@ namespace WebApplication1.Pages
             return File(bytes, downloadableFile.ContentType, downloadableFile.FileName);
         }
 
+        /*Called when user attempts to add a comment to an existing PDF.
+         Requires the text that the user wants to enter, the ID of the file they want it added to, and the page number where the comment should be added.
+         */
         public void OnPostAddUserComment(String comment, int fileID, string pagenum)
         {
             PopulateList();
             DatabaseFile userFile = new DatabaseFile();
 
+            //Find the file requested by the user.
             foreach (var f in FileDatabase)
             {
                 if (f.FileID == fileID)
@@ -190,25 +184,31 @@ namespace WebApplication1.Pages
                 }
             }
 
+            //Create a temporary file path to store the file.
             String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/NEWFILE");
+            //Create a PDF reader object to read the content of the file the user wants to add.
             iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(userFile.FileContent);
+            //String to store the page numbers.
             String tempstring = reader.NumberOfPages.ToString();
-            //select two pages from the original document
+
+            //select the original document.
             reader.SelectPages("1-" + tempstring);
-            //create PdfStamper object to write to get the pages from reader
+            //create PdfStamper object to write to get the pages from reader.
             PdfStamper stamper = new PdfStamper(reader, new FileStream(pathout, FileMode.Create));
-            // PdfContentByte from stamper to add content to the pages over the original content
+            // PdfContentByte from stamper to add content to the pages over the original content.
             PdfContentByte pbover = stamper.GetOverContent(Int32.Parse(pagenum));
+
             //add content to the page using ColumnText
             ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(comment), 100, 500, 0);
-            // PdfContentByte from stamper to add content to the pages under the original content
-            //close the stamper
-            stamper.Close();
+
+            //Create a new File to hold the PDF with added comments
             FileStream tempFile = new FileStream(pathout, FileMode.Open);
 
-            Random randomizer = new Random();
+            //Read original file data.
             BinaryReader br = new BinaryReader(tempFile);
             byte[] buffer = br.ReadBytes((int)tempFile.Length);
+
+            //Add data from original file to temporary file.
             DatabaseFile uploadedFile = new DatabaseFile();
             uploadedFile.FileName = userFile.FileName;
             uploadedFile.ContentType = userFile.ContentType;
@@ -216,9 +216,13 @@ namespace WebApplication1.Pages
             uploadedFile.FileSize = (int)tempFile.Length;
             uploadedFile.FileExtension = userFile.FileExtension;
             uploadedFile.FileContent = buffer;
+
+            //Delete original file and add changed file.
             db1.Remove(userFile);
             db1.Add(uploadedFile);
             db1.SaveChanges();
+
+            //Close resources
             reader.Close();
             stamper.Close();
             tempFile.Close();
@@ -234,10 +238,14 @@ namespace WebApplication1.Pages
          **/
         public void OnPost()
         {
-
+            //Create integer randomizer.
             Random randomizer = new Random();
+
+            //Use Binary reader to read file and convert to byte array.
             BinaryReader br = new BinaryReader(formFile.OpenReadStream());
             byte[] buffer = br.ReadBytes((int)formFile.Length);
+
+            //Create a database file class and add data.
             DatabaseFile uploadedFile = new DatabaseFile();
             uploadedFile.FileName = formFile.FileName;
             uploadedFile.ContentType = formFile.ContentType;
@@ -245,6 +253,8 @@ namespace WebApplication1.Pages
             uploadedFile.FileSize = (int)formFile.Length;
             uploadedFile.FileExtension = System.IO.Path.GetExtension(formFile.FileName);
             uploadedFile.FileContent = buffer;
+
+            //Add file and save.
             db1.Add(uploadedFile);
             db1.SaveChanges();
 
@@ -254,14 +264,16 @@ namespace WebApplication1.Pages
         {
 
             Random randomizer = new Random();
-            byte[] byteArray = ASCIIEncoding.ASCII.GetBytes(fileContents.ToString());
+            //byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(fileContents.ToString());
             DatabaseFile uploadedFile = new DatabaseFile();
-            uploadedFile.FileName = formFile.FileName + " Copy";
+            //BinaryReader br = new BinaryReader(formFile.OpenReadStream());
+            //byte[] buffer = br.ReadBytes((int)formFile.Length);
+            uploadedFile.FileName = formFile.FileName;
             uploadedFile.ContentType = formFile.ContentType;
             uploadedFile.FileID = randomizer.Next();
-            uploadedFile.FileSize = byteArray.Length;
-            uploadedFile.FileExtension = System.IO.Path.GetExtension(formFile.FileName);
-            uploadedFile.FileContent = byteArray;
+            //uploadedFile.FileSize = byteArray.Length;
+            uploadedFile.FileExtension = ".pdf";
+           // uploadedFile.FileContent = byteArray;
             db1.Add(uploadedFile);
             db1.SaveChanges();
 
@@ -299,14 +311,13 @@ namespace WebApplication1.Pages
             db1.SaveChanges();
         }
 
+        //Allows the user to split a PDF into a smaller segment and save it as a separate file.
         public void OnPostSplitPDF(int startPage, int endPage, int fileID)
         {
             PopulateList();
-            // Console.WriteLine(startPage);
-            // Console.WriteLine(fileID);
-            // Console.WriteLine(endPage);
             DatabaseFile downloadableFile = new DatabaseFile();
 
+            //Find file requested by the user.
             foreach (var f in FileDatabase)
             {
                 if (f.FileID == fileID)
@@ -314,8 +325,13 @@ namespace WebApplication1.Pages
                     downloadableFile = f;
                 }
             }
+
+            //Create new pdfreader object to get file input from the user.
             iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(downloadableFile.FileContent);
+            //Create stringbuilder to hold the text from each page.
             StringBuilder text = new StringBuilder();
+
+            //Iterate through the segmented pages and add them to the stringbuilder.
             for (int pagenumber = 0; pagenumber < reader.NumberOfPages; pagenumber++)
             {
                 if (pagenumber >= startPage && pagenumber <= endPage)
@@ -328,10 +344,34 @@ namespace WebApplication1.Pages
                 }
 
             }
-            SaveFile(text, downloadableFile);
+            
+            //Create new Randomizer.
+            Random randomizer = new Random();
+            //Encode file contents into byte array.
+            byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(text.ToString());
+            //Read file into new filestream
+            DatabaseFile uploadedFile = new DatabaseFile();
+            MemoryStream readStream = new MemoryStream(byteArray);
+            BinaryReader br = new BinaryReader(readStream);
+            byte[] buffer = br.ReadBytes((int)readStream.Length);
+
+            //Add data to the new File.
+            uploadedFile.FileName = "Copy "+ downloadableFile.FileName;
+            uploadedFile.ContentType = downloadableFile.ContentType;
+            uploadedFile.FileID = randomizer.Next();
+            uploadedFile.FileSize = buffer.Length;
+            uploadedFile.FileExtension = ".pdf";
+            uploadedFile.FileContent = buffer;
+
+            //Add file and save changes.
+            db1.Add(uploadedFile);
+            db1.SaveChanges();
         }
 
-
+        public void LinkFilesToPDF(int FileID)
+        { 
+            
+        }
 
         /**
          * Return a file from the database which will be represented as a base64 string.
