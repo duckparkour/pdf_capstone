@@ -57,7 +57,7 @@ namespace WebApplication1.Pages
         public IFormFile formFile { get; set; } // stores a file uploaded by the user to save to the database.
         public IFormFile audioFormFile { get; set; } //Stores a file created by the user containing a voice recording
         public List<DatabaseFile> FileDatabase { get; set; } = new List<DatabaseFile>(); //List containing the files from the database
-        public Font userFont = new Font(); //Contains the Font selected by the user for writing comments.
+        public Font userFont = new Font(0,18,0,BaseColor.BLACK); //Contains the Font selected by the user for writing comments.
 
         /* 
          Method to allow the user to select a Font type and stores it in the userFont variable.
@@ -190,17 +190,17 @@ namespace WebApplication1.Pages
             iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(userFile.FileContent);
             //String to store the page numbers.
             String tempstring = reader.NumberOfPages.ToString();
-
+            FileStream stream = new FileStream(pathout, FileMode.Create);
             //select the original document.
             reader.SelectPages("1-" + tempstring);
             //create PdfStamper object to write to get the pages from reader.
-            PdfStamper stamper = new PdfStamper(reader, new FileStream(pathout, FileMode.Create));
+            PdfStamper stamper = new PdfStamper(reader, stream);
             // PdfContentByte from stamper to add content to the pages over the original content.
             PdfContentByte pbover = stamper.GetOverContent(Int32.Parse(pagenum));
 
             //add content to the page using ColumnText
-            ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(comment), 100, 500, 0);
-
+            ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(comment, userFont), 100, 500, 0);
+            stamper.Close();
             //Create a new File to hold the PDF with added comments
             FileStream tempFile = new FileStream(pathout, FileMode.Open);
 
@@ -224,7 +224,6 @@ namespace WebApplication1.Pages
 
             //Close resources
             reader.Close();
-            stamper.Close();
             tempFile.Close();
         }
 
