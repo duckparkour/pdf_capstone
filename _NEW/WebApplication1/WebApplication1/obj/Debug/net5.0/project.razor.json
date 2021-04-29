@@ -15617,6 +15617,17 @@
     "CSharpLanguageVersion": 900
   },
   "RootNamespace": "WebApplication1",
-  "Documents": [],
+  "Documents": [
+    {
+      "FilePath": "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/_ViewImports.cshtml",
+      "TargetPath": "_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/david/Code/CapstoneProject/pdf_capstone/_NEW/WebApplication1/WebApplication1/Pages/Index.cshtml",
+      "TargetPath": "Pages\\Index.cshtml",
+      "FileKind": "mvc"
+    }
+  ],
   "SerializationFormat": "0.2"
 }
