@@ -116,40 +116,95 @@
     $("#open-pdf-modal").toggle();
   });
 
-  $("#split-btn").click(function (e) { 
+  $("#split-btn").click(function (e) {
     e.preventDefault();
-    let startPage = $('#start-page-num').val();
-    let endPage = $('#end-page-num').val();
-    let fileID = $('#id-num').val();
+    let startPage = $("#start-page-num").val();
+    let endPage = $("#end-page-num").val();
+    let fileID = $("#id-num").val();
 
     $.ajax({
-      url: "?handler=SplitPDF&startPage=" + startPage + "&endPage=" + endPage + "&fileID=" + fileID,
+      url:
+        "?handler=SplitPDF&startPage=" +
+        startPage +
+        "&endPage=" +
+        endPage +
+        "&fileID=" +
+        fileID,
       type: "POST",
-      success: function(e) {
-        console.log("Successfully split")
+      success: function (e) {
+        console.log("Successfully split");
       },
-      error: function(e) {
-        console.log("Error" + e)
-      }
-    })
+      error: function (e) {
+        console.log("Error" + e);
+      },
+    });
   });
 
- $('#add-comment-btn').click(function (e) { 
-   let comment = $('#comment-text').val();
-   let id = $('#comment-id').val();
-   let pageNum = $('#comment-page-num').val();
+  $("#add-comment-btn").click(function (e) {
+    let comment = $("#comment-text").val();
+    let id = $("#comment-id").val();
+    let pageNum = $("#comment-page-num").val();
 
-   $.ajax({
-     type: "post",
-     url: "?handler=AddUserComment&comment=" + comment + "&fileID=" + id + "&pagenum=" + pageNum,
-     success: function (response) {
-       alert("Added comment")
-     },
-     error: function (response) {
-       alert(response)
-     }
-   });
- });
+    $.ajax({
+      type: "post",
+      url:
+        "?handler=AddUserComment&comment=" +
+        comment +
+        "&fileID=" +
+        id +
+        "&pagenum=" +
+        pageNum,
+      success: function (response) {
+        alert("Added comment");
+      },
+      error: function (response) {
+        alert(response);
+      },
+    });
+  });
 
+  $('#fonts-input').change(function () { 
+    let fontType = $(this).val()
 
+    $.ajax({
+      type: "post",
+      url: "?handler=ChangeFontType&fontType=" + fontType,
+      success: function () {
+        alert("Font type changed");
+      },
+      error: function (response) {
+        alert(response);
+      },
+    });
+  });
+
+  $('#number-input').change(function () { 
+    let fontSize = $(this).val()
+
+    $.ajax({
+      type: "post",
+      url: "?handler=ChangeFontSize&fontSize=" + fontSize,
+      success: function () {
+        
+      },
+      error: function (response) {
+        alert(response);
+      },
+    });
+  });
+
+  $('#color-input').change(function () { 
+    let fontColor = $(this).val()
+
+    $.ajax({
+      type: "post",
+      url: "?handler=ChangeFontColor&userColor=" + fontColor,
+      success: function () {
+        
+      },
+      error: function (response) {
+        alert(response);
+      },
+    });    
+  });
 });

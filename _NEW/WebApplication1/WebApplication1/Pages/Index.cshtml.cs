@@ -53,7 +53,7 @@ namespace WebApplication1.Pages
 
         private readonly DatabaseFileContext db1; // Links the File Storage Database
 
-        public IndexModel(DatabaseFileContext db1) => this.db1 = db1; 
+        public IndexModel(DatabaseFileContext db1) => this.db1 = db1;
         public IFormFile formFile { get; set; } // stores a file uploaded by the user to save to the database.
         public IFormFile audioFormFile { get; set; } //Stores a file created by the user containing a voice recording
         public List<DatabaseFile> FileDatabase { get; set; } = new List<DatabaseFile>(); //List containing the files from the database
@@ -62,19 +62,17 @@ namespace WebApplication1.Pages
         /* 
          Method to allow the user to select a Font type and stores it in the userFont variable.
          */
-        public void ChangeFontType(FontType fontType)
+        public void OnPostChangeFontType(string fontType)
         {
-
-
-            if (fontType == FontType.Helvetica)
+            if (fontType == "Helvetica")
             {
                 userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
             }
-            else if (fontType == FontType.TimesRoman)
+            else if (fontType == "TimesRoman")
             {
                 userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
             }
-            else if (fontType == FontType.Courier)
+            else if (fontType == "Courier")
             {
                 userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
             }
@@ -84,49 +82,51 @@ namespace WebApplication1.Pages
         /* 
         Method to allow the user to select a Font size and stores it in the userFont variable.
         */
-        public void ChangeFontSize(int fontSize)
+        public void OnPostChangeFontSize(string fontSize)
         {
-            userFont = FontFactory.GetFont(userFont.Family.ToString(), fontSize, userFont.Color);
+            int convertedFontSize = Convert.ToInt32(fontSize);
+            userFont = FontFactory.GetFont(userFont.Family.ToString(), convertedFontSize, userFont.Color);
         }
 
         /* 
         Method to allow the user to select a Font color and stores it in the userFont variable.
         */
-        public void ChangeFontColor(Colors userColor)
+        public void OnPostChangeFontColor(string userColor)
         {
-
-            if (userColor == Colors.Gray)
+            if (userColor == "Gray")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.GRAY);
             }
-            else if (userColor == Colors.Black)
+            else if (userColor == "Black")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.BLACK);
             }
-            else if (userColor == Colors.Blue)
+            else if (userColor == "Blue")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.BLUE);
             }
-            else if (userColor == Colors.Purple)
+            else if (userColor == "Purple")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.MAGENTA);
             }
-            else if (userColor == Colors.Green)
+            else if (userColor == "Green")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.GREEN);
             }
-            else if (userColor == Colors.Yellow)
+            else if (userColor == "Yellow")
             {
-                userFont = FontFactory.GetFont(userFont.Family.ToString(),userFont.Size, userFont.Color = BaseColor.YELLOW);
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.YELLOW);
             }
-            else if (userColor == Colors.Orange)
+            else if (userColor == "Orange")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.ORANGE);
             }
-            else if (userColor == Colors.Red)
+            else if (userColor == "Red")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.RED);
             }
+
+            
         }
 
         //Load and refresh the database when the page is loaded.
@@ -273,7 +273,7 @@ namespace WebApplication1.Pages
             uploadedFile.FileID = randomizer.Next();
             //uploadedFile.FileSize = byteArray.Length;
             uploadedFile.FileExtension = ".pdf";
-           // uploadedFile.FileContent = byteArray;
+            // uploadedFile.FileContent = byteArray;
             db1.Add(uploadedFile);
             db1.SaveChanges();
 
@@ -344,7 +344,7 @@ namespace WebApplication1.Pages
                 }
 
             }
-            
+
             //Create new Randomizer.
             Random randomizer = new Random();
             //Encode file contents into byte array.
@@ -356,7 +356,7 @@ namespace WebApplication1.Pages
             byte[] buffer = br.ReadBytes((int)readStream.Length);
 
             //Add data to the new File.
-            uploadedFile.FileName = "Copy "+ downloadableFile.FileName;
+            uploadedFile.FileName = "Copy " + downloadableFile.FileName;
             uploadedFile.ContentType = downloadableFile.ContentType;
             uploadedFile.FileID = randomizer.Next();
             uploadedFile.FileSize = buffer.Length;
@@ -369,8 +369,8 @@ namespace WebApplication1.Pages
         }
 
         public void LinkFilesToPDF(int FileID)
-        { 
-            
+        {
+
         }
 
         /**
@@ -418,4 +418,6 @@ namespace WebApplication1.Pages
             return new JsonResult(stream.ToArray());
         }
     }
+
+    
 }

@@ -42,12 +42,20 @@
                 <div id="text-controls-container">
                     <select name="fonts" id="fonts-input">
                         <option value="Times New Roman">Times New Roman</option>
-                        <option value="Roboto">Roboto</option>
-                        <option value="Montessorat">Montessorat</option>
+                        <option value="Helvetica">Roboto</option>
+                        <option value="Courier">Montessorat</option>
                     </select>
                     <input type="number" name="number" id="number-input" value="14">
                     <div class="color-container">
-                        <input type="color" name="color" id="color-picker" value="#ffffff">
+                        <select name="colors" id="color-input">
+                            <option value="Gray">Gray</option>
+                            <option value="Black">Black</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Green">Green</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Orange">Orange</option>
+                            <option value="Red">Red</option>
+                        </select>
                     </div>
                     <button id="add-comment">Add Comment</button>
                 </div>
@@ -95,11 +103,11 @@
                         <img src="https://img.icons8.com/office/24/000000/upload--v1.png" />
                         <span class="tooltip">Upload a PDF</span>
                     </button>
-                     <button class="media-icon" id="split-pdf-button">
-                        <img src="https://img.icons8.com/fluent/24/000000/split.png"/>
+                    <button class="media-icon" id="split-pdf-button">
+                        <img src="https://img.icons8.com/fluent/24/000000/split.png" />
                         <span class="tooltip">Split PDF</span>
                     </button>
-                    
+
                 </div>
             </div>
         </div>
@@ -270,18 +278,24 @@
                 <h3>Split PDF file</h3>
             </div>
             <div class="main-m">
-                <label for="start-page-num"><h4>Start Page</h4></label>
+                <label for="start-page-num">
+                    <h4>Start Page</h4>
+                </label>
                 <input type="number" name="" id="start-page-num">
-                <label for="end-page-num"><h4>End Page</h4></label>
+                <label for="end-page-num">
+                    <h4>End Page</h4>
+                </label>
                 <input type="number" name="" id="end-page-num">
-                <label for="id-num"><h4>ID</h4></label>
+                <label for="id-num">
+                    <h4>ID</h4>
+                </label>
                 <input type="number" name="" id="id-num">
                 <button id="split-btn">Split</button>
             </div>
         </div>
     </div>
 
-<div id="comment-modal" class="modal">
+    <div id="comment-modal" class="modal">
         <div class="modal-content">
             <div class="exit-container">
                 <span class="close" id="comment-modal-close-button">&times;</span>
@@ -303,10 +317,10 @@
 
     <div id="split-pdf-modal" class="modal">
 
-                <h3>Split a file</h3>
-            </div>
-            
-        </div>
+        <h3>Split a file</h3>
+    </div>
+
+    </div>
     </div>
     <!--Scripts for the website-->
     <script src="~/js/site.js"></script>
