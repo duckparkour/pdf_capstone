@@ -250,7 +250,7 @@ namespace WebApplication1.Pages
         /*Called when user attempts to add a comment to an existing PDF.
          Requires the text that the user wants to enter, the ID of the file they want it added to, and the page number where the comment should be added.
          */
-        public void OnPostAddUserComment(String comment, int fileID, string pagenum)
+        public void OnPostAddUserComment(String comment, int fileID, string pagenum, String userFontType, float userFontSize, String userFontColor)
         {
             PopulateList();
             DatabaseFile userFile = new DatabaseFile();
@@ -264,7 +264,7 @@ namespace WebApplication1.Pages
                 }
             }
             Font userFont = new Font(0, 18, 0, BaseColor.BLACK); //Contains the Font selected by the user for writing comments.
-
+            /*
             String userDataPath = ("./Data/USERFONTFILE");
             FileStream userStream = new FileStream(userDataPath, FileMode.OpenOrCreate);
             string[] userData = { "Times", "15", "Gray" };
@@ -278,61 +278,61 @@ namespace WebApplication1.Pages
             }
             userStream.Close();
             fileReader.Close();
-
-            if (userData[0] == "Helvetica")
+            */
+            if (userFontType == "Helvetica")
             {
                 //userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
                 userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
             }
-            else if (userData[0] == "TimesRoman")
+            else if (userFontType == "TimesRoman")
             {
                 //userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
                 userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
             }
-            else if (userData[0] == "Courier")
+            else if (userFontType == "Courier")
             {
                 //userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
                 userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
             }
 
-            userFont = FontFactory.GetFont(userFont.Family.ToString(), int.Parse(userData[1]), userFont.Color);
+            userFont = FontFactory.GetFont(userFont.Family.ToString(), userFontSize, userFont.Color);
 
-            if (userData[2] == "Gray")
+            if (userFontColor == "Gray")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.GRAY);
             }
-            else if (userData[2] == "Black")
+            else if (userFontColor == "Black")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.BLACK);
 
             }
-            else if (userData[2] == "Blue")
+            else if (userFontColor == "Blue")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.BLUE);
 
             }
-            else if (userData[2] == "Purple")
+            else if (userFontColor == "Purple")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.
                     MAGENTA);
 
             }
-            else if (userData[2] == "Green")
+            else if (userFontColor == "Green")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.GREEN);
 
             }
-            else if (userData[2] == "Yellow")
+            else if (userFontColor == "Yellow")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.YELLOW);
 
             }
-            else if (userData[2] == "Orange")
+            else if (userFontColor == "Orange")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.ORANGE);
 
             }
-            else if (userData[2] == "Red")
+            else if (userFontColor == "Red")
             {
                 userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.RED);
 

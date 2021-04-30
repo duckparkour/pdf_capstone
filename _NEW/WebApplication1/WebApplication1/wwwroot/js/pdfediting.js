@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+
+  myStorage = window.localStorage;
   /**
    * Click handler for creating a new pdf document
    *
@@ -148,7 +150,9 @@
     let comment = $("#comment-text").val();
     let id = currentDocId;
     let pageNum = $("#comment-page-num").val();
-
+    let fontType = $('#fonts-input').val();
+    let fontSize = $('#number-input').val();
+    let fontColor = $('#color-input').val();
     $.ajax({
       type: "post",
       url:
@@ -157,59 +161,20 @@
         "&fileID=" +
         id +
         "&pagenum=" +
-        pageNum,
+        pageNum + 
+        "&userFontType=" +
+        fontType +
+        "&userFontSize=" +
+        fontSize +
+        "&userFontColor=" +
+        fontColor,
       success: function (response) {
         alert("Added comment");
         $("#comment-modal").toggle();
       },
       error: function (response) {
-        alert(response);
+        alert("oops...something went wrong...try again"+response);
       },
     });
-  });
-
-  $('#fonts-input').change(function () { 
-    let fontType = $(this).val()
-
-    $.ajax({
-      type: "post",
-      url: "?handler=ChangeFontType&fontType=" + fontType,
-      success: function () {
-        alert("Font type changed");
-      },
-      error: function (response) {
-        alert(response);
-      },
-    });
-  });
-
-  $('#number-input').change(function () { 
-    let fontSize = $(this).val()
-
-    $.ajax({
-      type: "post",
-      url: "?handler=ChangeFontSize&fontSize=" + fontSize,
-      success: function () {
-        
-      },
-      error: function (response) {
-        alert(response);
-      },
-    });
-  });
-
-  $('#color-input').change(function () { 
-    let fontColor = $(this).val()
-
-    $.ajax({
-      type: "post",
-      url: "?handler=ChangeFontColor&userColor=" + fontColor,
-      success: function () {
-        
-      },
-      error: function (response) {
-        alert(response);
-      },
-    });    
   });
 });
