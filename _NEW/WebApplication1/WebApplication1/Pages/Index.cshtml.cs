@@ -57,24 +57,48 @@ namespace WebApplication1.Pages
         public IFormFile formFile { get; set; } // stores a file uploaded by the user to save to the database.
         public IFormFile audioFormFile { get; set; } //Stores a file created by the user containing a voice recording
         public List<DatabaseFile> FileDatabase { get; set; } = new List<DatabaseFile>(); //List containing the files from the database
-        public Font userFont = new Font(0,18,0,BaseColor.BLACK); //Contains the Font selected by the user for writing comments.
+        //public Font userFont = new Font(0,18,0,BaseColor.BLACK); //Contains the Font selected by the user for writing comments.
 
         /* 
          Method to allow the user to select a Font type and stores it in the userFont variable.
          */
         public void OnPostChangeFontType(string fontType)
         {
+            String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/USERFONTFILE");
+            FileStream stream = new FileStream(pathout, FileMode.OpenOrCreate);
+            string[] userData = { "Times", "15", "Gray" };
+            StreamReader fileReader = new StreamReader(stream);
+
+            while (!fileReader.EndOfStream)
+            {
+                userData[0] = fileReader.ReadLine();
+                userData[1] = fileReader.ReadLine();
+                userData[2] = fileReader.ReadLine();
+            }
+            stream.Close();
+            fileReader.Close();
+            
             if (fontType == "Helvetica")
             {
-                userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
+                //userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
+                userData[0] = "Helvetica";
             }
             else if (fontType == "TimesRoman")
             {
-                userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
+                //userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
+                userData[0] = "TimesRoman";
             }
             else if (fontType == "Courier")
             {
-                userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
+                //userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
+                userData[0] = "Courier";
+            }
+
+
+            using (StreamWriter outputFile = new StreamWriter(pathout))
+            {
+                foreach (string line in userData)
+                    outputFile.WriteLine(line);
             }
         }
 
@@ -84,8 +108,29 @@ namespace WebApplication1.Pages
         */
         public void OnPostChangeFontSize(string fontSize)
         {
+            String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/USERFONTFILE");
+            FileStream stream = new FileStream(pathout, FileMode.OpenOrCreate);
+            string[] userData = { "Times", "15", "Gray" };
+            StreamReader fileReader = new StreamReader(stream);
+
+            while (!fileReader.EndOfStream)
+            {
+                userData[0] = fileReader.ReadLine();
+                userData[1] = fileReader.ReadLine();
+                userData[2] = fileReader.ReadLine();
+            }
+            stream.Close();
+            fileReader.Close();
+
             int convertedFontSize = Convert.ToInt32(fontSize);
-            userFont = FontFactory.GetFont(userFont.Family.ToString(), convertedFontSize, userFont.Color);
+            //userFont = FontFactory.GetFont(userFont.Family.ToString(), convertedFontSize, userFont.Color);
+            userData[1] = convertedFontSize.ToString();
+
+            using (StreamWriter outputFile = new StreamWriter(pathout))
+            {
+                foreach (string line in userData)
+                    outputFile.WriteLine(line);
+            }
         }
 
         /* 
@@ -93,39 +138,74 @@ namespace WebApplication1.Pages
         */
         public void OnPostChangeFontColor(string userColor)
         {
+            String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/USERFONTFILE");
+            FileStream stream = new FileStream(pathout, FileMode.OpenOrCreate);
+            string[] userData = {"Times","15","Gray" };
+            StreamReader fileReader = new StreamReader(stream);
+
+            while (!fileReader.EndOfStream)
+            {
+               userData[0] = fileReader.ReadLine();
+               userData[1] = fileReader.ReadLine();
+               userData[2] = fileReader.ReadLine();
+            }
+            stream.Close();
+            fileReader.Close();
+
+
             if (userColor == "Gray")
             {
-                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.GRAY);
+                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.GRAY);
+                userData[2] = "Gray";
             }
             else if (userColor == "Black")
             {
-                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.BLACK);
+                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.BLACK);
+                userData[2] = "Black";
+
             }
             else if (userColor == "Blue")
             {
-                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.BLUE);
+                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.BLUE);
+                userData[2] = "Blue";
+
             }
             else if (userColor == "Purple")
             {
-                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.MAGENTA);
+                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.MAGENTA);
+                userData[2] = "Purple";
+
             }
             else if (userColor == "Green")
             {
-                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.GREEN);
+                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.GREEN);
+                userData[2] = "Green";
+
             }
             else if (userColor == "Yellow")
             {
-                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.YELLOW);
+                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.YELLOW);
+                userData[2] = "Yellow";
+
             }
             else if (userColor == "Orange")
             {
-                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.ORANGE);
+                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.ORANGE);
+                userData[2] = "Orange";
+
             }
             else if (userColor == "Red")
             {
-                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.RED);
+               // userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.RED);
+                userData[2] = "Red";
+
             }
 
+            using (StreamWriter outputFile = new StreamWriter(pathout))
+            {
+                foreach (string line in userData)
+                    outputFile.WriteLine(line);
+            }
             
         }
 
@@ -183,6 +263,81 @@ namespace WebApplication1.Pages
                     userFile = f;
                 }
             }
+            Font userFont = new Font(0, 18, 0, BaseColor.BLACK); //Contains the Font selected by the user for writing comments.
+
+            String userDataPath = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/USERFONTFILE");
+            FileStream userStream = new FileStream(userDataPath, FileMode.OpenOrCreate);
+            string[] userData = { "Times", "15", "Gray" };
+            StreamReader fileReader = new StreamReader(userStream);
+
+            while (!fileReader.EndOfStream)
+            {
+                userData[0] = fileReader.ReadLine();
+                userData[1] = fileReader.ReadLine();
+                userData[2] = fileReader.ReadLine();
+            }
+            userStream.Close();
+            fileReader.Close();
+
+            if (userData[0] == "Helvetica")
+            {
+                //userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
+                userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
+            }
+            else if (userData[0] == "TimesRoman")
+            {
+                //userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
+                userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
+            }
+            else if (userData[0] == "Courier")
+            {
+                //userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
+                userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
+            }
+
+            userFont = FontFactory.GetFont(userFont.Family.ToString(), int.Parse(userData[1]), userFont.Color);
+
+            if (userData[2] == "Gray")
+            {
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.GRAY);
+            }
+            else if (userData[2] == "Black")
+            {
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.BLACK);
+
+            }
+            else if (userData[2] == "Blue")
+            {
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.BLUE);
+
+            }
+            else if (userData[2] == "Purple")
+            {
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.
+                    MAGENTA);
+
+            }
+            else if (userData[2] == "Green")
+            {
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.GREEN);
+
+            }
+            else if (userData[2] == "Yellow")
+            {
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.YELLOW);
+
+            }
+            else if (userData[2] == "Orange")
+            {
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.ORANGE);
+
+            }
+            else if (userData[2] == "Red")
+            {
+                userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, BaseColor.RED);
+
+            }
+
 
             //Create a temporary file path to store the file.
             String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/NEWFILE");
