@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
   // These variables are for the audio recording funtionality and are declared as "globals" in this script to be accessed by
   // different parts of the script
+  let currentDocId;
   let mediaRecorder;
   let audioChunks;
 

@@ -103,6 +103,8 @@
       type: "get",
       success: function (data) {
         const url = "data:application/pdf;base64," + data;
+        currentDocId = id;
+        alert(currentDocId);
         fetch(url)
           .then((res) => res.blob())
           .then((res) => {
@@ -121,7 +123,7 @@
     e.preventDefault();
     let startPage = $("#start-page-num").val();
     let endPage = $("#end-page-num").val();
-    let fileID = $("#id-num").val();
+    let fileID = currentDocId;
 
     $.ajax({
       url:
@@ -144,7 +146,7 @@
 
   $("#add-comment-btn").click(function (e) {
     let comment = $("#comment-text").val();
-    let id = $("#comment-id").val();
+    let id = currentDocId;
     let pageNum = $("#comment-page-num").val();
 
     $.ajax({
