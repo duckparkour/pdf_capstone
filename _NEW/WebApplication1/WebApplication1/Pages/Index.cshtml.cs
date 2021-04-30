@@ -227,6 +227,56 @@ namespace WebApplication1.Pages
             tempFile.Close();
         }
 
+        //Allows the user to split a PDF into a smaller segment and save it as a separate file.
+        public void OnPostSplitPDF(int startPage, int endPage, int fileID)
+        {
+            PopulateList();
+            DatabaseFile downloadableFile = new DatabaseFile();
+            String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/SPLITFILE");
+            //Find file requested by the user.
+            foreach (var f in FileDatabase)
+            {
+                if (f.FileID == fileID)
+                {
+                    downloadableFile = f;
+                }
+            }
+
+            //Create new pdfreader object to get file input from the user.
+            iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(downloadableFile.FileContent);
+            //Create stringbuilder to hold the text from each page.
+            StringBuilder text = new StringBuilder();
+            reader.SelectPages(startPage.ToString() + "-" + endPage.ToString());
+
+            FileStream stream = new FileStream(pathout, FileMode.Create);
+            PdfStamper stamper = new PdfStamper(reader, stream);
+            stamper.Close();
+            //Create new Randomizer.
+            Random randomizer = new Random();
+            //Encode file contents into byte array.
+            //Read file into new filestream
+            DatabaseFile uploadedFile = new DatabaseFile();
+
+            //Create a new File to hold the PDF with added comments
+            FileStream tempFile = new FileStream(pathout, FileMode.Open);
+
+            //Read original file data.
+            BinaryReader br = new BinaryReader(tempFile);
+            byte[] buffer = br.ReadBytes((int)tempFile.Length);
+
+            //Add data to the new File.
+            uploadedFile.FileName = "Copy " + downloadableFile.FileName;
+            uploadedFile.ContentType = downloadableFile.ContentType;
+            uploadedFile.FileID = randomizer.Next();
+            uploadedFile.FileSize = buffer.Length;
+            uploadedFile.FileExtension = ".pdf";
+            uploadedFile.FileContent = buffer;
+
+            //Add file and save changes.
+            db1.Add(uploadedFile);
+            db1.SaveChanges();
+        }
+
         /**
          * Upload a PDF file on your local machine to our server
          *
@@ -307,63 +357,6 @@ namespace WebApplication1.Pages
             audioToBeSaved.FileContent = buffer;
             audioToBeSaved.FileSize = buffer.Length;
             db1.Add(audioToBeSaved);
-            db1.SaveChanges();
-        }
-
-        //Allows the user to split a PDF into a smaller segment and save it as a separate file.
-        public void OnPostSplitPDF(int startPage, int endPage, int fileID)
-        {
-            PopulateList();
-            DatabaseFile downloadableFile = new DatabaseFile();
-
-            //Find file requested by the user.
-            foreach (var f in FileDatabase)
-            {
-                if (f.FileID == fileID)
-                {
-                    downloadableFile = f;
-                }
-            }
-
-            //Create new pdfreader object to get file input from the user.
-            iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(downloadableFile.FileContent);
-            //Create stringbuilder to hold the text from each page.
-            StringBuilder text = new StringBuilder();
-
-            //Iterate through the segmented pages and add them to the stringbuilder.
-            for (int pagenumber = 0; pagenumber < reader.NumberOfPages; pagenumber++)
-            {
-                if (pagenumber >= startPage && pagenumber <= endPage)
-                {
-                    text.Append(PdfTextExtractor.GetTextFromPage(reader, pagenumber));
-                }
-                else if (pagenumber > endPage)
-                {
-                    break;
-                }
-
-            }
-
-            //Create new Randomizer.
-            Random randomizer = new Random();
-            //Encode file contents into byte array.
-            byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(text.ToString());
-            //Read file into new filestream
-            DatabaseFile uploadedFile = new DatabaseFile();
-            MemoryStream readStream = new MemoryStream(byteArray);
-            BinaryReader br = new BinaryReader(readStream);
-            byte[] buffer = br.ReadBytes((int)readStream.Length);
-
-            //Add data to the new File.
-            uploadedFile.FileName = "Copy " + downloadableFile.FileName;
-            uploadedFile.ContentType = downloadableFile.ContentType;
-            uploadedFile.FileID = randomizer.Next();
-            uploadedFile.FileSize = buffer.Length;
-            uploadedFile.FileExtension = ".pdf";
-            uploadedFile.FileContent = buffer;
-
-            //Add file and save changes.
-            db1.Add(uploadedFile);
             db1.SaveChanges();
         }
 
