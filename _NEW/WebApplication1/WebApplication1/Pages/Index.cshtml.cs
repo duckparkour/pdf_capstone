@@ -64,7 +64,7 @@ namespace WebApplication1.Pages
          */
         public void OnPostChangeFontType(string fontType)
         {
-            String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/USERFONTFILE");
+            String pathout = ("./Data/USERFONTFILE");
             FileStream stream = new FileStream(pathout, FileMode.OpenOrCreate);
             string[] userData = { "Times", "15", "Gray" };
             StreamReader fileReader = new StreamReader(stream);
@@ -108,7 +108,7 @@ namespace WebApplication1.Pages
         */
         public void OnPostChangeFontSize(string fontSize)
         {
-            String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/USERFONTFILE");
+            String pathout = ("./Data/USERFONTFILE");
             FileStream stream = new FileStream(pathout, FileMode.OpenOrCreate);
             string[] userData = { "Times", "15", "Gray" };
             StreamReader fileReader = new StreamReader(stream);
@@ -138,7 +138,7 @@ namespace WebApplication1.Pages
         */
         public void OnPostChangeFontColor(string userColor)
         {
-            String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/USERFONTFILE");
+            String pathout = ("./Data/USERFONTFILE");
             FileStream stream = new FileStream(pathout, FileMode.OpenOrCreate);
             string[] userData = {"Times","15","Gray" };
             StreamReader fileReader = new StreamReader(stream);
@@ -265,7 +265,7 @@ namespace WebApplication1.Pages
             }
             Font userFont = new Font(0, 18, 0, BaseColor.BLACK); //Contains the Font selected by the user for writing comments.
 
-            String userDataPath = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/USERFONTFILE");
+            String userDataPath = ("./Data/USERFONTFILE");
             FileStream userStream = new FileStream(userDataPath, FileMode.OpenOrCreate);
             string[] userData = { "Times", "15", "Gray" };
             StreamReader fileReader = new StreamReader(userStream);
@@ -340,7 +340,7 @@ namespace WebApplication1.Pages
 
 
             //Create a temporary file path to store the file.
-            String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/NEWFILE");
+            String pathout = ("./Data/NEWFILE");
             //Create a PDF reader object to read the content of the file the user wants to add.
             iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(userFile.FileContent);
             //String to store the page numbers.
@@ -387,7 +387,7 @@ namespace WebApplication1.Pages
         {
             PopulateList();
             DatabaseFile downloadableFile = new DatabaseFile();
-            String pathout = ("C:/Users/justi_000/Documents/GitHub/pdf_capstone/_NEW/WebApplication1/WebApplication1/Data/SPLITFILE");
+            String pathout = ("./Data/SPLITFILE");
             //Find file requested by the user.
             foreach (var f in FileDatabase)
             {
