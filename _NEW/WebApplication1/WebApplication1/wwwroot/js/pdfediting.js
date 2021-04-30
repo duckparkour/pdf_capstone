@@ -68,6 +68,7 @@
       data: fileAsBase64String,
       success: function () {
         alert(fileName + ".pdf was successfully saved.");
+        $("#save-pdf-modal").toggle();
       },
       error: function (err) {
         alert("Error posting the file." + "\n" + err);
@@ -132,10 +133,11 @@
         fileID,
       type: "POST",
       success: function (e) {
-        console.log("Successfully split");
+        alert("Successfully split");
+        $("$.split-pdf-modal").toggle();
       },
       error: function (e) {
-        console.log("Error" + e);
+       alert("Error" + e);
       },
     });
   });
@@ -156,6 +158,7 @@
         pageNum,
       success: function (response) {
         alert("Added comment");
+        $("#comment-modal").toggle();
       },
       error: function (response) {
         alert(response);

@@ -226,6 +226,7 @@
 
         let urlForAudioBlob = URL.createObjectURL(blob);
         $("audio").attr("src", urlForAudioBlob);
+        $("#myModal").toggle();
       },
       error: function () {
         alert("Could not find a file.");
