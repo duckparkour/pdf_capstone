@@ -31,39 +31,18 @@ namespace WebApplication1.Pages
 
     public class IndexModel : PageModel
     {
-
-        public enum Colors  //Enumerated type to allow the user to select a text color
-        {
-            Gray = 0,
-            Black = 1,
-            Blue = 2,
-            Purple = 3,
-            Green = 4,
-            Yellow = 5,
-            Orange = 6,
-            Red = 7
-        }
-
-        public enum FontType //Enumerated type to allow the user to select a font family
-        {
-            Helvetica = 0,
-            TimesRoman = 1,
-            Courier = 2
-        }
-
         private readonly DatabaseFileContext db1; // Links the File Storage Database
-
         public IndexModel(DatabaseFileContext db1) => this.db1 = db1;
         public IFormFile formFile { get; set; } // stores a file uploaded by the user to save to the database.
         public IFormFile audioFormFile { get; set; } //Stores a file created by the user containing a voice recording
         public List<DatabaseFile> FileDatabase { get; set; } = new List<DatabaseFile>(); //List containing the files from the database
-        //public Font userFont = new Font(0,18,0,BaseColor.BLACK); //Contains the Font selected by the user for writing comments.
 
         /* 
          Method to allow the user to select a Font type and stores it in the userFont variable.
          */
         public void OnPostChangeFontType(string fontType)
         {
+            //Write users font preferences from a file.
             String pathout = ("./Data/USERFONTFILE");
             FileStream stream = new FileStream(pathout, FileMode.OpenOrCreate);
             string[] userData = { "Times", "15", "Gray" };
@@ -78,23 +57,21 @@ namespace WebApplication1.Pages
             stream.Close();
             fileReader.Close();
             
+            //Determine which font the user has selected.
             if (fontType == "Helvetica")
             {
-                //userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
                 userData[0] = "Helvetica";
             }
             else if (fontType == "TimesRoman")
             {
-                //userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
                 userData[0] = "TimesRoman";
             }
             else if (fontType == "Courier")
             {
-                //userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
                 userData[0] = "Courier";
             }
 
-
+            //Write user's selection to file.
             using (StreamWriter outputFile = new StreamWriter(pathout))
             {
                 foreach (string line in userData)
@@ -108,6 +85,7 @@ namespace WebApplication1.Pages
         */
         public void OnPostChangeFontSize(string fontSize)
         {
+            //Reader user font selections from file.
             String pathout = ("./Data/USERFONTFILE");
             FileStream stream = new FileStream(pathout, FileMode.OpenOrCreate);
             string[] userData = { "Times", "15", "Gray" };
@@ -122,10 +100,11 @@ namespace WebApplication1.Pages
             stream.Close();
             fileReader.Close();
 
+            //Allow user to change font size.
             int convertedFontSize = Convert.ToInt32(fontSize);
-            //userFont = FontFactory.GetFont(userFont.Family.ToString(), convertedFontSize, userFont.Color);
             userData[1] = convertedFontSize.ToString();
 
+            //Write changes to file.
             using (StreamWriter outputFile = new StreamWriter(pathout))
             {
                 foreach (string line in userData)
@@ -138,6 +117,7 @@ namespace WebApplication1.Pages
         */
         public void OnPostChangeFontColor(string userColor)
         {
+            //Reads user font from font file.
             String pathout = ("./Data/USERFONTFILE");
             FileStream stream = new FileStream(pathout, FileMode.OpenOrCreate);
             string[] userData = {"Times","15","Gray" };
@@ -152,55 +132,48 @@ namespace WebApplication1.Pages
             stream.Close();
             fileReader.Close();
 
-
+            //Allow user to select the font color.
             if (userColor == "Gray")
             {
-                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.GRAY);
                 userData[2] = "Gray";
             }
             else if (userColor == "Black")
             {
-                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.BLACK);
                 userData[2] = "Black";
 
             }
             else if (userColor == "Blue")
             {
-                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.BLUE);
                 userData[2] = "Blue";
 
             }
             else if (userColor == "Purple")
             {
-                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.MAGENTA);
                 userData[2] = "Purple";
 
             }
             else if (userColor == "Green")
             {
-                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.GREEN);
                 userData[2] = "Green";
 
             }
             else if (userColor == "Yellow")
             {
-                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.YELLOW);
                 userData[2] = "Yellow";
 
             }
             else if (userColor == "Orange")
             {
-                //userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.ORANGE);
                 userData[2] = "Orange";
 
             }
             else if (userColor == "Red")
             {
-               // userFont = FontFactory.GetFont(userFont.Family.ToString(), userFont.Size, userFont.Color = BaseColor.RED);
                 userData[2] = "Red";
 
             }
 
+            //Write font color to file.
             using (StreamWriter outputFile = new StreamWriter(pathout))
             {
                 foreach (string line in userData)
@@ -264,34 +237,17 @@ namespace WebApplication1.Pages
                 }
             }
             Font userFont = new Font(0, 18, 0, BaseColor.BLACK); //Contains the Font selected by the user for writing comments.
-            /*
-            String userDataPath = ("./Data/USERFONTFILE");
-            FileStream userStream = new FileStream(userDataPath, FileMode.OpenOrCreate);
-            string[] userData = { "Times", "15", "Gray" };
-            StreamReader fileReader = new StreamReader(userStream);
 
-            while (!fileReader.EndOfStream)
-            {
-                userData[0] = fileReader.ReadLine();
-                userData[1] = fileReader.ReadLine();
-                userData[2] = fileReader.ReadLine();
-            }
-            userStream.Close();
-            fileReader.Close();
-            */
             if (userFontType == "Helvetica")
             {
-                //userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
                 userFont = FontFactory.GetFont("Helvetica", userFont.Size, userFont.Color);
             }
             else if (userFontType == "TimesRoman")
             {
-                //userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
                 userFont = FontFactory.GetFont("TimesRoman", userFont.Size, userFont.Color);
             }
             else if (userFontType == "Courier")
             {
-                //userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
                 userFont = FontFactory.GetFont("Courier", userFont.Size, userFont.Color);
             }
 
@@ -346,6 +302,7 @@ namespace WebApplication1.Pages
             //String to store the page numbers.
             String tempstring = reader.NumberOfPages.ToString();
             FileStream stream = new FileStream(pathout, FileMode.Create);
+
             //select the original document.
             reader.SelectPages("1-" + tempstring);
             //create PdfStamper object to write to get the pages from reader.
@@ -406,6 +363,7 @@ namespace WebApplication1.Pages
             FileStream stream = new FileStream(pathout, FileMode.Create);
             PdfStamper stamper = new PdfStamper(reader, stream);
             stamper.Close();
+
             //Create new Randomizer.
             Random randomizer = new Random();
             //Encode file contents into byte array.
@@ -430,6 +388,8 @@ namespace WebApplication1.Pages
             //Add file and save changes.
             db1.Add(uploadedFile);
             db1.SaveChanges();
+
+            tempFile.Close();
         }
 
         /**
@@ -468,16 +428,11 @@ namespace WebApplication1.Pages
         {
 
             Random randomizer = new Random();
-            //byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(fileContents.ToString());
             DatabaseFile uploadedFile = new DatabaseFile();
-            //BinaryReader br = new BinaryReader(formFile.OpenReadStream());
-            //byte[] buffer = br.ReadBytes((int)formFile.Length);
             uploadedFile.FileName = formFile.FileName;
             uploadedFile.ContentType = formFile.ContentType;
             uploadedFile.FileID = randomizer.Next();
-            //uploadedFile.FileSize = byteArray.Length;
             uploadedFile.FileExtension = ".pdf";
-            // uploadedFile.FileContent = byteArray;
             db1.Add(uploadedFile);
             db1.SaveChanges();
 
